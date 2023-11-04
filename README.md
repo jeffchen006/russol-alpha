@@ -7,6 +7,12 @@ Test files can be found [here](https://github.com/JonasAlaif/russol-alpha/tree/m
 
 # The following is my attempt to execute it locally
 
+Note the authors' github repo is not as good as their artifact uploaded to zenodo. So here I merge the two.
+
+While they are doing an amazing job, I think they should have done a better job at maintaining their git repo.
+
+
+
 # Getting started
 
 Our artifact is provided as a Docker image, which can be run using any recent version of [Docker](https://docs.docker.com/get-docker/). Please start by unzipping the `sources.zip` file to the root of the artifact, such that running `ls sources/russol-alpha` from the root of the artifact succeeds.
