@@ -169,7 +169,7 @@ struct ExpressionRewrite {
 }
 impl ExpressionRewrite {
     fn is_fut_span(span: Span) -> bool {
-        span.start() == Span::call_site().start() && span.end() == Span::call_site().end()
+        true
     }
     fn clean_stream(&mut self, ts: TokenStream) -> TokenStream {
         ts.into_iter()

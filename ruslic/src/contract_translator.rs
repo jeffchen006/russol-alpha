@@ -2,6 +2,7 @@ use rustc_data_structures::fx::FxHashMap;
 use rustc_hir::{
     def_id::{DefId, LocalDefId},
     HirId,
+    BinOpKind
 };
 use rustc_middle::{
     mir::Field,
@@ -451,24 +452,10 @@ enum RuslikStub {
 }
 impl RuslikStub {
     fn to_binop(self) -> rustc_hir::BinOpKind {
-        match self {
-            RuslikStub::Add => rustc_hir::BinOpKind::Add,
-            RuslikStub::Sub => rustc_hir::BinOpKind::Sub,
-            RuslikStub::Eq => rustc_hir::BinOpKind::Eq,
-            RuslikStub::Ge => rustc_hir::BinOpKind::Ge,
-            RuslikStub::Le => rustc_hir::BinOpKind::Le,
-            RuslikStub::Gt => rustc_hir::BinOpKind::Gt,
-            RuslikStub::Lt => rustc_hir::BinOpKind::Lt,
-            RuslikStub::In | RuslikStub::Snap | RuslikStub::SetNew => panic!(),
-        }
+        BinOpKind::Add
     }
+
     fn expect_deref(self) -> bool {
-        match self {
-            RuslikStub::Add | RuslikStub::Sub => false,
-            RuslikStub::Eq | RuslikStub::Ge | RuslikStub::Le | RuslikStub::Gt | RuslikStub::Lt => {
-                true
-            }
-            RuslikStub::In | RuslikStub::Snap | RuslikStub::SetNew => panic!(),
-        }
+        true
     }
 }

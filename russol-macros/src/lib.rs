@@ -15,92 +15,42 @@ mod rewriter;
 
 #[proc_macro_attribute]
 pub fn requires(attr: TokenStream, tokens: TokenStream) -> TokenStream {
-    parse_fn_specs(tokens.into(), attr.into(), SpecKind::Requires)
-        .unwrap_or_else(|x| x)
-        .into()
+    attr
 }
 
 #[proc_macro_attribute]
 pub fn ensures(attr: TokenStream, tokens: TokenStream) -> TokenStream {
-    parse_fn_specs(tokens.into(), attr.into(), SpecKind::Ensures)
-        .unwrap_or_else(|x| x)
-        .into()
+    attr
 }
 
 #[proc_macro_attribute]
 pub fn trusted_ensures(attr: TokenStream, tokens: TokenStream) -> TokenStream {
-    parse_fn_specs(tokens.into(), attr.into(), SpecKind::TrustedEnsures)
-        .unwrap_or_else(|x| x)
-        .into()
+    attr
 }
 
 #[proc_macro_attribute]
 pub fn pure(_attr: TokenStream, tokens: TokenStream) -> TokenStream {
-    match syn::parse2::<syn::ItemFn>(tokens.into()) {
-        Ok(mut item_fn) => {
-            item_fn.attrs.push(parse_quote! { #[rustfmt::ruslik_pure] });
-            item_fn.into_token_stream()
-        }
-        Err(e) => e.to_compile_error(),
-    }
-    .into()
+    _attr
 }
 
 #[proc_macro_attribute]
 pub fn helper(_attr: TokenStream, tokens: TokenStream) -> TokenStream {
-    match syn::parse2::<syn::ItemFn>(tokens.into()) {
-        Ok(mut item_fn) => {
-            item_fn
-                .attrs
-                .push(parse_quote! { #[rustfmt::ruslik_helper] });
-            item_fn.into_token_stream()
-        }
-        Err(e) => e.to_compile_error(),
-    }
-    .into()
+    _attr
 }
 
 #[proc_macro_attribute]
 pub fn synth(_attr: TokenStream, tokens: TokenStream) -> TokenStream {
-    match syn::parse2::<syn::ItemFn>(tokens.into()) {
-        Ok(mut item_fn) => {
-            item_fn
-                .attrs
-                .push(parse_quote! { #[rustfmt::ruslik_synth] });
-            item_fn.into_token_stream()
-        }
-        Err(e) => e.to_compile_error(),
-    }
-    .into()
+    _attr
 }
 
 #[proc_macro_attribute]
 pub fn params(attr: TokenStream, tokens: TokenStream) -> TokenStream {
-    match syn::parse2::<syn::ItemFn>(tokens.into()) {
-        Ok(mut item_fn) => {
-            let attr: TokenStream2 = attr.into();
-            item_fn
-                .attrs
-                .push(parse_quote! { #[rustfmt::ruslik_params = #attr] });
-            item_fn.into_token_stream()
-        }
-        Err(e) => e.to_compile_error(),
-    }
-    .into()
+    attr
 }
 
 #[proc_macro_attribute]
 pub fn extern_spec(_attr: TokenStream, tokens: TokenStream) -> TokenStream {
-    match syn::parse2::<syn::ItemFn>(tokens.into()) {
-        Ok(mut item_fn) => {
-            item_fn
-                .attrs
-                .push(parse_quote! { #[rustfmt::ruslik_extern_spec] });
-            item_fn.into_token_stream()
-        }
-        Err(e) => e.to_compile_error(),
-    }
-    .into()
+    _attr
 }
 
 #[derive(Clone, Copy)]
@@ -152,6 +102,5 @@ fn parse_fn_specs(
 
 #[proc_macro]
 pub fn ruslik(input: TokenStream) -> TokenStream {
-    let input: TokenStream2 = input.into();
-    quote::quote! { panic!(#input) }.into()
+    input
 }

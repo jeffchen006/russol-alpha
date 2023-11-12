@@ -196,7 +196,6 @@ fn all_tests() {
     }
 }
 
-
 fn all_tests_eval(timeout: u64) -> Category {
     Category::run_tests_in_dir(PathBuf::from("./tests/synth/paper"), timeout, 0)
 }

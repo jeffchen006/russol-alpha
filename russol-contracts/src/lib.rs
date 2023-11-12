@@ -2,15 +2,21 @@
 
 /// A macro for writing a precondition on a function.
 pub use russol_macros::requires;
-pub fn requires<R, T: Fn(R) -> bool>(_closure: T) {}
+pub fn requires<R, T: Fn(R) -> bool>(_closure: T) {
+    ()
+}
 
 /// A macro for writing a postcondition on a function.
 pub use russol_macros::ensures;
-pub fn ensures<R, T: Fn(R) -> bool>(_closure: T) {}
+pub fn ensures<R, T: Fn(R) -> bool>(_closure: T) {
+    ()
+}
 
 /// A macro for writing a postcondition on a pure function.
 pub use russol_macros::trusted_ensures;
-pub fn trusted_ensures<R, T: Fn(R) -> bool>(_closure: T) {}
+pub fn trusted_ensures<R, T: Fn(R) -> bool>(_closure: T) {
+    ()
+}
 
 pub use russol_macros::extern_spec;
 pub use russol_macros::helper;

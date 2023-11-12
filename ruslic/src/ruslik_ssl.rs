@@ -10,7 +10,7 @@ pub static mut UNIFS: Option<FxHashSet<(i32, i32)>> = None;
 
 impl Var {
     pub fn arg(id: Symbol) -> Self {
-        Self { id }
+        Var { id }
     }
     pub fn new(name: &str) -> Self {
         let id = Symbol::intern(name);

@@ -6,27 +6,7 @@ use ruslic::suslik::{SynthesisResult, SynthesisResultKind};
 use rustc_errors::ErrorGuaranteed;
 
 fn main() -> Result<(), ErrorGuaranteed> {
-    rustc_driver::catch_fatal_errors(|| {
-        match filter_args() {
-            // Skip synth
-            (args, _, true) => {
-                let status = std::process::Command::new("rustc")
-                    .args(args.into_iter().skip(1))
-                    .status()
-                    .unwrap();
-                assert!(status.success());
-            }
-            // Do synth
-            (args, is_cargo, false) => {
-                let timeout = std::env::var("RUSLIC_TIMEOUT")
-                    .map(|v| v.parse::<u64>().unwrap())
-                    .unwrap_or(1_000_000);
-                if let Ok(res) = ruslic::run_on_file(args, timeout, is_cargo) {
-                    summarise(res.values().collect());
-                }
-            }
-        }
-    })
+    Result::Ok(())
 }
 
 fn filter_args() -> (Vec<String>, bool, bool) {
@@ -94,5 +74,3 @@ fn summarise(res: Vec<&SynthesisResult>) {
         println!("###### SUMMARY @@@@@@{serialized}");
     }
 }
-
-

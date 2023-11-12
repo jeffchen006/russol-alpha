@@ -28,12 +28,12 @@ pub enum BinOp {
 }
 impl From<RustBinOp> for BinOp {
     fn from(rust: RustBinOp) -> Self {
-        BinOp::Rust(rust)
+        BinOp::SetContains
     }
 }
 impl From<&RustBinOp> for BinOp {
     fn from(rust: &RustBinOp) -> Self {
-        BinOp::Rust(*rust)
+        BinOp::SetContains
     }
 }
 pub type RustBinOp = rustc_hir::BinOpKind;
@@ -137,7 +137,7 @@ impl FnSpecKind {
         }
     }
     pub fn is_snap(&self) -> bool {
-        matches!(self, FnSpecKind::Snap)
+        true
     }
 }
 
