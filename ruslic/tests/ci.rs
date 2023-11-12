@@ -31,6 +31,7 @@ impl Category {
                         "Attempting synthesis for: {}",
                         path.path().to_string_lossy()
                     );
+                    // execute on file
                     if let Ok(res) = ruslic::run_on_file(
                         vec![
                             "/name/of/binary".to_string(),
@@ -169,6 +170,9 @@ impl Display for Category {
 
 #[test]
 fn all_tests() {
+    print!("");
+
+
     let timeout = std::env::var("RUSLIC_TIMEOUT")
         .ok()
         .and_then(|t| t.parse().ok())

@@ -1,120 +1,17 @@
-# RusSOL
-
-For setup and use, follow the steps that the [CI](https://github.com/JonasAlaif/russol-alpha/blob/main/.github/workflows/ci.yml) takes. Execute with `cargo run /path/to/file.rs`.
-
-Test files can be found [here](https://github.com/JonasAlaif/russol-alpha/tree/main/ruslic/tests), the ones under `synth` work (tested with CI), there are also some under `unsupported` due to known limitations of the search.
-
-
-# The following is my attempt to execute it locally
-
-Note the authors' github repo is not as good as their artifact uploaded to zenodo. So here I merge the two.
-
-While they are doing an amazing job, I think they should have done a better job at maintaining their git repo.
-
-
-
-
-# Getting started
-
-Our artifact is provided as a Docker image, which can be run using any recent version of [Docker](https://docs.docker.com/get-docker/). Please start by unzipping the `sources.zip` file to the root of the artifact, such that running `ls sources/russol-alpha` from the root of the artifact succeeds.
-
-All commands should be run from the `sources` directory
+# Build from source:
 
 ```bash
-cd sources
+cargo build --release
 ```
 
-## Using the image
-
-> If any of the commands in this section do not work for you, take a look at [alternatives](#alternatives).
-
-With `docker` installed and in your path, start by loading the `russol` image from the included file. Run the following command
-
-> The `creusot` image is only required for the [Creusot subsection](#creusot), and can be ignored for now.
+# Run one test
 
 ```bash
-docker load -i ../russol-arch.tar.gz
+cargo run --release --bin ruslic ./demo.rs
 ```
 
-We provide images for the `arm64` (Apple sillicon Macs) and `amd64` (most other computers) architectures, if you are on a different architecture you will see the following warning:
-```
-WARNING: The requested image's platform does not match the detected host platform ...
-```
-In such a case we recommend building the docker image manually for your architecture as described under [alternatives](#alternatives).
 
-### Single file
 
-The image is used to run RusSOL; check that it is working correctly by running the following command
-
-```bash
-docker run --rm -it -v ${PWD}/demo.rs:/demo.rs jonasalaif/russol run --release --bin ruslic /demo.rs
-```
-
-> On Windows this command must be run in PowerShell, for the `cmd` terminal replace `${PWD}` with `%cd%`.
-
-The expected output is
-
-```text
-    Finished release [optimized] target(s) in ...s
-     Running `target/release/ruslic /demo.rs`
-fn foo(x: &mut std::result::Result<T, V>) -> (bool, std::result::Result<&mut V, &mut T>) {
-  match x {
-    Result::Ok(_0) => {
-      let _1 = Result::Err(_0);
-      (true, _1)
-    }
-    Result::Err(_0) => {
-      let _1 = Result::Ok(_0);
-      (false, _1)
-    }
-  }
-} // Synth time: ...
-```
-
-To run RusSOL on an arbitrary Rust file, replace `${PWD}/demo.rs` in the above command with `/path/to/local/file.rs`.
-
-### Crate directory
-
-Running the tool on a crate within a directory is also possible, using the following command
-
-> Unlike for the single file, this will **modify** the files in the directory with the synthesis results!
-
-```bash
-docker run --rm -it -v ${PWD}/demo:/demo jonasalaif/russol run --release --bin cargo-russol -- --manifest-path=/demo/Cargo.toml
-```
-
-Linux users may run into a permission issue where the Docker image cannot modify files in the mouned directory, this can be fixed by running (and then retrying the above command)
-
-```bash
-chmod o+rw -R demo
-```
-
-## Structure of the artifact
-
-The structure of the artifact is detailed in the [`STRUCTURE.md`](sources/STRUCTURE.md) file.
-
-## Advanced use of the image
-
-We now explain the docker command to run RosSOL in more detail. It can be broken down into
-
-```bash
-docker run --rm -it -v ${PWD}/demo.rs:/demo.rs jonasalaif/russol run --release --bin ruslic /demo.rs
-^^^^^^^^^^^^^^^^^^^                            ^^^^^^^^^^^^^^^^^                                     (1)
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^                                                       (2)
-                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ (3)
-```
-
-1. Basic command to run the image (configured to run `cargo` from within the `/home/sbtuser/russol-alpha` in the image).
-2. Mounts a file or directory from the host into the container (**mounted files can be modified from within the container**).
-3. The command to run inside the container (here equivalent to running `cargo run --release --bin ruslic /demo.rs` locally).
-
-When running the tool, 1. should remain the same, 2. can be used to mount whichever files one wants to work with and 3. selects the command to run. Refer to the [`cargo` manual](https://doc.rust-lang.org/cargo/commands/) for documentation; in this document we use [`run`](https://doc.rust-lang.org/cargo/commands/cargo-run.html) and [`test`](https://doc.rust-lang.org/cargo/commands/cargo-test.html). The `--release` flag should always be specified as the image contains prebuilt binaries for this mode only.
-
-## Alternatives (building locally)
-
-Both images can also be found on Docker Hub (e.g. `docker pull jonasalaif/russol`), additionally the `Dockerfile` to manually build either of the images (e.g. `docker build -t jonasalaif/russol .`) are included in the artifact.
-
-One can also build the tool locally, by following the same steps as in the Dockerfile; the tool depends on `jre`/`sbt`, `z3` and `rustc`/`cargo`. Once these are installed run `cargo build --release` from the `russol-alpha` directory to build the frontend, and then `cargo run --release --bin ruslic path/to/test/file.rs` will build the backend during first execution. Compared to the process described in this file, the artifact can be evaluated locally in exactly the same way, but with `docker run --rm -it ... jonasalaif/russol [args]` replaced by `cargo [args]`.
 
 # Step-by-Step Instructions
 
@@ -125,7 +22,7 @@ The artifact includes the tools required to verify all of our claims. We describ
 The StackOverflow example from Fig. 1 can be found at `russol-alpha/ruslic/tests/synth/paper/rust/b-stackoverflow/reborrow.rs`. It can be synthesized by running the tool on a single file as described above
 
 ```bash
-docker run --rm -it -v ${PWD}/russol-alpha/ruslic/tests/synth/paper/rust/b-stackoverflow/reborrow.rs:/reborrow.rs jonasalaif/russol run --release --bin ruslic /reborrow.rs
+cargo run --release --bin ruslic ./ruslic/tests/synth/paper/rust/b-stackoverflow/reborrow.rs
 ```
 
 ## Section 2
@@ -133,7 +30,7 @@ docker run --rm -it -v ${PWD}/russol-alpha/ruslic/tests/synth/paper/rust/b-stack
 The running example from this section can be found at `russol-alpha/ruslic/tests/synth/paper/rust/c-custom/list_ex/list_paper.rs`. All of the functions can be synthesized in one go with
 
 ```bash
-docker run --rm -it -v ${PWD}/russol-alpha/ruslic/tests/synth/paper/rust/c-custom/list_ex/list_paper.rs:/list_paper.rs jonasalaif/russol run --release --bin ruslic /list_paper.rs
+cargo run --release --bin ruslic ./list_paper.rs 
 ```
 
 The order of the functions is the same as presented in the paper, though the names of some of the functions are changed to avoid clashes. There is also an additional `pop` function, which is not mentioned in the paper.
@@ -156,7 +53,13 @@ The categories "Rust", "SuSLik" and "Verifier" are contained in respective direc
 docker run --rm -it -v ${PWD}/russol-alpha/ruslic/tests:/home/sbtuser/russol-alpha/ruslic/tests jonasalaif/russol test --release --test ci -- all_tests --nocapture
 ```
 
-The command outputs the results table both to stdout and `/home/sbtuser/russol-alpha/ruslic/ruslic/tests/ci-results.txt`. The `-v ${PWD}/russol-alpha/ruslic/tests:/home/sbtuser/russol-alpha/ruslic/tests` part ensures that this file is also saved to the local file system (at `.../tests/ci-results.txt`). It also ensures that we are running on the same tests as the ones in the artifact.
+```bash
+cargo test --release --test ci -- all_tests --nocapture
+```
+
+**Overall, it takes 262.90s to finish all the tests on my desktop.**
+
+The command outputs the results' table both to stdout and `${PWD}/russol-alpha/ruslic/ruslic/tests/ci-results.txt`. The `-v ${PWD}/russol-alpha/ruslic/tests:/home/sbtuser/russol-alpha/ruslic/tests` part ensures that this file is also saved to the local file system (at `.../tests/ci-results.txt`). It also ensures that we are running on the same tests as the ones in the artifact.
 
 The resulting table should look similar (time results will vary) to the one found at `.../tests/ci-expected.txt` and can be compared to the one in the paper. The outputted table contains a summary of the results for each category, for example
 
@@ -229,13 +132,3 @@ The main changes required to adapt a file for Creusot are:
 - In Creusot, "logic" functions need to be shown to terminate - to avoid having to prove this one can annotate the function with `#[trusted]` and add `#[ensures(result == (fn_body))]` where `fn_body` is the body of the function.
 
 - Integer literals within specifications may need to be written as `5_u32` instead of `5`, if the Rust type is needed, to avoid Creusot's automatic conversion to `logic::Int`.
-
-## Notes on the Creusot image
-
-The image was built using `creusot/Dockerfile`, using the [latest](https://github.com/xldenis/creusot/commit/6026057d026208589c2ebee785210845f3561ad0) version of Creusot. To explore the contents of this image, one can open a `bash` terminal with
-
-```bash
-docker run --rm -it jonasalaif/creusot
-```
-
-Refer to the [Creusot repository](https://github.com/xldenis/creusot) for reference.
