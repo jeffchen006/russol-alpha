@@ -13,7 +13,13 @@ cargo [args]
 cargo build
 
 # test: 
-cargo run --bin ruslic ./demo.rs
+cargo run --bin ruslic ../demo.rs
+
+
+cargo test --package ruslic --test top_crates -- top_crates_2 --exact --nocapture 
+
+cargo test --release --test ci -- all_tests --nocapture
+
 
 
 ruslic/tests/synth/paper/rust/

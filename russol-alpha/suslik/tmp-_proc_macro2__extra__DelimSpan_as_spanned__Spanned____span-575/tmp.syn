@@ -1,0 +1,115 @@
+# -c 10 -o 10 -p false
+###
+predicate P884_Span__COPY(int snap) "proc_macro2::fallback::Span" {
+| true => "::proc_macro2::fallback::Span {}" {
+  (snap == (0)) ;
+   emp
+ }
+}
+
+predicate P3382_PhantomData_P25_ProcMacroAutoTraits___COPY(int snap) "std::marker::PhantomData<proc_macro2::marker::ProcMacroAutoTraits>" {
+| true => "::std::marker::PhantomData" {
+  (snap == (0)) ;
+   emp
+ }
+}
+
+predicate PRIM_Pu32_COPY(int snap) "u32" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65536) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P937_DelimSpan__COPY(int snap) "proc_macro2::extra::DelimSpan" {
+| true => "::proc_macro2::extra::DelimSpan" {
+  (snap == (0, (snap_f0inner), (snap_f0_marker))) ;
+   priv f0inner: P943_DelimSpanEnum_(snap_f0inner) **
+   priv f0_marker: P3382_PhantomData_P25_ProcMacroAutoTraits__(snap_f0_marker)
+ }
+}
+
+predicate P24852_NonZeroU32__COPY(int snap) "std::num::NonZeroU32" {
+| true => "::std::num::NonZeroU32" {
+  (snap == (0, (snap_f0_0))) ;
+   priv f0_0: Pu32(snap_f0_0)
+ }
+}
+
+predicate P3382_PhantomData_Pmut___COPY(int snap) "std::marker::PhantomData<*mut ()>" {
+| true => "::std::marker::PhantomData" {
+  (snap == (0)) ;
+   emp
+ }
+}
+
+predicate P1301_Span__COPY(int snap) "proc_macro::bridge::client::Span" {
+| true => "::proc_macro::bridge::client::Span" {
+  (snap == (0, (snap_f0handle), (snap_f0_marker))) ;
+   priv f0handle: P24852_NonZeroU32_(snap_f0handle) **
+   priv f0_marker: P3382_PhantomData_Pmut__(snap_f0_marker)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P2894_Span__COPY(int snap) "proc_macro::Span" {
+| true => "::proc_macro::Span" {
+  (snap == (0, (snap_f0_0))) ;
+   priv f0_0: P1301_Span_(snap_f0_0)
+ }
+}
+
+predicate P1045_Span__COPY(int snap) "proc_macro2::Span" {
+| true => "::proc_macro2::Span" {
+  (snap == (0, (snap_f0inner), (snap_f0_marker))) ;
+   priv f0inner: P977_Span_(snap_f0inner) **
+   priv f0_marker: P3382_PhantomData_P25_ProcMacroAutoTraits__(snap_f0_marker)
+ }
+}
+
+predicate P977_Span__COPY(int snap) "proc_macro2::imp::Span" {
+| (snap_fdisc == 0) => "::proc_macro2::imp::Span::Compiler" {
+  (snap == (0, (snap_fdisc), (snap_f0_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   priv f0_0: P2894_Span_(snap_f0_0)
+ }
+| (snap_fdisc == 1) => "::proc_macro2::imp::Span::Fallback" {
+  (snap == (1, (snap_fdisc), (snap_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   priv f1_0: P884_Span_(snap_f1_0)
+ }
+}
+
+predicate P943_DelimSpanEnum__COPY(int snap) "proc_macro2::extra::DelimSpanEnum" {
+| (snap_fdisc == 0) => "::proc_macro2::extra::DelimSpanEnum::Compiler" {
+  (snap == (0, (snap_fdisc), (snap_f0join), (snap_f0open), (snap_f0close))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   priv f0join: P2894_Span_(snap_f0join) **
+   priv f0open: P2894_Span_(snap_f0open) **
+   priv f0close: P2894_Span_(snap_f0close)
+ }
+| (snap_fdisc == 1) => "::proc_macro2::extra::DelimSpanEnum::Fallback" {
+  (snap == (1, (snap_fdisc), (snap_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   priv f1_0: P884_Span_(snap_f1_0)
+ }
+}
+
+{
+   fself: &_ P937_DelimSpan_(snap_fself)
+}
+_proc_macro2__extra__DelimSpan_as_spanned__Spanned____span "__span"
+{
+   fresult: P1045_Span_(snap_fresult)
+}
+
