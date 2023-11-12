@@ -9,4 +9,6 @@ cargo [args]
 
 
 
-cargo run --release --bin ruslic /demo.rs
+cargo run --release --bin ruslic ../demo.rs
+
+

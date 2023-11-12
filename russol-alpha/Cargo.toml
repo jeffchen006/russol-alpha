@@ -1,6 +1,0 @@
-[workspace]
-members = [
-    "ruslic",
-    "russol-contracts",
-    "russol-macros",
-]
