@@ -1,0 +1,170 @@
+# -c 10 -o 10 -p false
+###
+predicate P3592_PropertiesI_(int snap) "hir::PropertiesI" {
+| true => "crate::hir::PropertiesI" {
+  (snap == (0, (snap_f0minimum_len), (snap_f0maximum_len), (snap_f0look_set), (snap_f0look_set_prefix), (snap_f0look_set_suffix), (snap_f0look_set_prefix_any), (snap_f0look_set_suffix_any), (snap_f0utf8), (snap_f0explicit_captures_len), (snap_f0static_explicit_captures_len), (snap_f0literal), (snap_f0alternation_literal))) ;
+   f0minimum_len: P47806_Option_Pusize_(snap_f0minimum_len) **
+   f0maximum_len: P47806_Option_Pusize_(snap_f0maximum_len) **
+   f0look_set: P3615_LookSet_(snap_f0look_set) **
+   f0look_set_prefix: P3615_LookSet_(snap_f0look_set_prefix) **
+   f0look_set_suffix: P3615_LookSet_(snap_f0look_set_suffix) **
+   f0look_set_prefix_any: P3615_LookSet_(snap_f0look_set_prefix_any) **
+   f0look_set_suffix_any: P3615_LookSet_(snap_f0look_set_suffix_any) **
+   f0utf8: Pbool(snap_f0utf8) **
+   f0explicit_captures_len: Pusize(snap_f0explicit_captures_len) **
+   f0static_explicit_captures_len: P47806_Option_Pusize_(snap_f0static_explicit_captures_len) **
+   f0literal: Pbool(snap_f0literal) **
+   f0alternation_literal: Pbool(snap_f0alternation_literal)
+ }
+}
+
+predicate P3615_LookSet__COPY(int snap) "hir::LookSet" {
+| true => "crate::hir::LookSet" {
+  (snap == (0, (snap_f0bits))) ;
+   f0bits: Pu32(snap_f0bits)
+ }
+}
+
+predicate P3454_Look__COPY(int snap) "hir::Look" {
+| (snap_fdisc == 0) => "crate::hir::Look::Start" {
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "crate::hir::Look::End" {
+  (snap == (1, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 2) => "crate::hir::Look::StartLF" {
+  (snap == (2, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 3) => "crate::hir::Look::EndLF" {
+  (snap == (3, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 4) => "crate::hir::Look::StartCRLF" {
+  (snap == (4, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 5) => "crate::hir::Look::EndCRLF" {
+  (snap == (5, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 6) => "crate::hir::Look::WordAscii" {
+  (snap == (6, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 7) => "crate::hir::Look::WordAsciiNegate" {
+  (snap == (7, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 8) => "crate::hir::Look::WordUnicode" {
+  (snap == (8, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 9) => "crate::hir::Look::WordUnicodeNegate" {
+  (snap == (9, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 10) => "crate::hir::Look::WordStartAscii" {
+  (snap == (10, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 11) => "crate::hir::Look::WordEndAscii" {
+  (snap == (11, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 12) => "crate::hir::Look::WordStartUnicode" {
+  (snap == (12, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 13) => "crate::hir::Look::WordEndUnicode" {
+  (snap == (13, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 14) => "crate::hir::Look::WordStartHalfAscii" {
+  (snap == (14, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 15) => "crate::hir::Look::WordEndHalfAscii" {
+  (snap == (15, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 16) => "crate::hir::Look::WordStartHalfUnicode" {
+  (snap == (16, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 17) => "crate::hir::Look::WordEndHalfUnicode" {
+  (snap == (17, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+}
+
+predicate PRIM_Pu32_COPY(int snap) "u32" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65536) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate PRIM_Pbool_COPY(bool snap) "bool" {
+| true => {
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P444_Box_P3592_PropertiesI__P8224_Global__(int snap) "std::boxed::Box<hir::PropertiesI>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666))) ;
+   f_666: P3592_PropertiesI_(snap_f_666)
+ }
+}
+
+predicate P3579_Properties_(int snap) "hir::Properties" {
+| true => "crate::hir::Properties" {
+  (snap == (0, (snap_f0_0))) ;
+   f0_0: P444_Box_P3592_PropertiesI__P8224_Global__(snap_f0_0)
+ }
+}
+
+predicate P47806_Option_Pusize__COPY(int snap) "core::option::Option<usize>" {
+| (snap_fdisc == 0) => "::core::option::Option::None" {
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "::core::option::Option::Some" {
+  (snap == (1, (snap_fdisc), (snap_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: Pusize(snap_f1_0)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate PRIM_Pusize_COPY(int snap) "usize" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65537) &&
+  #[snap] ;
+   emp
+ }
+}
+
+{
+   flook: P3454_Look_(snap_flook)
+}
+hir__Properties__look "look"
+{
+   fresult: P3579_Properties_(snap_fresult)
+}
+
