@@ -170,9 +170,6 @@ impl Display for Category {
 
 #[test]
 fn all_tests() {
-    print!("");
-
-
     let timeout = std::env::var("RUSLIC_TIMEOUT")
         .ok()
         .and_then(|t| t.parse().ok())
@@ -198,6 +195,7 @@ fn all_tests() {
         panic!("Tests {:?} errored or exceeded timeout of {timeout}!", err);
     }
 }
+
 
 fn all_tests_eval(timeout: u64) -> Category {
     Category::run_tests_in_dir(PathBuf::from("./tests/synth/paper"), timeout, 0)

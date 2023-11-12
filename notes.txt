@@ -10,10 +10,10 @@ cargo [args]
 
 
 # build:
-cargo build --release
+cargo build
 
 # test: 
-cargo run --release --bin ruslic ./demo.rs
+cargo run --bin ruslic ./demo.rs
 
 
 ruslic/tests/synth/paper/rust/
