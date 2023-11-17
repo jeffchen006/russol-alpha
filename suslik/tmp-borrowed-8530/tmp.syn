@@ -1,0 +1,122 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pi32_COPY(int snap) "i32" {
+| true => {
+  (snap >= (- 2147483645)) &&
+  (snap <= 2147483645) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate PRIM_Pu32_COPY(int snap) "u32" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65536) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate PRIM_Pbool_COPY(bool snap) "bool" {
+| true => {
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P41187_Option_Pi64__COPY(int snap) "std::option::Option<i64>" {
+| (snap_fdisc == 0) => "Option::None" {
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Option::Some" {
+  (snap == (1, (snap_fdisc), (snap_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: Pi64(snap_f1_0)
+ }
+}
+
+predicate P41187_Option_Pi32__COPY(int snap) "std::option::Option<i32>" {
+| (snap_fdisc == 0) => "Option::None" {
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Option::Some" {
+  (snap == (1, (snap_fdisc), (snap_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: Pi32(snap_f1_0)
+ }
+}
+
+predicate P3_Parsed_(int snap) "Parsed" {
+| true => "Parsed" {
+  (snap == (0, (snap_f0year), (snap_f0year_div_100), (snap_f0year_mod_100), (snap_f0isoyear), (snap_f0isoyear_div_100), (snap_f0isoyear_mod_100), (snap_f0month), (snap_f0week_from_sun), (snap_f0week_from_mon), (snap_f0isoweek), (snap_f0ordinal), (snap_f0day), (snap_f0hour_div_12), (snap_f0hour_mod_12), (snap_f0minute), (snap_f0second), (snap_f0nanosecond), (snap_f0timestamp), (snap_f0offset))) ;
+   f0year: P41187_Option_Pi32_(snap_f0year) **
+   f0year_div_100: P41187_Option_Pi32_(snap_f0year_div_100) **
+   f0year_mod_100: P41187_Option_Pi32_(snap_f0year_mod_100) **
+   f0isoyear: P41187_Option_Pi32_(snap_f0isoyear) **
+   f0isoyear_div_100: P41187_Option_Pi32_(snap_f0isoyear_div_100) **
+   f0isoyear_mod_100: P41187_Option_Pi32_(snap_f0isoyear_mod_100) **
+   f0month: P41187_Option_Pu32_(snap_f0month) **
+   f0week_from_sun: P41187_Option_Pu32_(snap_f0week_from_sun) **
+   f0week_from_mon: P41187_Option_Pu32_(snap_f0week_from_mon) **
+   f0isoweek: P41187_Option_Pu32_(snap_f0isoweek) **
+   f0ordinal: P41187_Option_Pu32_(snap_f0ordinal) **
+   f0day: P41187_Option_Pu32_(snap_f0day) **
+   f0hour_div_12: P41187_Option_Pu32_(snap_f0hour_div_12) **
+   f0hour_mod_12: P41187_Option_Pu32_(snap_f0hour_mod_12) **
+   f0minute: P41187_Option_Pu32_(snap_f0minute) **
+   f0second: P41187_Option_Pu32_(snap_f0second) **
+   f0nanosecond: P41187_Option_Pu32_(snap_f0nanosecond) **
+   f0timestamp: P41187_Option_Pi64_(snap_f0timestamp) **
+   f0offset: P41187_Option_Pi32_(snap_f0offset)
+ }
+}
+
+predicate P41187_Option_Pu32__COPY(int snap) "std::option::Option<u32>" {
+| (snap_fdisc == 0) => "Option::None" {
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Option::Some" {
+  (snap == (1, (snap_fdisc), (snap_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: Pu32(snap_f1_0)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate Pbool__bool_COPY(int snap) "(bool, bool)" {
+| true => "" {
+  (snap == (0, (snap_f0_0), (snap_f0_1))) ;
+   f0_0: Pbool(snap_f0_0) **
+   f0_1: Pbool(snap_f0_1)
+ }
+}
+
+predicate PRIM_Pi64_COPY(int snap) "i64" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+{
+   fx: &_ mut P3_Parsed_(snap_fx)
+}
+borrowed "borrowed"
+{
+   fresult: Pbool__bool(snap_fresult)
+}
+

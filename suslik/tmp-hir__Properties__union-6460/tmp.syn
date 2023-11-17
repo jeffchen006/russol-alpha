@@ -1,0 +1,98 @@
+# -c 10 -o 10 -p false
+###
+predicate P3592_PropertiesI_(int snap) "hir::PropertiesI" {
+| true => "crate::hir::PropertiesI" {
+  (snap == (0, (snap_f0minimum_len), (snap_f0maximum_len), (snap_f0look_set), (snap_f0look_set_prefix), (snap_f0look_set_suffix), (snap_f0look_set_prefix_any), (snap_f0look_set_suffix_any), (snap_f0utf8), (snap_f0explicit_captures_len), (snap_f0static_explicit_captures_len), (snap_f0literal), (snap_f0alternation_literal))) ;
+   f0minimum_len: P47806_Option_Pusize_(snap_f0minimum_len) **
+   f0maximum_len: P47806_Option_Pusize_(snap_f0maximum_len) **
+   f0look_set: P3615_LookSet_(snap_f0look_set) **
+   f0look_set_prefix: P3615_LookSet_(snap_f0look_set_prefix) **
+   f0look_set_suffix: P3615_LookSet_(snap_f0look_set_suffix) **
+   f0look_set_prefix_any: P3615_LookSet_(snap_f0look_set_prefix_any) **
+   f0look_set_suffix_any: P3615_LookSet_(snap_f0look_set_suffix_any) **
+   f0utf8: Pbool(snap_f0utf8) **
+   f0explicit_captures_len: Pusize(snap_f0explicit_captures_len) **
+   f0static_explicit_captures_len: P47806_Option_Pusize_(snap_f0static_explicit_captures_len) **
+   f0literal: Pbool(snap_f0literal) **
+   f0alternation_literal: Pbool(snap_f0alternation_literal)
+ }
+}
+
+predicate P3615_LookSet__COPY(int snap) "hir::LookSet" {
+| true => "crate::hir::LookSet" {
+  (snap == (0, (snap_f0bits))) ;
+   f0bits: Pu32(snap_f0bits)
+ }
+}
+
+predicate PRIM_Pu32_COPY(int snap) "u32" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65536) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate PRIM_Pbool_COPY(bool snap) "bool" {
+| true => {
+  #[snap] ;
+   emp
+ }
+}
+
+predicate PI(int snap) "I" {
+}
+
+predicate P444_Box_P3592_PropertiesI__P8224_Global__(int snap) "std::boxed::Box<hir::PropertiesI>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666))) ;
+   f_666: P3592_PropertiesI_(snap_f_666)
+ }
+}
+
+predicate P3579_Properties_(int snap) "hir::Properties" {
+| true => "crate::hir::Properties" {
+  (snap == (0, (snap_f0_0))) ;
+   f0_0: P444_Box_P3592_PropertiesI__P8224_Global__(snap_f0_0)
+ }
+}
+
+predicate P47806_Option_Pusize__COPY(int snap) "core::option::Option<usize>" {
+| (snap_fdisc == 0) => "::core::option::Option::None" {
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "::core::option::Option::Some" {
+  (snap == (1, (snap_fdisc), (snap_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: Pusize(snap_f1_0)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate PRIM_Pusize_COPY(int snap) "usize" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65537) &&
+  #[snap] ;
+   emp
+ }
+}
+
+{
+   fprops: PI(snap_fprops)
+}
+hir__Properties__union "union"
+{
+   fresult: P3579_Properties_(snap_fresult)
+}
+
