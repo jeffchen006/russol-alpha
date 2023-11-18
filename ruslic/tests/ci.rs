@@ -8,14 +8,22 @@ struct Category {
     children: Vec<Category>,
     depth: u32,
 }
+
+
 impl Category {
+
+    // recursively search for .rs files in the given directory
+    // and run ruslic on them
+
     fn run_tests_in_dir(dir: PathBuf, timeout: u64, depth: u32) -> Self {
-        let mut cat = Self {
+        
+        let mut cat: Category = Self {
             dir: dir.file_name().unwrap().to_string_lossy().to_string(),
             results: Vec::new(),
             children: Vec::new(),
             depth,
         };
+
         let mut paths: Vec<_> = std::fs::read_dir(dir)
             .unwrap()
             .map(|r| r.unwrap())
@@ -23,14 +31,24 @@ impl Category {
         paths.sort_by_key(|dir| dir.path());
 
         for path in paths {
+            // Next print path
+            println!("{}{}", "  ".repeat(depth as usize), path.path().to_string_lossy());
+            // paths: 
+            // ./tests/synth/other
+            // ./tests/synth/paper
+
             if path.file_type().unwrap().is_file() {
                 let filename = path.file_name();
                 let filename = filename.to_string_lossy();
+
                 if filename.ends_with(".rs") {
+
                     println!(
                         "Attempting synthesis for: {}",
                         path.path().to_string_lossy()
                     );
+
+                    
                     if let Ok(res) = ruslic::run_on_file(
                         vec![
                             "/name/of/binary".to_string(),
@@ -51,11 +69,16 @@ impl Category {
                         );
                     }
                 }
+                
             } else {
                 let results = Self::run_tests_in_dir(path.path(), timeout, depth + 1);
                 cat.children.push(results)
             }
         }
+
+        // stop the program
+        // std::process::exit(0);
+
         // cat.solutions.extend(cat.results.iter().filter_map(|(_, res)| res.get_solved()).cloned());
         // cat.solutions.extend(cat.children.iter().flat_map(|(_, res)| &res.solutions).cloned());
         cat
@@ -173,6 +196,7 @@ fn all_tests() {
         .ok()
         .and_then(|t| t.parse().ok())
         .unwrap_or(300_000);
+
     let is_eval = std::env::var("RUSLIC_EVAL")
         .ok()
         .map(|s| s.parse::<bool>().unwrap())
@@ -183,7 +207,9 @@ fn all_tests() {
     } else {
         Category::run_tests_in_dir(PathBuf::from("./tests/synth/"), timeout, 0)
     };
+
     let max_ms = format_ms(results.max_ms());
+
     let results_str = format!("### Measured timings (max {max_ms}) ###{results}\n#######################################\n");
     print!("{results_str}");
     std::fs::write("./tests/ci-results.txt", results_str).expect("Unable to results to file!");

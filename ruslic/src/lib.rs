@@ -102,6 +102,8 @@ fn sys_root() -> Vec<String> {
 }
 
 /// Pass rustc arguments in args (namely, path to rust file). Timeout is per function to be synthesized.
+
+/// this is the core synthesis function
 pub fn run_on_file(
     mut args: Vec<String>,
     timeout: u64,
@@ -116,6 +118,7 @@ pub fn run_on_file(
         current_dir
     };
 
+
     if !is_cargo {
         args.push("--crate-type=lib".into());
     }
@@ -129,11 +132,15 @@ pub fn run_on_file(
         "LD_LIBRARY_PATH",
         std::env::current_exe().unwrap().as_os_str(),
     );
+
     std::env::set_var(
         "DYLD_LIBRARY_PATH",
         std::env::current_exe().unwrap().as_os_str(),
     );
+
     let russol_contracts = current_dir.join("librussol_contracts.rlib");
+
+
     args.extend([
         "--extern".into(),
         format!(
@@ -148,6 +155,11 @@ pub fn run_on_file(
         current_dir.join("deps").as_os_str().to_str().unwrap()
     ));
 
+    // print args element by element
+    for arg in &args {
+        println!("{}", arg);
+    }
+
     // println!("Running with args: {:?}", args);
     let mut cc = CompilerCallbacks {
         is_cargo,
@@ -156,4 +168,6 @@ pub fn run_on_file(
     };
     RunCompiler::new(&args, &mut cc).run()?;
     Ok(cc.timings)
+
+    
 }
