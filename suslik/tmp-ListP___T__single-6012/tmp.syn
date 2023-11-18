@@ -1,0 +1,67 @@
+# -c 10 -o 10 -p false
+###
+predicate P47806_Option_P444_Box_P9_NodeP_PT__P8224_Global___(int snap, int snap_fdisc) "std::option::Option<std::boxed::Box<NodeP<T>>>" {
+| (snap_fdisc == 0) => "Option::None" {
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Option::Some" {
+  (snap == (1, (snap_fdisc), (snap_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: P444_Box_P9_NodeP_PT__P8224_Global__(snap_f1_0)
+ }
+}
+
+predicate P444_Box_P9_NodeP_PT__P8224_Global__(int snap) "std::boxed::Box<NodeP<T>>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666))) ;
+   f_666: P9_NodeP_PT_(snap_f_666)
+ }
+}
+
+predicate P4_ListP_PT_(int snap, int snap_fdisc_f0head) "ListP<T>" {
+| true => "ListP" {
+  (snap == (0, (snap_f0head, snap_fdisc_f0head))) ;
+   f0head: P47806_Option_P444_Box_P9_NodeP_PT__P8224_Global___(snap_f0head, snap_fdisc_f0head)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P9_NodeP_PT_(int snap) "NodeP<T>" {
+| true => "NodeP" {
+  (snap == (0, (snap_f0elem), (snap_f0next, snap_fdisc_f0next))) ;
+   f0elem: PT(snap_f0elem) **
+   f0next: P47806_Option_P444_Box_P9_NodeP_PT__P8224_Global___(snap_f0next, snap_fdisc_f0next)
+ }
+}
+
+predicate PT(int snap) "T" {
+}
+
+{
+   fx: &_ mut P47806_Option_P444_Box_P9_NodeP_PT__P8224_Global___(snap_fx, snap_fdisc_fx)
+}
+take_std__boxed__Box_NodeP_T "take"
+{
+  ((^ (int fx)[1] == 0) ? true : false) &&
+  ((snap_fresult, snap_fdisc_fresult) == (snap_fx, snap_fdisc_fx)) ;
+   fresult: P47806_Option_P444_Box_P9_NodeP_PT__P8224_Global___(snap_fresult, snap_fdisc_fresult)
+}
+
+{
+   felem: PT(snap_felem)
+}
+ListP___T__single "single"
+{
+  ((snap_fdisc_f0head_fresult == 1) ? true : false) ;
+   fresult: P4_ListP_PT_(snap_fresult, snap_fdisc_f0head_fresult)
+}
+

@@ -1,0 +1,67 @@
+# -c 10 -o 10 -p false
+###
+predicate P10_Node_PRmutT_(lft &_, int snap, int len_result) "Node<&mut T>" {
+| (snap_fdisc == 0) => "Node::Nil" {
+  (len_result == ((snap_fdisc == 0) ? 0 : (1 + len_result_f_666_f1next))) &&
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Node::Cons" {
+  (len_result == ((snap_fdisc == 0) ? 0 : (1 + len_result_f_666_f1next))) &&
+  (snap == (1, (snap_fdisc), ((snap_f1elem), (^ (int f1elem)[0])), (snap_f1next, len_result_f_666_f1next))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1elem: &_ mut PT(snap_f1elem) **
+   f1next: P444_Box_P10_Node_PRmutT__P8224_Global__(&_, snap_f1next, len_result_f_666_f1next)
+ }
+}
+
+predicate P10_Node_PT_(int snap, int len_result) "Node<T>" {
+| (snap_fdisc == 0) => "Node::Nil" {
+  (len_result == ((snap_fdisc == 0) ? 0 : (1 + len_result_f_666_f1next))) &&
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Node::Cons" {
+  (len_result == ((snap_fdisc == 0) ? 0 : (1 + len_result_f_666_f1next))) &&
+  (snap == (1, (snap_fdisc), (snap_f1elem), (snap_f1next, len_result_f_666_f1next))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1elem: PT(snap_f1elem) **
+   f1next: P444_Box_P10_Node_PT__P8224_Global__(snap_f1next, len_result_f_666_f1next)
+ }
+}
+
+predicate P444_Box_P10_Node_PT__P8224_Global__(int snap, int len_result_f_666) "std::boxed::Box<Node<T>>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666, len_result_f_666))) ;
+   f_666: P10_Node_PT_(snap_f_666, len_result_f_666)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P444_Box_P10_Node_PRmutT__P8224_Global__(lft &_, int snap, int len_result_f_666) "std::boxed::Box<Node<&mut T>>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666, len_result_f_666))) ;
+   f_666: P10_Node_PRmutT_(&_, snap_f_666, len_result_f_666)
+ }
+}
+
+predicate PT(int snap) "T" {
+}
+
+{
+   fself: &_ mut P10_Node_PT_(snap_fself, len_result_fself)
+}
+Node___T__modify_elems "modify_elems"
+{
+  (len_result_fresult == len_result_fself) ;
+   fresult: P10_Node_PRmutT_(&_, snap_fresult, len_result_fresult)
+}
+

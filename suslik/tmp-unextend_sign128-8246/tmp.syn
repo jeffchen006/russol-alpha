@@ -1,0 +1,38 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pu128_COPY(int snap) "u128" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65538) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate PRIM_Pi128_COPY(int snap) "i128" {
+| true => {
+  (snap >= (- 2147483647)) &&
+  (snap <= 2147483647) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate PRIM_Pusize_COPY(int snap) "usize" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65537) &&
+  #[snap] ;
+   emp
+ }
+}
+
+{
+   fval: Pi128(snap_fval) **
+   fnbytes: Pusize(snap_fnbytes)
+}
+unextend_sign128 "unextend_sign128"
+{
+   fresult: Pu128(snap_fresult)
+}
+

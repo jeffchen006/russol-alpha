@@ -1,0 +1,13 @@
+# -c 10 -o 10 -p false
+###
+predicate P348_BigEndian__COPY(int snap) "BigEndian" {
+}
+
+{
+   emp
+}
+_BigEndian_as_std__default__Default__default "default"
+{
+   fresult: P348_BigEndian_(snap_fresult)
+}
+

@@ -1,0 +1,60 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pi32_COPY(int snap) "i32" {
+| true => {
+  (snap >= (- 2147483645)) &&
+  (snap <= 2147483645) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P444_Box_P4_Node_Pi32__P8224_Global__(int snap, int len_te_result_f_666, set elems_result_f_666) "std::boxed::Box<Node<i32>>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666, len_te_result_f_666, elems_result_f_666))) ;
+   f_666: P4_Node_Pi32_(snap_f_666, len_te_result_f_666, elems_result_f_666)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P4_Node_Pi32_(int snap, int len_te_result, set elems_result) "Node<i32>" {
+| (snap_fdisc == 0) => "Node::Nil" {
+  (elems_result == ((snap_fdisc == 0) ? {} : (elems_result_f_666_f1next + {snap_f1f}))) &&
+  (len_te_result == ((snap_fdisc == 0) ? 0 : (1 + len_te_result_f_666_f1next))) &&
+  (snap == (0, (snap_fdisc))) &&
+  ((snap_fdisc == 0) ? true : (len_te_result_f_666_f1next >= 0)) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Node::Cons" {
+  (elems_result == ((snap_fdisc == 0) ? {} : (elems_result_f_666_f1next + {snap_f1f}))) &&
+  (len_te_result == ((snap_fdisc == 0) ? 0 : (1 + len_te_result_f_666_f1next))) &&
+  (snap == (1, (snap_fdisc), (snap_f1f), (snap_f1next, len_te_result_f_666_f1next, elems_result_f_666_f1next))) &&
+  ((snap_fdisc == 0) ? true : (len_te_result_f_666_f1next >= 0)) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1f: Pi32(snap_f1f) **
+   f1next: P444_Box_P4_Node_Pi32__P8224_Global__(snap_f1next, len_te_result_f_666_f1next, elems_result_f_666_f1next)
+ }
+}
+
+{
+  (len_te_result_fx >= 0) ;
+   fx: &_ mut P4_Node_Pi32_(snap_fx, len_te_result_fx, elems_result_fx)
+}
+zero "zero"
+{
+  (len_te_result_fresult >= 0) &&
+  (len_te_result_fresult >= 0) &&
+  ((^ (int fx)[0], ^ (int fx)[1], ^ (set fx)[2]) == (^ (int fresult)[0], ^ (int fresult)[1], ^ (set fresult)[2])) &&
+  ((len_te_result_fresult == 0) ? (elems_result_fresult == {}) : (elems_result_fresult == {0})) &&
+  (len_te_result_fresult == len_te_result_fx) ;
+   fresult: &_ mut P4_Node_Pi32_(snap_fresult, len_te_result_fresult, elems_result_fresult)
+}
+

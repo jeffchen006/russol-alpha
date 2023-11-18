@@ -1,0 +1,28 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pu32_COPY(int snap) "u32" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65536) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate PRIM_Pusize_COPY(int snap) "usize" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65537) &&
+  #[snap] ;
+   emp
+ }
+}
+
+{
+   fself: Pu32(snap_fself)
+}
+_u32_as_state_id__StateID__to_usize "to_usize"
+{
+   fresult: Pusize(snap_fresult)
+}
+

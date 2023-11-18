@@ -1,0 +1,60 @@
+# -c 10 -o 10 -p false
+###
+predicate P47806_Option_PRT__COPY(lft &_, int snap) "std::option::Option<&T>" {
+| (snap_fdisc == 0) => "::std::option::Option::None" {
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "::std::option::Option::Some" {
+  (snap == (1, (snap_fdisc), (snap_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: &_ PT(snap_f1_0)
+ }
+}
+
+predicate P5299_UnsafeCell_P47806_Option_PT__(int snap) "std::cell::UnsafeCell<std::option::Option<T>>" {
+| true => "::std::cell::UnsafeCell" {
+  (snap == (0, (snap_f0value))) ;
+   priv f0value: P47806_Option_PT_(snap_f0value)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P117_OnceCell_PT_(int snap) "unsync::OnceCell<T>" {
+| true => "crate::unsync::OnceCell" {
+  (snap == (0, (snap_f0inner))) ;
+   f0inner: P5299_UnsafeCell_P47806_Option_PT__(snap_f0inner)
+ }
+}
+
+predicate P47806_Option_PT_(int snap) "std::option::Option<T>" {
+| (snap_fdisc == 0) => "::std::option::Option::None" {
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "::std::option::Option::Some" {
+  (snap == (1, (snap_fdisc), (snap_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: PT(snap_f1_0)
+ }
+}
+
+predicate PT(int snap) "T" {
+}
+
+{
+   fself: &_ P117_OnceCell_PT_(snap_fself)
+}
+unsync__OnceCell___T__get "get"
+{
+   fresult: P47806_Option_PRT_(&_, snap_fresult)
+}
+

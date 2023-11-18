@@ -40,15 +40,11 @@ impl Category {
             if path.file_type().unwrap().is_file() {
                 let filename = path.file_name();
                 let filename = filename.to_string_lossy();
-
                 if filename.ends_with(".rs") {
-
                     println!(
                         "Attempting synthesis for: {}",
                         path.path().to_string_lossy()
                     );
-
-                    
                     if let Ok(res) = ruslic::run_on_file(
                         vec![
                             "/name/of/binary".to_string(),
@@ -83,6 +79,8 @@ impl Category {
         // cat.solutions.extend(cat.children.iter().flat_map(|(_, res)| &res.solutions).cloned());
         cat
     }
+
+    
     fn solutions(&self) -> Box<dyn Iterator<Item = &(String, SynthesisResult)> + '_> {
         Box::new(
             self.results
@@ -190,7 +188,6 @@ impl Display for Category {
     }
 }
 
-#[test]
 fn all_tests() {
     let timeout = std::env::var("RUSLIC_TIMEOUT")
         .ok()
@@ -227,4 +224,10 @@ fn all_tests_eval(timeout: u64) -> Category {
 
 fn format_ms(ms: u64) -> String {
     format!("{}_{:03}ms", ms / 1000, ms % 1000)
+}
+
+
+#[test]
+fn main() {
+    all_tests_eval(123212123);
 }
