@@ -1,0 +1,2643 @@
+
+running 1 test
+./tests/synth/other
+  ./tests/synth/other/ci
+    ./tests/synth/other/ci/copy.rs
+Attempting synthesis for: ./tests/synth/other/ci/copy.rs
+/name/of/binary
+./tests/synth/other/ci/copy.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-foo-5818/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn foo(c: &m::Priv) -> m::Priv {
+  *c
+} // Synth time: 177 ms, AST nodes: 4 vs unsimp 4 @|177|4|4|12|@
+
+    ./tests/synth/other/ci/many_choices.rs
+Attempting synthesis for: ./tests/synth/other/ci/many_choices.rs
+/name/of/binary
+./tests/synth/other/ci/many_choices.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-owned-1968/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-borrowed-378/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn owned(x: Parsed) -> (bool, bool) {
+  (true, true)
+} // Synth time: 195 ms, AST nodes: 5 vs unsimp 5 @|195|5|5|7|@
+fn borrowed(x: &mut Parsed) -> (bool, bool) {
+  (true, true)
+} // Synth time: 1617 ms, AST nodes: 5 vs unsimp 119 @|1617|5|119|106|@
+
+    ./tests/synth/other/ci/strange_args.rs
+Attempting synthesis for: ./tests/synth/other/ci/strange_args.rs
+/name/of/binary
+./tests/synth/other/ci/strange_args.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-to_tuple-1336/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn to_tuple(f: Tuple<T>) -> (T, T) {
+  (f.a, f.b)
+} // Synth time: 177 ms, AST nodes: 9 vs unsimp 9 @|177|9|9|11|@
+
+  ./tests/synth/other/presentation
+    ./tests/synth/other/presentation/stack.rs
+Attempting synthesis for: ./tests/synth/other/presentation/stack.rs
+/name/of/binary
+./tests/synth/other/presentation/stack.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-ListP___T__single-6578/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-ListP___T__append-6750/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-ListP___T__push-3597/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-ListP___T__peek_mut-7701/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-ListP___T__peek_last-8378/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn single(elem: T) -> ListP<T> {
+  let bx = NodeP { elem, next: Option::None };
+  let _0 = Box::new(bx);
+  let head = Option::Some(_0);
+  ListP { head }
+} // Synth time: 523 ms, AST nodes: 17 vs unsimp 17 @|523|17|17|14|@
+fn append(&mut self, tail: ListP<T>) {
+  append_8(&mut self.head, tail.head)
+}
+#[helper] fn append_8(head_self: &mut std::option::Option<std::boxed::Box<NodeP<T>>>, head_tail: std::option::Option<std::boxed::Box<NodeP<T>>>) {
+  match head_self {
+    Option::None => *head_self = head_tail,
+    Option::Some(_0) => append_8(&mut _0.next, head_tail),
+  }
+} // Synth time: 1805 ms, AST nodes: 22 vs unsimp 22 @|1805|22|22|46|@
+fn push(&mut self, elem: T) {
+  let result = take(&mut self.head);
+  let bx = NodeP { elem, next: result };
+  let _0 = Box::new(bx);
+  let new = Option::Some(_0);
+  self.head = new
+} // Synth time: 2407 ms, AST nodes: 26 vs unsimp 26 @|2407|26|26|30|@
+fn peek_mut(&mut self) -> std::option::Option<&mut T> {
+  match &mut self.head {
+    Option::None => Option::None,
+    Option::Some(_0) => Option::Some(&mut _0.elem),
+  }
+} // Synth time: 1448 ms, AST nodes: 12 vs unsimp 12 @|1448|12|12|35|@
+fn peek_last<'a>(x: &'a mut &mut ListP<T>) -> &'a mut std::option::Option<std::boxed::Box<NodeP<T>>> {
+  let result = take(&mut x.head);
+  x.head = result;
+  &mut x.head
+} // Synth time: 1445 ms, AST nodes: 13 vs unsimp 13 @|1445|13|13|25|@
+
+  ./tests/synth/other/suslik_other
+    ./tests/synth/other/suslik_other/avl.rs
+Attempting synthesis for: ./tests/synth/other/suslik_other/avl.rs
+/name/of/binary
+./tests/synth/other/suslik_other/avl.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-avl_copy-7770/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn avl_copy(x: &Avl<i32>) -> Avl<i32> {
+  match x {
+    Avl::Leaf => Avl::Leaf,
+    Avl::Node { f, left, right } => {
+      let de = *f;
+      let result_1 = avl_copy(&**left);
+      let result_2 = avl_copy(&**right);
+      let right = Box::new(result_2);
+      let left = Box::new(result_1);
+      Avl::Node { f: de as i32, left, right }
+    }
+  }
+} // Synth time: 1730 ms, AST nodes: 43 vs unsimp 43 @|1730|43|43|53|@
+
+./tests/synth/paper
+  ./tests/synth/paper/rust
+    ./tests/synth/paper/rust/a-sll_tutorial
+      ./tests/synth/paper/rust/a-sll_tutorial/stack.rs
+Attempting synthesis for: ./tests/synth/paper/rust/a-sll_tutorial/stack.rs
+/name/of/binary
+./tests/synth/paper/rust/a-sll_tutorial/stack.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-List___T__new-1703/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-List___T__push-9812/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-List___T__pop-745/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-List___T__peek-426/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-List___T__peek_mut-4645/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-_Iter_a__T_as_std__iter__Iterator__next-681/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-_IterMut_a__T_as_std__iter__Iterator__next-1389/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn new() -> List<T> {
+  List { head: Option::None }
+} // Synth time: 505 ms, AST nodes: 3 vs unsimp 3 @|505|3|3|5|@
+fn push(&mut self, elem: T) {
+  let result = take(&mut self.head);
+  let bx = Node { elem, next: result };
+  let _0 = Box::new(bx);
+  let new = Option::Some(_0);
+  self.head = new
+} // Synth time: 2001 ms, AST nodes: 26 vs unsimp 26 @|2001|26|26|30|@
+fn pop(&mut self) -> std::option::Option<T> {
+  let result = take(&mut self.head);
+  match result {
+    Option::None => Option::None,
+    Option::Some(_0) => {
+      let result = Option::Some(_0.elem);
+      self.head = _0.next;
+      result
+    }
+  }
+} // Synth time: 3364 ms, AST nodes: 27 vs unsimp 27 @|3364|27|27|41|@
+fn peek(&self) -> std::option::Option<&T> {
+  match &self.head {
+    Option::None => Option::None,
+    Option::Some(_0) => Option::Some(&_0.elem),
+  }
+} // Synth time: 877 ms, AST nodes: 12 vs unsimp 12 @|877|12|12|31|@
+fn peek_mut(&mut self) -> std::option::Option<&mut T> {
+  match &mut self.head {
+    Option::None => Option::None,
+    Option::Some(_0) => Option::Some(&mut _0.elem),
+  }
+} // Synth time: 2283 ms, AST nodes: 12 vs unsimp 12 @|2283|12|12|35|@
+fn next<'a>(&mut self) -> std::option::Option<&'a T> {
+  let (new, result) = match &mut self.next {
+    Option::None => (Option::None, Option::None),
+    Option::Some(_0) => match &_0.next {
+        Option::None => {
+          let result = Option::Some(&_0.elem);
+          (Option::None, result)
+        }
+        Option::Some(_0_next) => {
+          let result = Option::Some(&_0.elem);
+          let new = Option::Some(&**_0_next);
+          (new, result)
+        }
+      },
+  };
+  self.next = new;
+  result
+} // Synth time: 4832 ms, AST nodes: 46 vs unsimp 46 @|4832|46|46|73|@
+fn next<'a>(&mut self) -> std::option::Option<&'a mut T> {
+  let result = take(&mut self.next);
+  match result {
+    Option::None => Option::None,
+    Option::Some(_0) => Option::Some(&mut _0.elem),
+  }
+} // Synth time: 1596 ms, AST nodes: 18 vs unsimp 18 @|1596|18|18|42|@
+
+    ./tests/synth/paper/rust/b-stackoverflow
+      ./tests/synth/paper/rust/b-stackoverflow/nested_refs.rs
+Attempting synthesis for: ./tests/synth/paper/rust/b-stackoverflow/nested_refs.rs
+/name/of/binary
+./tests/synth/paper/rust/b-stackoverflow/nested_refs.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-use_ref_ref-9966/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn use_ref_ref<'a, 'b>(reference: &'a &'b mut ()) -> private::Token {
+  use_same_ref_ref(reference)
+} // Synth time: 197 ms, AST nodes: 2 vs unsimp 10 @|197|2|10|14|@
+
+      ./tests/synth/paper/rust/b-stackoverflow/reborrow.rs
+Attempting synthesis for: ./tests/synth/paper/rust/b-stackoverflow/reborrow.rs
+/name/of/binary
+./tests/synth/paper/rust/b-stackoverflow/reborrow.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Bar___T__borrow-34/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn borrow(&mut self) -> std::result::Result<&std::boxed::Box<T>, ()> {
+  match &mut self.data {
+    Option::None => Result::Err(()),
+    Option::Some(_0) => Result::Ok(_0),
+  }
+} // Synth time: 313 ms, AST nodes: 11 vs unsimp 11 @|313|11|11|29|@
+
+      ./tests/synth/paper/rust/b-stackoverflow/replace_1.rs
+Attempting synthesis for: ./tests/synth/paper/rust/b-stackoverflow/replace_1.rs
+/name/of/binary
+./tests/synth/paper/rust/b-stackoverflow/replace_1.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-SomeStruct___T__apply_changes-7692/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn apply_changes(&mut self) {
+  let result = replace(&mut self.next_attrib, Option::None);
+  let new = match result {
+    Option::None => Option::None,
+    Option::Some(_0) => {
+      let result = replace(&mut self.attrib, _0);
+      Option::Some(result)
+    }
+  };
+  self.next_attrib = new
+} // Synth time: 587 ms, AST nodes: 30 vs unsimp 30 @|587|30|30|43|@
+
+      ./tests/synth/paper/rust/b-stackoverflow/replace_2.rs
+Attempting synthesis for: ./tests/synth/paper/rust/b-stackoverflow/replace_2.rs
+/name/of/binary
+./tests/synth/paper/rust/b-stackoverflow/replace_2.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-LinkedList__prepend_value-5031/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn prepend_value(&mut self) {
+  let result = replace(&mut self.head, Option::None);
+  let bx = LinkedListNode { next: result };
+  let _0 = Box::new(bx);
+  let new = Option::Some(_0);
+  self.head = new
+} // Synth time: 1272 ms, AST nodes: 25 vs unsimp 25 @|1272|25|25|28|@
+
+      ./tests/synth/paper/rust/b-stackoverflow/swap_enum.rs
+Attempting synthesis for: ./tests/synth/paper/rust/b-stackoverflow/swap_enum.rs
+/name/of/binary
+./tests/synth/paper/rust/b-stackoverflow/swap_enum.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+
+    ./tests/synth/paper/rust/c-custom
+      ./tests/synth/paper/rust/c-custom/futures
+        ./tests/synth/paper/rust/c-custom/futures/futures.rs
+Attempting synthesis for: ./tests/synth/paper/rust/c-custom/futures/futures.rs
+/name/of/binary
+./tests/synth/paper/rust/c-custom/futures/futures.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-foo-6164/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-foo1-8393/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-foo2-8261/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-foo3-9742/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-foo4-9812/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn foo<'b, 'a>(x: &mut &'b mut &'a mut i32, y: &'b mut &'a mut i32, z: &'a mut i32) {
+  *z = 11 as i32;
+  *y = z;
+  *x = y
+} // Synth time: 9434 ms, AST nodes: 10 vs unsimp 28 @|9434|10|28|36|@
+fn foo1<'b, 'a>(x: &mut &'b mut &'a mut i32, y: &'b mut &'a mut i32, z: &'a mut i32) {
+  *y = z
+} // Synth time: 871 ms, AST nodes: 3 vs unsimp 21 @|871|3|21|31|@
+fn foo2<'a>(x: &'a mut &mut i32) -> &'a mut i32 {
+  &mut **x
+} // Synth time: 560 ms, AST nodes: 1 vs unsimp 7 @|560|1|7|12|@
+fn foo3<'a>(x: &mut &'a mut u16, y: &'a mut u16) {
+  let de = *y;
+  let de_de = **x;
+  *y = (de_de + de) as u16;
+  *x = y
+} // Synth time: 901 ms, AST nodes: 20 vs unsimp 20 @|901|20|20|22|@
+fn foo4(x: &mut std::boxed::Box<u8>) -> &mut u8 {
+  &mut **x
+} // Synth time: 579 ms, AST nodes: 1 vs unsimp 7 @|579|1|7|13|@
+
+        ./tests/synth/paper/rust/c-custom/futures/reborrow.rs
+Attempting synthesis for: ./tests/synth/paper/rust/c-custom/futures/reborrow.rs
+/name/of/binary
+./tests/synth/paper/rust/c-custom/futures/reborrow.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-foo-3777/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn foo(p: &mut private::Percentage) {
+  let result = bar(p);
+  *result = 10 as u16
+} // Synth time: 384 ms, AST nodes: 7 vs unsimp 12 @|384|7|12|24|@
+
+      ./tests/synth/paper/rust/c-custom/general
+        ./tests/synth/paper/rust/c-custom/general/clone.rs
+Attempting synthesis for: ./tests/synth/paper/rust/c-custom/general/clone.rs
+/name/of/binary
+./tests/synth/paper/rust/c-custom/general/clone.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-clone-1735/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Foo___T__clone-4419/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn clone(x: &T) -> T {
+  x.clone()
+} // Synth time: 200 ms, AST nodes: 2 vs unsimp 2 @|200|2|2|9|@
+fn clone(&self) -> Foo<T> {
+  let result = self.0.clone();
+  Foo(result)
+} // Synth time: 245 ms, AST nodes: 9 vs unsimp 9 @|245|9|9|15|@
+
+        ./tests/synth/paper/rust/c-custom/general/copy_out.rs
+Attempting synthesis for: ./tests/synth/paper/rust/c-custom/general/copy_out.rs
+/name/of/binary
+./tests/synth/paper/rust/c-custom/general/copy_out.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-BorrowAndValue___a__T__new-8831/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-foo-2180/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn new<'a>(borrow: &'a mut T, b2: &mut i32) -> BorrowAndValue<'a, T> {
+  let de = *borrow;
+  BorrowAndValue { borrow, value: de }
+} // Synth time: 267 ms, AST nodes: 10 vs unsimp 15 @|267|10|15|20|@
+fn foo(x: &Foo) -> Foo {
+  *x
+} // Synth time: 248 ms, AST nodes: 4 vs unsimp 12 @|248|4|12|15|@
+
+        ./tests/synth/paper/rust/c-custom/general/cyclic_then_reborrow.rs
+Attempting synthesis for: ./tests/synth/paper/rust/c-custom/general/cyclic_then_reborrow.rs
+/name/of/binary
+./tests/synth/paper/rust/c-custom/general/cyclic_then_reborrow.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-zero-7173/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+test all_tests has been running for over 60 seconds
+fn zero(x: &mut Node<i32>) -> &mut Node<i32> {
+  zero_4(x);
+  x
+}
+#[helper] fn zero_4(x: &mut Node<i32>) {
+  match x {
+    Node::Nil => (),
+    Node::Cons { f, next } => {
+      zero_4(&mut **next);
+      *f = 0 as i32
+    }
+  }
+} // Synth time: 5251 ms, AST nodes: 19 vs unsimp 24 @|5251|19|24|37|@
+
+        ./tests/synth/paper/rust/c-custom/general/enum.rs
+Attempting synthesis for: ./tests/synth/paper/rust/c-custom/general/enum.rs
+/name/of/binary
+./tests/synth/paper/rust/c-custom/general/enum.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-swap-7134/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn swap(i: &Option) -> Option {
+  match i {
+    Option::Left { left } => {
+      let de = *left;
+      Option::Right { right: (de + 1) as i16 }
+    }
+    Option::Right { right } => {
+      let de = *right;
+      Option::Left { left: (de + 1) as i16 }
+    }
+  }
+} // Synth time: 311 ms, AST nodes: 29 vs unsimp 29 @|311|29|29|28|@
+
+        ./tests/synth/paper/rust/c-custom/general/find_false.rs
+Attempting synthesis for: ./tests/synth/paper/rust/c-custom/general/find_false.rs
+/name/of/binary
+./tests/synth/paper/rust/c-custom/general/find_false.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-foo-6721/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn foo(x: &mut i32) {
+  *x = 0 as i32;
+  unreachable!()
+} // Synth time: 206 ms, AST nodes: 5 vs unsimp 10 @|206|5|10|10|@
+
+        ./tests/synth/paper/rust/c-custom/general/integer_construct.rs
+Attempting synthesis for: ./tests/synth/paper/rust/c-custom/general/integer_construct.rs
+/name/of/binary
+./tests/synth/paper/rust/c-custom/general/integer_construct.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-len-5288/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn len(x: &mut Node) -> u16 {
+  match x {
+    Node::Nil => 0 as u16,
+    Node::Cons { next, .. } => {
+      let result = len(&mut **next);
+      (result + 1) as u16
+    }
+  }
+} // Synth time: 495 ms, AST nodes: 15 vs unsimp 20 @|495|15|20|35|@
+
+        ./tests/synth/paper/rust/c-custom/general/list.rs
+Attempting synthesis for: ./tests/synth/paper/rust/c-custom/general/list.rs
+/name/of/binary
+./tests/synth/paper/rust/c-custom/general/list.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node___T__modify_elems-3641/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node___i32__reborrow_head_and_tail_2-2595/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node___i32__tail2-7736/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-List__append-4094/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-List__lstset-2856/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-List__duplicate-3384/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn modify_elems(&mut self) -> Node<&mut T> {
+  match self {
+    Node::Nil => Node::Nil,
+    Node::Cons { elem, next } => {
+      let result = next.modify_elems();
+      let next = Box::new(result);
+      Node::Cons { elem, next }
+    }
+  }
+} // Synth time: 2003 ms, AST nodes: 23 vs unsimp 23 @|2003|23|23|38|@
+fn reborrow_head_and_tail_2<'a, 'b, 'c>(i: &'a mut &mut Node<i32>) -> Tuple<'b, 'c> {
+  match &mut **i {
+    Node::Nil => unreachable!(),
+    Node::Cons { next, .. } => match &mut **next {
+        Node::Nil => unreachable!(),
+        Node::Cons { elem, next } => Tuple(elem, &mut **next),
+      },
+  }
+} // Synth time: 13770 ms, AST nodes: 24 vs unsimp 34 @|13770|24|34|47|@
+fn tail2(self) -> Node<i32> {
+  match self {
+    Node::Nil => unreachable!(),
+    Node::Cons { next, .. } => match *next {
+        Node::Nil => unreachable!(),
+        Node::Cons { next, .. } => *next,
+      },
+  }
+} // Synth time: 1584 ms, AST nodes: 17 vs unsimp 17 @|1584|17|17|18|@
+fn append(&mut self, tl: List) {
+  append_8(&mut self.head, tl.head)
+}
+#[helper] fn append_8(head_self: &mut Node<i32>, head_tl: Node<i32>) {
+  match head_self {
+    Node::Nil => *head_self = head_tl,
+    Node::Cons { next, .. } => append_8(&mut **next, head_tl),
+  }
+} // Synth time: 2570 ms, AST nodes: 24 vs unsimp 29 @|2570|24|29|43|@
+fn lstset(&mut self) {
+  let new = lstset_7(&mut self.head);
+  self.head = new
+}
+#[helper] fn lstset_7(head: &mut Node<i32>) -> Node<i32> {
+  match head {
+    Node::Nil => Node::Nil,
+    Node::Cons { elem, next } => {
+      let de = *elem;
+      let new = lstset_7(&mut **next);
+      match new {
+        Node::Nil => {
+          let next = Box::new(Node::Nil);
+          Node::Cons { elem: de as i32, next }
+        }
+        Node::Cons { elem, next } => {
+          let bx = Node::Cons { elem: elem as i32, next };
+          let next = Box::new(bx);
+          Node::Cons { elem: elem as i32, next }
+        }
+      }
+    }
+  }
+} // Synth time: 12852 ms, AST nodes: 65 vs unsimp 65 @|12852|65|65|74|@
+fn duplicate(&self) -> List {
+  duplicate_6(&self.head)
+}
+#[helper] fn duplicate_6(head: &Node<i32>) -> List {
+  match head {
+    Node::Nil => List { head: Node::Nil },
+    Node::Cons { elem, next } => {
+      let de = *elem;
+      let result = duplicate_6(&**next);
+      let next = Box::new(result.head);
+      let head = Node::Cons { elem: de as i32, next };
+      List { head }
+    }
+  }
+} // Synth time: 2178 ms, AST nodes: 42 vs unsimp 42 @|2178|42|42|47|@
+
+        ./tests/synth/paper/rust/c-custom/general/lstset_awkward.rs
+Attempting synthesis for: ./tests/synth/paper/rust/c-custom/general/lstset_awkward.rs
+/name/of/binary
+./tests/synth/paper/rust/c-custom/general/lstset_awkward.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-listset-8807/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn listset(list: &mut List, val: i32) {
+  listset_6(&mut list.head)
+}
+#[helper] fn listset_6(head: &mut std::option::Option<std::boxed::Box<Node1>>) {
+  match head {
+    Option::None => (),
+    Option::Some(_0) => {
+      listset_6(val as i32, &mut _0.next);
+      _0.elem = val as i32
+    }
+  }
+} // Synth time: 3069 ms, AST nodes: 24 vs unsimp 30 @|3069|24|30|48|@
+
+        ./tests/synth/paper/rust/c-custom/general/rebrrw_choice.rs
+Attempting synthesis for: ./tests/synth/paper/rust/c-custom/general/rebrrw_choice.rs
+/name/of/binary
+./tests/synth/paper/rust/c-custom/general/rebrrw_choice.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-rbrrw-8224/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn rbrrw<'a>(left: &'a mut i32, right: &'a mut i32, cond: bool) -> &'a mut i32 {
+  if cond { left } else { right }
+} // Synth time: 313 ms, AST nodes: 4 vs unsimp 14 @|313|4|14|30|@
+
+        ./tests/synth/paper/rust/c-custom/general/test.rs
+Attempting synthesis for: ./tests/synth/paper/rust/c-custom/general/test.rs
+/name/of/binary
+./tests/synth/paper/rust/c-custom/general/test.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-swap-3566/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn swap(i: &mut Common, x: Start) -> End {
+  let de = i.f4;
+  match x.z {
+    Enum::V1 { .. } => unreachable!(),
+    Enum::V2 { f6, f7 } => End { x: (f6 - de) as i32, y: f7 },
+  }
+} // Synth time: 4796 ms, AST nodes: 24 vs unsimp 30 @|4796|24|30|32|@
+
+        ./tests/synth/paper/rust/c-custom/general/tree.rs
+Attempting synthesis for: ./tests/synth/paper/rust/c-custom/general/tree.rs
+/name/of/binary
+./tests/synth/paper/rust/c-custom/general/tree.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Tree__duplicate-9386/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn duplicate(&self) -> Tree {
+  match self {
+    Tree::Leaf => Tree::Leaf,
+    Tree::Node { f, left, right } => {
+      let de = *f;
+      let result_1 = left.duplicate();
+      let result_2 = right.duplicate();
+      let right = Box::new(result_2);
+      let left = Box::new(result_1);
+      Tree::Node { f: de as i32, left, right }
+    }
+  }
+} // Synth time: 1350 ms, AST nodes: 43 vs unsimp 43 @|1350|43|43|50|@
+
+        ./tests/synth/paper/rust/c-custom/general/tree_bst.rs
+Attempting synthesis for: ./tests/synth/paper/rust/c-custom/general/tree_bst.rs
+/name/of/binary
+./tests/synth/paper/rust/c-custom/general/tree_bst.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Tree___i32__insert-6771/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn insert(&mut self, v: i32) {
+  match self {
+    Tree::Leaf => {
+      let right = Box::new(Tree::Leaf);
+      let left = Box::new(Tree::Leaf);
+      let new = Tree::Node { f: v as i32, left, right };
+      *self = new
+    }
+    Tree::Node { f, left, right } => {
+      let de = *f;
+      if v < de { left.insert(v as i32) } else if de < v { right.insert(v as i32) }
+    }
+  }
+} // Synth time: 1419 ms, AST nodes: 56 vs unsimp 56 @|1419|56|56|111|@
+
+        ./tests/synth/paper/rust/c-custom/general/tree_to_list.rs
+Attempting synthesis for: ./tests/synth/paper/rust/c-custom/general/tree_to_list.rs
+/name/of/binary
+./tests/synth/paper/rust/c-custom/general/tree_to_list.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Tree___T__to_list-2214/tmp.syn ["--closeWhileAbduce=false", "--memo=false", "--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn to_list(self) -> Node<T> {
+  match self {
+    Tree::Leaf => Node::Nil,
+    Tree::Node { f, left, right } => {
+      let result = left.to_list();
+      to_list_12(f, *right, result)
+    }
+  }
+}
+#[helper] fn to_list_12(f: T, bx: Tree<T>, result: Node<T>) -> Node<T> {
+  match result {
+    Node::Nil => {
+      let result = bx.to_list();
+      let next = Box::new(result);
+      Node::Cons { elem: f, next }
+    }
+    Node::Cons { elem, next } => {
+      let result = to_list_12(elem, bx, *next);
+      let next = Box::new(result);
+      Node::Cons { elem: f, next }
+    }
+  }
+} // Synth time: 2912 ms, AST nodes: 53 vs unsimp 53 @|2912|53|53|61|@
+
+        ./tests/synth/paper/rust/c-custom/general/zeroing.rs
+Attempting synthesis for: ./tests/synth/paper/rust/c-custom/general/zeroing.rs
+/name/of/binary
+./tests/synth/paper/rust/c-custom/general/zeroing.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-zero-6559/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn zero(x: &mut List) {
+  zero_6(&mut x.head)
+}
+#[helper] fn zero_6(head: &mut Node) {
+  match head {
+    Node::Nil => (),
+    Node::Cons { f, next } => {
+      zero_6(&mut **next);
+      *f = 0 as i32
+    }
+  }
+} // Synth time: 721 ms, AST nodes: 21 vs unsimp 26 @|721|21|26|38|@
+
+      ./tests/synth/paper/rust/c-custom/list_ex
+        ./tests/synth/paper/rust/c-custom/list_ex/list_paper.creusot
+        ./tests/synth/paper/rust/c-custom/list_ex/list_paper.rs
+Attempting synthesis for: ./tests/synth/paper/rust/c-custom/list_ex/list_paper.rs
+/name/of/binary
+./tests/synth/paper/rust/c-custom/list_ex/list_paper.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node___T__singleton-7902/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node___T__peek-426/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node___T__push_len-3696/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node___T__push-1467/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node___T__pop-5815/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node___T__peek_last-9809/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn singleton(elem: T) -> Node<T> {
+  let next = Box::new(Node::Nil);
+  Node::Cons { elem, next }
+} // Synth time: 450 ms, AST nodes: 9 vs unsimp 9 @|450|9|9|9|@
+fn peek(&self) -> &T {
+  match self {
+    Node::Nil => unreachable!(),
+    Node::Cons { elem, .. } => elem,
+  }
+} // Synth time: 801 ms, AST nodes: 9 vs unsimp 9 @|801|9|9|14|@
+fn push_len(&mut self, elem: T) {
+  match self {
+    Node::Nil => {
+      let next = Box::new(Node::Nil);
+      let new = Node::Cons { elem, next };
+      *self = new
+    }
+    Node::Cons { next, .. } => next.push_len(elem),
+  }
+} // Synth time: 1185 ms, AST nodes: 26 vs unsimp 26 @|1185|26|26|41|@
+fn push(&mut self, elem: T) {
+  let result = replace(self, Node::Nil);
+  let next = Box::new(result);
+  let new = Node::Cons { elem, next };
+  *self = new
+} // Synth time: 2495 ms, AST nodes: 17 vs unsimp 17 @|2495|17|17|25|@
+fn pop(&mut self) -> std::option::Option<T> {
+  let result = replace(self, Node::Nil);
+  match result {
+    Node::Nil => Option::None,
+    Node::Cons { elem, next } => {
+      *self = *next;
+      Option::Some(elem)
+    }
+  }
+} // Synth time: 9276 ms, AST nodes: 19 vs unsimp 19 @|9276|19|19|33|@
+fn peek_last(&mut self) -> &mut Node<T> {
+  match self {
+    Node::Nil => self,
+    Node::Cons { next, .. } => next.peek_last(),
+  }
+} // Synth time: 2568 ms, AST nodes: 13 vs unsimp 13 @|2568|13|13|35|@
+
+        ./tests/synth/paper/rust/c-custom/list_ex/list_paper_alt.rs
+Attempting synthesis for: ./tests/synth/paper/rust/c-custom/list_ex/list_paper_alt.rs
+/name/of/binary
+./tests/synth/paper/rust/c-custom/list_ex/list_paper_alt.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node1___T__singleton-9333/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node1___T__peek-770/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node1___T__push_len-2305/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node1___T__push-5945/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node1___T__pop-8812/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node1___T__peek_last-309/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn singleton(elem: T) -> Node1<T> {
+  let bx = (elem, Node1::Nil);
+  let node = Box::new(bx);
+  Node1::Cons { node }
+} // Synth time: 514 ms, AST nodes: 13 vs unsimp 13 @|514|13|13|11|@
+fn peek(&self) -> &T {
+  match self {
+    Node1::Nil => unreachable!(),
+    Node1::Cons { node } => &node.0,
+  }
+} // Synth time: 827 ms, AST nodes: 7 vs unsimp 7 @|827|7|7|18|@
+fn push_len(&mut self, elem: T) {
+  match self {
+    Node1::Nil => {
+      let bx = (elem, Node1::Nil);
+      let node = Box::new(bx);
+      let new = Node1::Cons { node };
+      *self = new
+    }
+    Node1::Cons { node } => node.1.push_len(elem),
+  }
+} // Synth time: 2794 ms, AST nodes: 28 vs unsimp 28 @|2794|28|28|47|@
+fn push(&mut self, elem: T) {
+  let result = replace(self, Node1::Nil);
+  let bx = (elem, result);
+  let node = Box::new(bx);
+  let new = Node1::Cons { node };
+  *self = new
+} // Synth time: 2561 ms, AST nodes: 21 vs unsimp 21 @|2561|21|21|27|@
+fn pop(&mut self) -> std::option::Option<T> {
+  let result = replace(self, Node1::Nil);
+  match result {
+    Node1::Nil => Option::None,
+    Node1::Cons { node } => {
+      *self = node.1;
+      Option::Some(node.0)
+    }
+  }
+} // Synth time: 10687 ms, AST nodes: 20 vs unsimp 20 @|10687|20|20|35|@
+fn peek_last(&mut self) -> &mut Node1<T> {
+  match self {
+    Node1::Nil => self,
+    Node1::Cons { node } => node.1.peek_last(),
+  }
+} // Synth time: 4627 ms, AST nodes: 11 vs unsimp 11 @|4627|11|11|39|@
+
+  ./tests/synth/paper/suslik
+    ./tests/synth/paper/suslik/a-integers
+      ./tests/synth/paper/suslik/a-integers/integers.rs
+Attempting synthesis for: ./tests/synth/paper/suslik/a-integers/integers.rs
+/name/of/binary
+./tests/synth/paper/suslik/a-integers/integers.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-swap-2214/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn swap(x: &mut i32, y: &mut i32) {
+  let de_y = *y;
+  let de_x = *x;
+  *x = de_y as i32;
+  *y = de_x as i32
+} // Synth time: 283 ms, AST nodes: 18 vs unsimp 18 @|283|18|18|19|@
+
+    ./tests/synth/paper/suslik/b-singly_linked_list
+      ./tests/synth/paper/suslik/b-singly_linked_list/sll.rs
+Attempting synthesis for: ./tests/synth/paper/suslik/b-singly_linked_list/sll.rs
+/name/of/binary
+./tests/synth/paper/suslik/b-singly_linked_list/sll.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node___T__sll_append_copy-1742/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node___T__sll_append-796/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node___T__sll_copy-4764/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node___T__sll_init-9175/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node___T__sll_len-2529/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node___T__sll_append3-9486/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node___T__sll_singleton-7691/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn sll_append_copy(&self, x2: &Node<T>) -> Node<T> {
+  match x2 {
+    Node::Nil => self.sll_append_copy_7(),
+    Node::Cons { elem, next } => {
+      let de = *elem;
+      let result = sll_append_copy(self, &**next);
+      let next = Box::new(result);
+      Node::Cons { elem: de, next }
+    }
+  }
+}
+#[helper] fn sll_append_copy_7(&self) -> Node<T> {
+  match self {
+    Node::Nil => Node::Nil,
+    Node::Cons { elem, next } => {
+      let de = *elem;
+      let result = next.sll_append_copy_7();
+      let next = Box::new(result);
+      Node::Cons { elem: de, next }
+    }
+  }
+} // Synth time: 2250 ms, AST nodes: 58 vs unsimp 58 @|2250|58|58|75|@
+fn sll_append(&mut self, tl: Node<T>) {
+  match self {
+    Node::Nil => *self = tl,
+    Node::Cons { next, .. } => next.sll_append(tl),
+  }
+} // Synth time: 1467 ms, AST nodes: 16 vs unsimp 16 @|1467|16|16|34|@
+fn sll_copy(&self) -> Node<T> {
+  match self {
+    Node::Nil => Node::Nil,
+    Node::Cons { elem, next } => {
+      let de = *elem;
+      let result = next.sll_copy();
+      let next = Box::new(result);
+      Node::Cons { elem: de, next }
+    }
+  }
+} // Synth time: 1071 ms, AST nodes: 28 vs unsimp 28 @|1071|28|28|36|@
+fn sll_init(&mut self, v: T) {
+  let new = self.sll_init_3(v);
+  *self = new
+}
+#[helper] fn sll_init_3(&mut self, v: T) -> Node<T> {
+  match self {
+    Node::Nil => Node::Nil,
+    Node::Cons { next, .. } => {
+      let new = next.sll_init_3(v);
+      let next = Box::new(new);
+      Node::Cons { elem: v, next }
+    }
+  }
+} // Synth time: 3098 ms, AST nodes: 31 vs unsimp 36 @|3098|31|36|48|@
+fn sll_len(&self) -> u16 {
+  match self {
+    Node::Nil => 0 as u16,
+    Node::Cons { next, .. } => {
+      let result = next.sll_len();
+      (result + 1) as u16
+    }
+  }
+} // Synth time: 960 ms, AST nodes: 15 vs unsimp 15 @|960|15|15|25|@
+fn sll_append3(&mut self, y: Node<T>, z: Node<T>) {
+  match self {
+    Node::Nil => {
+      let new = sll_append3_7(y, z);
+      *self = new
+    }
+    Node::Cons { next, .. } => next.sll_append3(y, z),
+  }
+}
+#[helper] fn sll_append3_7(y: Node<T>, z: Node<T>) -> Node<T> {
+  match y {
+    Node::Nil => z,
+    Node::Cons { elem, next } => {
+      let new = sll_append3_7(z, *next);
+      let next = Box::new(new);
+      Node::Cons { elem, next }
+    }
+  }
+} // Synth time: 3055 ms, AST nodes: 43 vs unsimp 43 @|3055|43|43|63|@
+fn sll_singleton(elem: T) -> Node<T> {
+  let next = Box::new(Node::Nil);
+  Node::Cons { elem, next }
+} // Synth time: 504 ms, AST nodes: 9 vs unsimp 9 @|504|9|9|9|@
+
+      ./tests/synth/paper/suslik/b-singly_linked_list/sll_srtl.creusot
+    ./tests/synth/paper/suslik/c-sorted_list
+      ./tests/synth/paper/suslik/c-sorted_list/srtl.rs
+Attempting synthesis for: ./tests/synth/paper/suslik/c-sorted_list/srtl.rs
+/name/of/binary
+./tests/synth/paper/suslik/c-sorted_list/srtl.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node___u16__insertion_sort-4869/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Node___u16__srtl_prepend-8863/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn insertion_sort(&self) -> Node<u16> {
+  match self {
+    Node::Nil => Node::Nil,
+    Node::Cons { elem, next } => {
+      let de = *elem;
+      let result = next.insertion_sort();
+      result.srtl_insert(de)
+    }
+  }
+} // Synth time: 890 ms, AST nodes: 22 vs unsimp 22 @|890|22|22|40|@
+fn srtl_prepend(self, v: u16) -> Node<u16> {
+  let next = Box::new(self);
+  Node::Cons { elem: v as u16, next }
+} // Synth time: 322 ms, AST nodes: 10 vs unsimp 10 @|322|10|10|13|@
+
+    ./tests/synth/paper/suslik/d-list_of_lists
+      ./tests/synth/paper/suslik/d-list_of_lists/multi-list.rs
+Attempting synthesis for: ./tests/synth/paper/suslik/d-list_of_lists/multi-list.rs
+/name/of/binary
+./tests/synth/paper/suslik/d-list_of_lists/multi-list.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-List___List_T__flatten-6230/tmp.syn ["--closeWhileAbduce=false", "--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn flatten(self) -> List<T> {
+  match self {
+    List::Nil => List::Nil,
+    List::Cons(_0) => flatten_7(_0.0, _0.1),
+  }
+}
+#[helper] fn flatten_7(_0: List<T>, _1: List<List<T>>) -> List<T> {
+  match _0 {
+    List::Nil => _1.flatten(),
+    List::Cons(_0) => {
+      let result = flatten_7(_0.1, _1);
+      let bx = (_0.0, result);
+      let _0 = Box::new(bx);
+      List::Cons(_0)
+    }
+  }
+} // Synth time: 2179 ms, AST nodes: 41 vs unsimp 41 @|2179|41|41|50|@
+
+    ./tests/synth/paper/suslik/e-binary_tree
+      ./tests/synth/paper/suslik/e-binary_tree/tree.rs
+Attempting synthesis for: ./tests/synth/paper/suslik/e-binary_tree/tree.rs
+/name/of/binary
+./tests/synth/paper/suslik/e-binary_tree/tree.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Tree___T__tree_copy-5882/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Tree___T__tree_flatten_acc-7161/tmp.syn ["--closeWhileAbduce=false", "--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Tree___T__tree_flatten_helper-2205/tmp.syn ["--closeWhileAbduce=false", "--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Tree___T__tree_flatten-9154/tmp.syn ["--closeWhileAbduce=false", "--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Tree___T__tree_size-5664/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn tree_copy(&self) -> Tree<T> {
+  match self {
+    Tree::Leaf => Tree::Leaf,
+    Tree::Node { elem, left, right } => {
+      let de = *elem;
+      let result_1 = left.tree_copy();
+      let result_2 = right.tree_copy();
+      let right = Box::new(result_2);
+      let left = Box::new(result_1);
+      Tree::Node { elem: de, left, right }
+    }
+  }
+} // Synth time: 3502 ms, AST nodes: 42 vs unsimp 42 @|3502|42|42|51|@
+fn tree_flatten_acc(self, l: &mut Node<T>) {
+  match l {
+    Node::Nil => {
+      let new = self.tree_flatten_acc_7();
+      *l = new
+    }
+    Node::Cons { next, .. } => tree_flatten_acc(&mut **next, self),
+  }
+}
+#[helper] fn tree_flatten_acc_7(self) -> Node<T> {
+  match self {
+    Tree::Leaf => Node::Nil,
+    Tree::Node { elem, left, right } => {
+      let new = left.tree_flatten_acc_7();
+      tree_flatten_acc_18(elem, *right, new)
+    }
+  }
+}
+#[helper] fn tree_flatten_acc_18(elem_self: T, bx: Tree<T>, new: Node<T>) -> Node<T> {
+  match new {
+    Node::Nil => {
+      let new = bx.tree_flatten_acc_7();
+      let next = Box::new(new);
+      Node::Cons { elem: elem_self, next }
+    }
+    Node::Cons { elem: elem_new, next } => {
+      let new = tree_flatten_acc_18(elem_new, bx, *next);
+      let next = Box::new(new);
+      Node::Cons { elem: elem_self, next }
+    }
+  }
+} // Synth time: 8730 ms, AST nodes: 72 vs unsimp 72 @|8730|72|72|93|@
+fn tree_flatten_helper(self, token: Token<'_>) -> Node<T> {
+  match self {
+    Tree::Leaf => Node::Nil,
+    Tree::Node { elem, left, right } => {
+      let result_1 = left.tree_flatten_helper(token);
+      let result_2 = right.tree_flatten_helper(token);
+      let result = result_1.append(result_2, token);
+      let next = Box::new(result);
+      Node::Cons { elem, next }
+    }
+  }
+} // Synth time: 3017 ms, AST nodes: 34 vs unsimp 34 @|3017|34|34|52|@
+fn tree_flatten(self) -> Node<T> {
+  match self {
+    Tree::Leaf => Node::Nil,
+    Tree::Node { elem, left, right } => {
+      let result = left.tree_flatten();
+      tree_flatten_12(elem, *right, result)
+    }
+  }
+}
+#[helper] fn tree_flatten_12(elem_self: T, bx: Tree<T>, result: Node<T>) -> Node<T> {
+  match result {
+    Node::Nil => {
+      let result = bx.tree_flatten();
+      let next = Box::new(result);
+      Node::Cons { elem: elem_self, next }
+    }
+    Node::Cons { elem: elem_result, next } => {
+      let result = tree_flatten_12(elem_result, bx, *next);
+      let next = Box::new(result);
+      Node::Cons { elem: elem_self, next }
+    }
+  }
+} // Synth time: 4450 ms, AST nodes: 53 vs unsimp 53 @|4450|53|53|61|@
+fn tree_size(&self) -> u16 {
+  match self {
+    Tree::Leaf => 0 as u16,
+    Tree::Node { left, right, .. } => {
+      let result_1 = left.tree_size();
+      let result_2 = right.tree_size();
+      (result_1 + result_2 + 1) as u16
+    }
+  }
+} // Synth time: 1616 ms, AST nodes: 23 vs unsimp 23 @|1616|23|23|36|@
+
+    ./tests/synth/paper/suslik/f-rose_tree
+      ./tests/synth/paper/suslik/f-rose_tree/rose-tree.rs
+Attempting synthesis for: ./tests/synth/paper/suslik/f-rose_tree/rose-tree.rs
+/name/of/binary
+./tests/synth/paper/suslik/f-rose_tree/rose-tree.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-RoseTree___T__copy-5855/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-RoseTree___T__flatten-6698/tmp.syn ["--closeWhileAbduce=false", "--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn copy(&self) -> RoseTree<T> {
+  match self {
+    RoseTree::Nil => RoseTree::Nil,
+    RoseTree::Cons { elem, next } => {
+      let de = *elem;
+      copy_8(de, elem, next)
+    }
+  }
+}
+#[helper] fn copy_8(de: T, elem_self: &T, next: &List<RoseTree<T>>) -> RoseTree<T> {
+  match next {
+    List::Nil => RoseTree::Cons { elem: de, next: List::Nil },
+    List::Cons(_0) => {
+      let result = _0.0.copy();
+      match result {
+        RoseTree::Nil => copy_8(de, elem_self, &_0.1),
+        RoseTree::Cons { elem: elem_result, next } => {
+          let result = copy_8(de, elem_self, &_0.1);
+          let bx = (result, next);
+          let _0 = Box::new(bx);
+          let next = List::Cons(_0);
+          RoseTree::Cons { elem: elem_result, next }
+        }
+      }
+    }
+  }
+} // Synth time: 27223 ms, AST nodes: 74 vs unsimp 74 @|27223|74|74|103|@
+fn flatten(self) -> List<T> {
+  match self {
+    RoseTree::Nil => List::Nil,
+    RoseTree::Cons { elem, next } => match next {
+        List::Nil => {
+          let bx = (elem, List::Nil);
+          let _0 = Box::new(bx);
+          List::Cons(_0)
+        }
+        List::Cons(_0) => {
+          let result = _0.0.flatten();
+          flatten_14(elem, _0.1, result)
+        }
+      },
+  }
+}
+#[helper] fn flatten_14(elem: T, _1: List<RoseTree<T>>, result: List<T>) -> List<T> {
+  match result {
+    List::Nil => flatten_3(elem, _1),
+    List::Cons(_0) => {
+      let result = flatten_14(_0.0, _1, _0.1);
+      let bx = (elem, result);
+      let _0 = Box::new(bx);
+      List::Cons(_0)
+    }
+  }
+} // Synth time: 10368 ms, AST nodes: 67 vs unsimp 67 @|10368|67|67|79|@
+
+  ./tests/synth/paper/verifier
+    ./tests/synth/paper/verifier/a-prusti
+      ./tests/synth/paper/verifier/a-prusti/account.rs
+Attempting synthesis for: ./tests/synth/paper/verifier/a-prusti/account.rs
+/name/of/binary
+./tests/synth/paper/verifier/a-prusti/account.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Account__deposit-6510/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Account__withdraw-1326/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Account__transfer-5395/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn deposit(&mut self, amount: u16) {
+  let de = self.bal;
+  let new = Account { bal: (de + amount) as u16 };
+  *self = new
+} // Synth time: 492 ms, AST nodes: 16 vs unsimp 16 @|492|16|16|14|@
+fn withdraw(&mut self, amount: u16) {
+  let de = self.bal;
+  let new = Account { bal: (de - amount) as u16 };
+  *self = new
+} // Synth time: 461 ms, AST nodes: 16 vs unsimp 16 @|461|16|16|14|@
+fn transfer(&mut self, other: &mut Account, amount: u16) {
+  let de_bal_other = other.bal;
+  let de_bal_self = self.bal;
+  self.bal = (de_bal_self - amount) as u16;
+  other.bal = (de_bal_other + amount) as u16
+} // Synth time: 663 ms, AST nodes: 30 vs unsimp 30 @|663|30|30|29|@
+
+      ./tests/synth/paper/verifier/a-prusti/box-specification.rs
+Attempting synthesis for: ./tests/synth/paper/verifier/a-prusti/box-specification.rs
+/name/of/binary
+./tests/synth/paper/verifier/a-prusti/box-specification.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-foo-8557/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn foo(my_box: std::boxed::Box<i32>) -> i32 {
+  *my_box
+} // Synth time: 165 ms, AST nodes: 1 vs unsimp 1 @|165|1|1|8|@
+
+      ./tests/synth/paper/verifier/a-prusti/bst_generics_paper.rs
+Attempting synthesis for: ./tests/synth/paper/verifier/a-prusti/bst_generics_paper.rs
+/name/of/binary
+./tests/synth/paper/verifier/a-prusti/bst_generics_paper.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-Tree__get_root_value-5689/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn get_root_value(&mut self) -> &mut i16 {
+  match self {
+    Tree::Node(_0, _, _) => _0,
+    Tree::Empty => unreachable!(),
+  }
+} // Synth time: 431 ms, AST nodes: 11 vs unsimp 16 @|431|11|16|32|@
+
+      ./tests/synth/paper/verifier/a-prusti/fields-spec.rs
+Attempting synthesis for: ./tests/synth/paper/verifier/a-prusti/fields-spec.rs
+/name/of/binary
+./tests/synth/paper/verifier/a-prusti/fields-spec.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-test_tuple_field-9373/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-test_struct_field-4364/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn test_tuple_field(x: (i32, i32)) -> (i32, i32) {
+  (42 as i32, 123 as i32)
+} // Synth time: 208 ms, AST nodes: 7 vs unsimp 7 @|208|7|7|7|@
+fn test_struct_field(x: S) -> S {
+  S { a: 42 as i32, b: 123 as i32 }
+} // Synth time: 234 ms, AST nodes: 7 vs unsimp 7 @|234|7|7|10|@
+
+      ./tests/synth/paper/verifier/a-prusti/generics-basic-5.rs
+Attempting synthesis for: ./tests/synth/paper/verifier/a-prusti/generics-basic-5.rs
+/name/of/binary
+./tests/synth/paper/verifier/a-prusti/generics-basic-5.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-test1-7906/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-test2-8428/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn test1(arg: &mut Number<A, i32, B>) {
+  let de = arg.b;
+  arg.b = (de - 1000) as i32
+} // Synth time: 326 ms, AST nodes: 15 vs unsimp 15 @|326|15|15|20|@
+fn test2(arg: &mut Number<A, Number<B, i32, C>, D>) {
+  let de = arg.b.b;
+  arg.b.b = (de - 1000) as i32
+} // Synth time: 410 ms, AST nodes: 19 vs unsimp 19 @|410|19|19|30|@
+
+      ./tests/synth/paper/verifier/a-prusti/generics-basic-6.rs
+Attempting synthesis for: ./tests/synth/paper/verifier/a-prusti/generics-basic-6.rs
+/name/of/binary
+./tests/synth/paper/verifier/a-prusti/generics-basic-6.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-test1-7794/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn test1(arg: Foo<C>) -> Foo<D> {
+  let x = BarBaz { i: arg.i as i32, x: PhantomData };
+  Foo { i: arg.x.i as i32, x }
+} // Synth time: 253 ms, AST nodes: 19 vs unsimp 19 @|253|19|19|19|@
+
+      ./tests/synth/paper/verifier/a-prusti/match-expr-variants.rs
+Attempting synthesis for: ./tests/synth/paper/verifier/a-prusti/match-expr-variants.rs
+/name/of/binary
+./tests/synth/paper/verifier/a-prusti/match-expr-variants.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-test_match_expr-1551/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn test_match_expr(x: i32) -> std::option::Option<i32> {
+  Option::Some(0 as i32)
+} // Synth time: 152 ms, AST nodes: 4 vs unsimp 4 @|152|4|4|7|@
+
+      ./tests/synth/paper/verifier/a-prusti/match-expr.rs
+Attempting synthesis for: ./tests/synth/paper/verifier/a-prusti/match-expr.rs
+/name/of/binary
+./tests/synth/paper/verifier/a-prusti/match-expr.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-test_match_expr-5971/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-test_match_option_expr-8040/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn test_match_expr(x: u32) -> u32 {
+  84 as u32
+} // Synth time: 171 ms, AST nodes: 1 vs unsimp 1 @|171|1|1|4|@
+fn test_match_option_expr(x: i32) -> std::option::Option<i32> {
+  Option::Some((-42) as i32)
+} // Synth time: 180 ms, AST nodes: 5 vs unsimp 5 @|180|5|5|6|@
+
+      ./tests/synth/paper/verifier/a-prusti/move.rs
+Attempting synthesis for: ./tests/synth/paper/verifier/a-prusti/move.rs
+/name/of/binary
+./tests/synth/paper/verifier/a-prusti/move.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-test1-1820/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-test2-6394/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn test1(x: &mut u32) {
+  *x = 4 as u32
+} // Synth time: 230 ms, AST nodes: 4 vs unsimp 9 @|230|4|9|10|@
+fn test2(x: &mut T) {
+  let new = T { f: 4 as u32 };
+  *x = new
+} // Synth time: 257 ms, AST nodes: 8 vs unsimp 14 @|257|8|14|12|@
+
+      ./tests/synth/paper/verifier/a-prusti/ownership2.rs
+Attempting synthesis for: ./tests/synth/paper/verifier/a-prusti/ownership2.rs
+/name/of/binary
+./tests/synth/paper/verifier/a-prusti/ownership2.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-add-1179/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-shift_x-7259/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn add(a: std::boxed::Box<u16>, b: u16) -> std::boxed::Box<u16> {
+  Box::new((*a + b) as u16)
+} // Synth time: 336 ms, AST nodes: 7 vs unsimp 7 @|336|7|7|10|@
+fn shift_x(p: Point, s: u16) -> Point {
+  let x = Box::new((*p.x + s) as u16);
+  Point { x, y: p.y }
+} // Synth time: 459 ms, AST nodes: 17 vs unsimp 17 @|459|17|17|17|@
+
+      ./tests/synth/paper/verifier/a-prusti/shared.rs
+Attempting synthesis for: ./tests/synth/paper/verifier/a-prusti/shared.rs
+/name/of/binary
+./tests/synth/paper/verifier/a-prusti/shared.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-test-257/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-test6-55/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn test6(x: &u32) {
+  ()
+} // Synth time: 165 ms, AST nodes: 0 vs unsimp 5 @|165|0|5|6|@
+fn test(x: &'static T) -> &'static T {
+  x
+} // Synth time: 169 ms, AST nodes: 1 vs unsimp 1 @|169|1|1|4|@
+
+      ./tests/synth/paper/verifier/a-prusti/sign_mix.rs
+Attempting synthesis for: ./tests/synth/paper/verifier/a-prusti/sign_mix.rs
+/name/of/binary
+./tests/synth/paper/verifier/a-prusti/sign_mix.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-u32_i64-575/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-u64_u32-7139/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-u64_i16-7715/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-u16_i8-5716/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-u64_i8-8251/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-u32_isize-4366/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-i64_u8-8163/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-i64_u16-6707/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-i16_u8-309/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn u32_i64(x: u32) -> i64 {
+  x as i64
+} // Synth time: 491 ms, AST nodes: 1 vs unsimp 1 @|491|1|1|4|@
+fn u32_isize(x: u32) -> isize {
+  x as isize
+} // Synth time: 303 ms, AST nodes: 1 vs unsimp 1 @|303|1|1|4|@
+fn u64_u32(x: u64) -> i32 {
+  x as i32
+} // Synth time: 370 ms, AST nodes: 1 vs unsimp 1 @|370|1|1|4|@
+fn u64_i16(x: u64) -> i16 {
+  x as i16
+} // Synth time: 232 ms, AST nodes: 1 vs unsimp 1 @|232|1|1|4|@
+fn u64_i8(x: u64) -> i8 {
+  x as i8
+} // Synth time: 242 ms, AST nodes: 1 vs unsimp 1 @|242|1|1|4|@
+fn u16_i8(x: u16) -> i8 {
+  x as i8
+} // Synth time: 324 ms, AST nodes: 1 vs unsimp 1 @|324|1|1|4|@
+fn i64_u16(x: i64) -> u16 {
+  x as u16
+} // Synth time: 242 ms, AST nodes: 1 vs unsimp 1 @|242|1|1|4|@
+fn i64_u8(x: i64) -> u8 {
+  x as u8
+} // Synth time: 512 ms, AST nodes: 1 vs unsimp 1 @|512|1|1|4|@
+fn i16_u8(x: i16) -> u8 {
+  x as u8
+} // Synth time: 129 ms, AST nodes: 1 vs unsimp 1 @|129|1|1|4|@
+
+      ./tests/synth/paper/verifier/a-prusti/signed.rs
+Attempting synthesis for: ./tests/synth/paper/verifier/a-prusti/signed.rs
+/name/of/binary
+./tests/synth/paper/verifier/a-prusti/signed.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-i32_isize-8326/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-i32_i64-7318/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-i64_i16-5920/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-i64_i8-4140/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-u16_i8-782/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn i32_i64(x: i32) -> i64 {
+  x as i64
+} // Synth time: 368 ms, AST nodes: 1 vs unsimp 1 @|368|1|1|4|@
+fn i32_isize(x: i32) -> isize {
+  x as isize
+} // Synth time: 326 ms, AST nodes: 1 vs unsimp 1 @|326|1|1|4|@
+fn i64_i16(x: i64) -> i16 {
+  0 as i16
+} // Synth time: 363 ms, AST nodes: 1 vs unsimp 1 @|363|1|1|4|@
+fn i64_i8(x: i64) -> i8 {
+  0 as i8
+} // Synth time: 349 ms, AST nodes: 1 vs unsimp 1 @|349|1|1|4|@
+fn u16_i8(x: i16) -> i8 {
+  0 as i8
+} // Synth time: 384 ms, AST nodes: 1 vs unsimp 1 @|384|1|1|4|@
+
+      ./tests/synth/paper/verifier/a-prusti/unsigned.rs
+Attempting synthesis for: ./tests/synth/paper/verifier/a-prusti/unsigned.rs
+/name/of/binary
+./tests/synth/paper/verifier/a-prusti/unsigned.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-u32_u64-138/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-u32_usize-7/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-u64_u16-9929/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-u64_u8-7340/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-u16_u8-2583/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn u32_u64(x: u32) -> u64 {
+  x as u64
+} // Synth time: 386 ms, AST nodes: 1 vs unsimp 1 @|386|1|1|4|@
+fn u32_usize(x: u32) -> usize {
+  x as usize
+} // Synth time: 324 ms, AST nodes: 1 vs unsimp 1 @|324|1|1|4|@
+fn u64_u16(x: u64) -> u16 {
+  x as u16
+} // Synth time: 379 ms, AST nodes: 1 vs unsimp 1 @|379|1|1|4|@
+fn u64_u8(x: u64) -> u8 {
+  x as u8
+} // Synth time: 375 ms, AST nodes: 1 vs unsimp 1 @|375|1|1|4|@
+fn u16_u8(x: u16) -> u8 {
+  x as u8
+} // Synth time: 319 ms, AST nodes: 1 vs unsimp 1 @|319|1|1|4|@
+
+      ./tests/synth/paper/verifier/a-prusti/wand-identity2.rs
+Attempting synthesis for: ./tests/synth/paper/verifier/a-prusti/wand-identity2.rs
+/name/of/binary
+./tests/synth/paper/verifier/a-prusti/wand-identity2.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-identity2-3221/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-identity3-9295/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-identity-9106/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn identity(x: &mut T) -> &mut T {
+  x
+} // Synth time: 435 ms, AST nodes: 1 vs unsimp 7 @|435|1|7|14|@
+fn identity2(x: &mut T, v: i32) -> &mut T {
+  let new = T { val: v };
+  *x = new;
+  x
+} // Synth time: 488 ms, AST nodes: 8 vs unsimp 14 @|488|8|14|18|@
+fn identity3(x: &mut T, v: i32) -> &mut i32 {
+  x.val = v as i32;
+  &mut x.val
+} // Synth time: 467 ms, AST nodes: 8 vs unsimp 14 @|467|8|14|18|@
+
+    ./tests/synth/paper/verifier/b-creusot
+      ./tests/synth/paper/verifier/b-creusot/inc_some_2_list.rs
+Attempting synthesis for: ./tests/synth/paper/verifier/b-creusot/inc_some_2_list.rs
+/name/of/binary
+./tests/synth/paper/verifier/b-creusot/inc_some_2_list.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-List__sum_x-977/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-List__take_some_rest-3401/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn sum_x(&self) -> u16 {
+  match self {
+    List::Nil => 0 as u16,
+    List::Cons(_0, _1) => {
+      let de = *_0;
+      let result = _1.sum_x();
+      (de + result) as u16
+    }
+  }
+} // Synth time: 567 ms, AST nodes: 20 vs unsimp 20 @|567|20|20|29|@
+fn take_some_rest(&mut self) -> (&mut u16, &mut List) {
+  match self {
+    List::Nil => unreachable!(),
+    List::Cons(_0, _1) => (_0, &mut **_1),
+  }
+} // Synth time: 587 ms, AST nodes: 16 vs unsimp 21 @|587|16|21|25|@
+
+      ./tests/synth/paper/verifier/b-creusot/swap_borrows.rs
+Attempting synthesis for: ./tests/synth/paper/verifier/b-creusot/swap_borrows.rs
+/name/of/binary
+./tests/synth/paper/verifier/b-creusot/swap_borrows.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-swap-6435/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn swap(x: (T, T)) -> (T, T) {
+  (x.1, x.0)
+} // Synth time: 199 ms, AST nodes: 9 vs unsimp 9 @|199|9|9|11|@
+
+      ./tests/synth/paper/verifier/b-creusot/take_max.rs
+Attempting synthesis for: ./tests/synth/paper/verifier/b-creusot/take_max.rs
+/name/of/binary
+./tests/synth/paper/verifier/b-creusot/take_max.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-take_max-3298/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn take_max<'a>(ma: &'a mut u16, mb: &'a mut u16) -> &'a mut u16 {
+  let de_mb = *mb;
+  let de_ma = *ma;
+  if de_mb <= de_ma { ma } else { mb }
+} // Synth time: 295 ms, AST nodes: 16 vs unsimp 16 @|295|16|16|27|@
+
+      ./tests/synth/paper/verifier/b-creusot/unnest.rs
+Attempting synthesis for: ./tests/synth/paper/verifier/b-creusot/unnest.rs
+/name/of/binary
+./tests/synth/paper/verifier/b-creusot/unnest.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-unnest-3237/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn unnest<'a, 'b>(x: &'a mut &'b mut i32) -> &'a mut i32 {
+  &mut **x
+} // Synth time: 187 ms, AST nodes: 1 vs unsimp 7 @|187|1|7|10|@
+
+      ./tests/synth/paper/verifier/b-creusot/wrapping.rs
+Attempting synthesis for: ./tests/synth/paper/verifier/b-creusot/wrapping.rs
+/name/of/binary
+./tests/synth/paper/verifier/b-creusot/wrapping.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/home/zhiychen/.rustup/toolchains/nightly-2022-09-14-x86_64-unknown-linux-gnu
+--edition=2021
+--extern
+russol_contracts=/home/zhiychen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/home/zhiychen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-test_u8_wrapping_add-2519/tmp.syn ["--solutions=1"]
+suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
+=========== End of command
+fn test_u8_wrapping_add(a: u8, b: u8) -> u8 {
+  let result = wrapping_add(b as u8, a);
+  if 256 <= b + a { result } else { result }
+} // Synth time: 430 ms, AST nodes: 13 vs unsimp 13 @|430|13|13|23|@
+
+### Measured timings (max 27_223ms) ###
+synth                  Solved 125 	 Time 1.8s 	 SOL rules 27.08 	 Rust LOC 5.23 	 Code/Spec 1.35 	 Sln nodes 16.57 	 Ann nodes 11.23 	 Non-exec pure fn nodes 1.08 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Tree::<T>::size": (true, 19), "NodeP::<T>::elems": (false, 19), "Avl::<i32>::size": (true, 16), "Node1::sum": (true, 14), "Iter::<'a, T>::len": (true, 14), "List::<RoseTree<T>>::elems_tree": (false, 17), "Tree::rightmost": (true, 19), "Tree::bst_invariant": (true, 36), "Avl::<i32>::is_avl": (true, 34), "Avl::<i32>::height": (true, 25), "Node::sum": (true, 13), "Node::<u16>::is_sorted": (true, 23), "List::<List<T>>::elems_list": (false, 17), "List::<T>::elems": (false, 18), "NodeP::<T>::len": (true, 13), "Node::<T>::len": (true, 12), "ListP::<T>::elems": (false, 12), "private::is_ten": (true, 4), "Node::<i32>::elems_eq": (true, 17), "Account::balance": (true, 2), "Node::len": (true, 12), "Tree::leftmost": (true, 19), "Node1::<T>::len": (true, 13), "List::<T>::len": (true, 14), "is_ok": (true, 8), "Node::<T>::len_gt": (true, 16), "Tree::size": (true, 16), "Node::<T>::len_te": (true, 15), "List::sum": (true, 13), "Node1::len": (true, 13), "is_some": (true, 8), "Node::<T>::elems": (false, 16), "Tree::<T>::elems": (false, 20), "ListP::<T>::len": (true, 11), "Node::len_te": (true, 15), "RoseTree::<T>::elems": (false, 16)}
+  other                  Solved 10 	 Time 1.2s 	 SOL rules 33.90 	 Rust LOC 3.80 	 Code/Spec 1.11 	 Sln nodes 15.60 	 Ann nodes 10.90 	 Non-exec pure fn nodes 3.10 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"NodeP::<T>::elems": (false, 19), "NodeP::<T>::len": (true, 13), "Avl::<i32>::is_avl": (true, 34), "ListP::<T>::len": (true, 11), "Avl::<i32>::size": (true, 16), "ListP::<T>::elems": (false, 12), "Avl::<i32>::height": (true, 25)}
+    ci                     Solved 4 	 Time 0.5s 	 SOL rules 34.00 	 Rust LOC 1.00 	 Code/Spec 1.64 	 Sln nodes 5.75 	 Ann nodes 3.50 	 Non-exec pure fn nodes 0.00
+      copy.rs::foo - 0_177ms [1/4/4/12] | spec_ast: 3, pfn_ast: {}
+      many_choices.rs::owned - 0_195ms [1/5/5/7] | spec_ast: 0, pfn_ast: {}
+      many_choices.rs::borrowed - 1_617ms [1/5/119/106] | spec_ast: 0, pfn_ast: {}
+      strange_args.rs::to_tuple - 0_177ms [1/9/9/11] | spec_ast: 11, pfn_ast: {}
+    presentation           Solved 5 	 Time 1.5s 	 SOL rules 30.00 	 Rust LOC 4.60 	 Code/Spec 0.80 	 Sln nodes 18.00 	 Ann nodes 16.20 	 Non-exec pure fn nodes 6.20 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"NodeP::<T>::elems": (false, 19), "NodeP::<T>::len": (true, 13), "ListP::<T>::len": (true, 11), "ListP::<T>::elems": (false, 12)}
+      stack.rs::ListP::<T>::append - 1_805ms [7/22/22/46] | spec_ast: 9, pfn_ast: {"NodeP::<T>::len": (true, 13), "ListP::<T>::len": (true, 11)}
+      stack.rs::ListP::<T>::peek_last - 1_445ms [3/13/13/25] | spec_ast: 6, pfn_ast: {"NodeP::<T>::elems": (false, 19), "ListP::<T>::elems": (false, 12)}
+      stack.rs::ListP::<T>::push - 2_407ms [5/26/26/30] | spec_ast: 22, pfn_ast: {"NodeP::<T>::len": (true, 13), "ListP::<T>::len": (true, 11)}
+      stack.rs::ListP::<T>::single - 0_523ms [4/17/17/14] | spec_ast: 8, pfn_ast: {}
+      stack.rs::ListP::<T>::peek_mut - 1_448ms [4/12/12/35] | spec_ast: 36, pfn_ast: {}
+    suslik_other           Solved 1 	 Time 1.7s 	 SOL rules 53.00 	 Rust LOC 11.00 	 Code/Spec 3.07 	 Sln nodes 43.00 	 Ann nodes 14.00 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Avl::<i32>::size": (true, 16), "Avl::<i32>::is_avl": (true, 34), "Avl::<i32>::height": (true, 25)}
+      avl.rs::avl_copy - 1_730ms [11/43/43/53] | spec_ast: 14, pfn_ast: {"Avl::<i32>::height": (true, 25), "Avl::<i32>::size": (true, 16), "Avl::<i32>::is_avl": (true, 34)}
+  paper                  Solved 115 	 Time 1.9s 	 SOL rules 26.49 	 Rust LOC 5.36 	 Code/Spec 1.37 	 Sln nodes 16.65 	 Ann nodes 11.26 	 Non-exec pure fn nodes 0.90 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Tree::<T>::size": (true, 19), "Node1::sum": (true, 14), "Iter::<'a, T>::len": (true, 14), "List::<RoseTree<T>>::elems_tree": (false, 17), "Tree::rightmost": (true, 19), "Tree::bst_invariant": (true, 36), "Tree::leftmost": (true, 19), "Node::sum": (true, 13), "Node::<u16>::is_sorted": (true, 23), "List::<T>::elems": (false, 18), "Node::<T>::len": (true, 12), "Account::balance": (true, 2), "Node::<i32>::elems_eq": (true, 17), "List::<List<T>>::elems_list": (false, 17), "private::is_ten": (true, 4), "Node::len": (true, 12), "Node1::<T>::len": (true, 13), "List::<T>::len": (true, 14), "Tree::size": (true, 16), "is_ok": (true, 8), "Node::<T>::len_gt": (true, 16), "Node::<T>::len_te": (true, 15), "List::sum": (true, 13), "Node1::len": (true, 13), "is_some": (true, 8), "Node::<T>::elems": (false, 16), "Tree::<T>::elems": (false, 20), "Node::len_te": (true, 15), "RoseTree::<T>::elems": (false, 16)}
+    rust                   Solved 50 	 Time 2.5s 	 SOL rules 32.98 	 Rust LOC 6.16 	 Code/Spec 1.27 	 Sln nodes 19.20 	 Ann nodes 14.42 	 Non-exec pure fn nodes 0.72 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"private::is_ten": (true, 4), "Node::len": (true, 12), "Node1::<T>::len": (true, 13), "List::<T>::len": (true, 14), "Tree::size": (true, 16), "is_ok": (true, 8), "Node1::sum": (true, 14), "Node::<T>::len_gt": (true, 16), "Node::<T>::len_te": (true, 15), "Iter::<'a, T>::len": (true, 14), "Node1::len": (true, 13), "is_some": (true, 8), "Node::<T>::elems": (false, 16), "Node::sum": (true, 13), "Tree::<T>::elems": (false, 20), "Node::len_te": (true, 15), "Node::<T>::len": (true, 12), "Node::<i32>::elems_eq": (true, 17)}
+      a-sll_tutorial         Solved 7 	 Time 2.2s 	 SOL rules 36.71 	 Rust LOC 6.29 	 Code/Spec 1.09 	 Sln nodes 20.57 	 Ann nodes 18.86 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"List::<T>::len": (true, 14), "Node::<T>::len_gt": (true, 16), "is_some": (true, 8), "Iter::<'a, T>::len": (true, 14)}
+        stack.rs::List::<T>::new - 0_505ms [1/3/3/5] | spec_ast: 4, pfn_ast: {"List::<T>::len": (true, 14), "Node::<T>::len_gt": (true, 16)}
+        stack.rs::List::<T>::peek_mut - 2_283ms [4/12/12/35] | spec_ast: 36, pfn_ast: {}
+        stack.rs::<Iter<'a, T> as std::iter::Iterator>::next - 4_832ms [16/46/46/73] | spec_ast: 32, pfn_ast: {"Node::<T>::len_gt": (true, 16), "Iter::<'a, T>::len": (true, 14)}
+        stack.rs::<IterMut<'a, T> as std::iter::Iterator>::next - 1_596ms [5/18/18/42] | spec_ast: 24, pfn_ast: {}
+        stack.rs::List::<T>::peek - 0_877ms [4/12/12/31] | spec_ast: 6, pfn_ast: {"is_some": (true, 8)}
+        stack.rs::List::<T>::push - 2_001ms [5/26/26/30] | spec_ast: 15, pfn_ast: {}
+        stack.rs::List::<T>::pop - 3_364ms [9/27/27/41] | spec_ast: 15, pfn_ast: {}
+      b-stackoverflow        Solved 4 	 Time 0.6s 	 SOL rules 28.50 	 Rust LOC 4.75 	 Code/Spec 2.00 	 Sln nodes 17.00 	 Ann nodes 8.50 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"is_ok": (true, 8), "is_some": (true, 8)}
+        nested_refs.rs::use_ref_ref - 0_197ms [1/2/10/14] | spec_ast: 0, pfn_ast: {}
+        reborrow.rs::Bar::<T>::borrow - 0_313ms [4/11/11/29] | spec_ast: 6, pfn_ast: {"is_ok": (true, 8), "is_some": (true, 8)}
+        replace_1.rs::SomeStruct::<T>::apply_changes - 0_587ms [9/30/30/43] | spec_ast: 13, pfn_ast: {}
+        replace_2.rs::LinkedList::prepend_value - 1_272ms [5/25/25/28] | spec_ast: 15, pfn_ast: {}
+      c-custom               Solved 39 	 Time 2.8s 	 SOL rules 32.77 	 Rust LOC 6.28 	 Code/Spec 1.27 	 Sln nodes 19.18 	 Ann nodes 14.23 	 Non-exec pure fn nodes 0.92 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"private::is_ten": (true, 4), "Node1::len": (true, 13), "Node::sum": (true, 13), "Node::len": (true, 12), "is_some": (true, 8), "Node1::<T>::len": (true, 13), "Node::<T>::elems": (false, 16), "Tree::size": (true, 16), "Tree::<T>::elems": (false, 20), "Node::len_te": (true, 15), "Node::<T>::len": (true, 12), "Node::<T>::len_te": (true, 15), "Node::<i32>::elems_eq": (true, 17), "Node1::sum": (true, 14)}
+        futures                Solved 6 	 Time 2.1s 	 SOL rules 23.00 	 Rust LOC 2.00 	 Code/Spec 0.58 	 Sln nodes 7.00 	 Ann nodes 12.00 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"private::is_ten": (true, 4)}
+          futures.rs::foo2 - 0_560ms [1/1/7/12] | spec_ast: 5, pfn_ast: {}
+          futures.rs::foo4 - 0_579ms [1/1/7/13] | spec_ast: 14, pfn_ast: {}
+          futures.rs::foo1 - 0_871ms [1/3/21/31] | spec_ast: 6, pfn_ast: {}
+          futures.rs::foo3 - 0_901ms [4/20/20/22] | spec_ast: 17, pfn_ast: {}
+          futures.rs::foo - 9_434ms [3/10/28/36] | spec_ast: 27, pfn_ast: {}
+          reborrow.rs::foo - 0_384ms [2/7/12/24] | spec_ast: 3, pfn_ast: {"private::is_ten": (true, 4)}
+        general                Solved 21 	 Time 2.7s 	 SOL rules 38.38 	 Rust LOC 8.10 	 Code/Spec 1.22 	 Sln nodes 24.43 	 Ann nodes 18.29 	 Non-exec pure fn nodes 1.71 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Node1::len": (true, 13), "Node::sum": (true, 13), "Node::len": (true, 12), "Node::<T>::elems": (false, 16), "Tree::size": (true, 16), "Tree::<T>::elems": (false, 20), "Node1::sum": (true, 14), "Node::len_te": (true, 15), "Node::<T>::len": (true, 12), "Node::<T>::len_te": (true, 15), "Node::<i32>::elems_eq": (true, 17)}
+          clone.rs::clone - 0_200ms [1/2/2/9] | spec_ast: 0, pfn_ast: {}
+          clone.rs::Foo::<T>::clone - 0_245ms [2/9/9/15] | spec_ast: 0, pfn_ast: {}
+          copy_out.rs::BorrowAndValue::<'a, T>::new - 0_267ms [2/10/15/20] | spec_ast: 0, pfn_ast: {}
+          copy_out.rs::foo - 0_248ms [1/4/12/15] | spec_ast: 0, pfn_ast: {}
+          cyclic_then_reborrow.rs::zero - 5_251ms [11/19/24/37] | spec_ast: 26, pfn_ast: {"Node::<T>::len_te": (true, 15), "Node::<T>::elems": (false, 16)}
+          enum.rs::swap - 0_311ms [10/29/29/28] | spec_ast: 40, pfn_ast: {}
+          find_false.rs::foo - 0_206ms [2/5/10/10] | spec_ast: 7, pfn_ast: {}
+          integer_construct.rs::len - 0_495ms [7/15/20/35] | spec_ast: 14, pfn_ast: {"Node::len_te": (true, 15)}
+          list.rs::Node::<T>::modify_elems - 2_003ms [8/23/23/38] | spec_ast: 5, pfn_ast: {"Node::<T>::len": (true, 12)}
+          list.rs::List::lstset - 12_852ms [22/65/65/74] | spec_ast: 14, pfn_ast: {"Node::<i32>::elems_eq": (true, 17), "Node::<T>::len": (true, 12)}
+          list.rs::Node::<i32>::tail2 - 1_584ms [7/17/17/18] | spec_ast: 11, pfn_ast: {"Node::<T>::len": (true, 12)}
+          list.rs::Node::<i32>::reborrow_head_and_tail_2 - 13_770ms [7/24/34/47] | spec_ast: 39, pfn_ast: {"Node::<T>::len": (true, 12), "Node::<T>::elems": (false, 16)}
+          list.rs::List::append - 2_570ms [7/24/29/43] | spec_ast: 24, pfn_ast: {"Node::<T>::len": (true, 12), "Node::<T>::elems": (false, 16)}
+          list.rs::List::duplicate - 2_178ms [13/42/42/47] | spec_ast: 14, pfn_ast: {"Node::<T>::len": (true, 12), "Node::<T>::elems": (false, 16)}
+          lstset_awkward.rs::listset - 3_069ms [10/24/30/48] | spec_ast: 44, pfn_ast: {"Node1::len": (true, 13), "Node1::sum": (true, 14)}
+          rebrrw_choice.rs::rbrrw - 0_313ms [1/4/14/30] | spec_ast: 18, pfn_ast: {}
+          test.rs::swap - 4_796ms [5/24/30/32] | spec_ast: 37, pfn_ast: {}
+          tree.rs::Tree::duplicate - 1_350ms [11/43/43/50] | spec_ast: 5, pfn_ast: {"Tree::size": (true, 16)}
+          tree_bst.rs::Tree::<i32>::insert - 1_419ms [12/56/56/111] | spec_ast: 67, pfn_ast: {"Tree::<T>::elems": (false, 20)}
+          tree_to_list.rs::Tree::<T>::to_list - 2_912ms [21/53/53/61] | spec_ast: 5, pfn_ast: {"Tree::<T>::elems": (false, 20), "Node::<T>::elems": (false, 16)}
+          zeroing.rs::zero - 0_721ms [10/21/26/38] | spec_ast: 14, pfn_ast: {"Node::sum": (true, 13), "Node::len": (true, 12)}
+        list_ex                Solved 12 	 Time 3.2s 	 SOL rules 27.83 	 Rust LOC 5.25 	 Code/Spec 1.95 	 Sln nodes 16.08 	 Ann nodes 8.25 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Node::<T>::len": (true, 12), "Node1::<T>::len": (true, 13), "is_some": (true, 8)}
+          list_paper.rs::Node::<T>::peek - 0_801ms [4/9/9/14] | spec_ast: 4, pfn_ast: {"Node::<T>::len": (true, 12)}
+          list_paper.rs::Node::<T>::push_len - 1_185ms [8/26/26/41] | spec_ast: 8, pfn_ast: {"Node::<T>::len": (true, 12)}
+          list_paper.rs::Node::<T>::pop - 9_276ms [8/19/19/33] | spec_ast: 17, pfn_ast: {"Node::<T>::len": (true, 12), "is_some": (true, 8)}
+          list_paper.rs::Node::<T>::peek_last - 2_568ms [4/13/13/35] | spec_ast: 10, pfn_ast: {"Node::<T>::len": (true, 12)}
+          list_paper.rs::Node::<T>::singleton - 0_450ms [2/9/9/9] | spec_ast: 0, pfn_ast: {}
+          list_paper.rs::Node::<T>::push - 2_495ms [4/17/17/25] | spec_ast: 10, pfn_ast: {}
+          list_paper_alt.rs::Node1::<T>::peek - 0_827ms [4/7/7/18] | spec_ast: 4, pfn_ast: {"Node1::<T>::len": (true, 13)}
+          list_paper_alt.rs::Node1::<T>::push_len - 2_794ms [9/28/28/47] | spec_ast: 8, pfn_ast: {"Node1::<T>::len": (true, 13)}
+          list_paper_alt.rs::Node1::<T>::push - 2_561ms [5/21/21/27] | spec_ast: 11, pfn_ast: {}
+          list_paper_alt.rs::Node1::<T>::pop - 10_687ms [8/20/20/35] | spec_ast: 17, pfn_ast: {"Node1::<T>::len": (true, 13), "is_some": (true, 8)}
+          list_paper_alt.rs::Node1::<T>::peek_last - 4_627ms [4/11/11/39] | spec_ast: 10, pfn_ast: {"Node1::<T>::len": (true, 13)}
+          list_paper_alt.rs::Node1::<T>::singleton - 0_514ms [3/13/13/11] | spec_ast: 0, pfn_ast: {}
+    suslik                 Solved 18 	 Time 4.2s 	 SOL rules 49.28 	 Rust LOC 12.78 	 Code/Spec 2.84 	 Sln nodes 36.44 	 Ann nodes 7.06 	 Non-exec pure fn nodes 5.78 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"List::<RoseTree<T>>::elems_tree": (false, 17), "Tree::<T>::size": (true, 19), "Node::<T>::elems": (false, 16), "List::<List<T>>::elems_list": (false, 17), "Node::<u16>::is_sorted": (true, 23), "List::<T>::elems": (false, 18), "Node::<T>::len": (true, 12), "Tree::<T>::elems": (false, 20), "RoseTree::<T>::elems": (false, 16)}
+      a-integers             Solved 1 	 Time 0.3s 	 SOL rules 19.00 	 Rust LOC 4.00 	 Code/Spec 2.25 	 Sln nodes 18.00 	 Ann nodes 8.00 	 Non-exec pure fn nodes 0.00
+        integers.rs::swap - 0_283ms [4/18/18/19] | spec_ast: 8, pfn_ast: {}
+      b-singly_linked_list   Solved 7 	 Time 1.8s 	 SOL rules 41.43 	 Rust LOC 10.14 	 Code/Spec 2.90 	 Sln nodes 28.57 	 Ann nodes 7.57 	 Non-exec pure fn nodes 2.29 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Node::<T>::len": (true, 12), "Node::<T>::elems": (false, 16)}
+        sll.rs::Node::<T>::sll_len - 0_960ms [7/15/15/25] | spec_ast: 8, pfn_ast: {"Node::<T>::len": (true, 12)}
+        sll.rs::Node::<T>::sll_append - 1_467ms [4/16/16/34] | spec_ast: 9, pfn_ast: {"Node::<T>::len": (true, 12)}
+        sll.rs::Node::<T>::sll_singleton - 0_504ms [2/9/9/9] | spec_ast: 0, pfn_ast: {}
+        sll.rs::Node::<T>::sll_init - 3_098ms [12/31/36/48] | spec_ast: 13, pfn_ast: {"Node::<T>::len": (true, 12), "Node::<T>::elems": (false, 16)}
+        sll.rs::Node::<T>::sll_append3 - 3_055ms [17/43/43/63] | spec_ast: 12, pfn_ast: {"Node::<T>::len": (true, 12)}
+        sll.rs::Node::<T>::sll_append_copy - 2_250ms [20/58/58/75] | spec_ast: 8, pfn_ast: {"Node::<T>::len": (true, 12)}
+        sll.rs::Node::<T>::sll_copy - 1_071ms [9/28/28/36] | spec_ast: 3, pfn_ast: {}
+      c-sorted_list          Solved 2 	 Time 0.6s 	 SOL rules 26.50 	 Rust LOC 5.00 	 Code/Spec 0.82 	 Sln nodes 16.00 	 Ann nodes 11.50 	 Non-exec pure fn nodes 8.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Node::<T>::len": (true, 12), "Node::<u16>::is_sorted": (true, 23), "Node::<T>::elems": (false, 16)}
+        srtl.rs::Node::<u16>::srtl_prepend - 0_322ms [2/10/10/13] | spec_ast: 16, pfn_ast: {"Node::<T>::len": (true, 12)}
+        srtl.rs::Node::<u16>::insertion_sort - 0_890ms [8/22/22/40] | spec_ast: 7, pfn_ast: {"Node::<u16>::is_sorted": (true, 23), "Node::<T>::elems": (false, 16)}
+      d-list_of_lists        Solved 1 	 Time 2.2s 	 SOL rules 50.00 	 Rust LOC 15.00 	 Code/Spec 1.02 	 Sln nodes 41.00 	 Ann nodes 5.00 	 Non-exec pure fn nodes 35.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"List::<List<T>>::elems_list": (false, 17), "List::<T>::elems": (false, 18)}
+        multi-list.rs::List::<List<T>>::flatten - 2_179ms [15/41/41/50] | spec_ast: 5, pfn_ast: {"List::<List<T>>::elems_list": (false, 17), "List::<T>::elems": (false, 18)}
+      e-binary_tree          Solved 5 	 Time 4.3s 	 SOL rules 58.60 	 Rust LOC 16.00 	 Code/Spec 3.50 	 Sln nodes 44.80 	 Ann nodes 5.60 	 Non-exec pure fn nodes 7.20 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Tree::<T>::size": (true, 19), "Tree::<T>::elems": (false, 20), "Node::<T>::elems": (false, 16)}
+        tree.rs::Tree::<T>::tree_flatten_acc - 8_730ms [30/72/72/93] | spec_ast: 9, pfn_ast: {"Tree::<T>::elems": (false, 20), "Node::<T>::elems": (false, 16)}
+        tree.rs::Tree::<T>::tree_copy - 3_502ms [11/42/42/51] | spec_ast: 5, pfn_ast: {"Tree::<T>::elems": (false, 20)}
+        tree.rs::Tree::<T>::tree_flatten - 4_450ms [21/53/53/61] | spec_ast: 5, pfn_ast: {"Tree::<T>::elems": (false, 20), "Node::<T>::elems": (false, 16)}
+        tree.rs::Tree::<T>::tree_flatten_helper - 3_017ms [10/34/34/52] | spec_ast: 5, pfn_ast: {"Tree::<T>::elems": (false, 20), "Node::<T>::elems": (false, 16)}
+        tree.rs::Tree::<T>::tree_size - 1_616ms [8/23/23/36] | spec_ast: 4, pfn_ast: {"Tree::<T>::size": (true, 19)}
+      f-rose_tree            Solved 2 	 Time 18.8s 	 SOL rules 91.00 	 Rust LOC 25.00 	 Code/Spec 2.31 	 Sln nodes 70.50 	 Ann nodes 5.00 	 Non-exec pure fn nodes 25.50 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"RoseTree::<T>::elems": (false, 16), "List::<RoseTree<T>>::elems_tree": (false, 17), "List::<T>::elems": (false, 18)}
+        rose-tree.rs::RoseTree::<T>::copy - 27_223ms [25/74/74/103] | spec_ast: 5, pfn_ast: {"RoseTree::<T>::elems": (false, 16), "List::<RoseTree<T>>::elems_tree": (false, 17)}
+        rose-tree.rs::RoseTree::<T>::flatten - 10_368ms [25/67/67/79] | spec_ast: 5, pfn_ast: {"RoseTree::<T>::elems": (false, 16), "List::<RoseTree<T>>::elems_tree": (false, 17), "List::<T>::elems": (false, 18)}
+    verifier               Solved 47 	 Time 0.3s 	 SOL rules 10.85 	 Rust LOC 1.66 	 Code/Spec 0.67 	 Sln nodes 6.36 	 Ann nodes 9.51 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Tree::leftmost": (true, 19), "Tree::rightmost": (true, 19), "Tree::bst_invariant": (true, 36), "Account::balance": (true, 2), "List::sum": (true, 13)}
+      a-prusti               Solved 41 	 Time 0.3s 	 SOL rules 9.39 	 Rust LOC 1.44 	 Code/Spec 0.63 	 Sln nodes 5.46 	 Ann nodes 8.66 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Tree::leftmost": (true, 19), "Tree::rightmost": (true, 19), "Tree::bst_invariant": (true, 36), "Account::balance": (true, 2)}
+        account.rs::Account::transfer - 0_663ms [4/30/30/29] | spec_ast: 26, pfn_ast: {"Account::balance": (true, 2)}
+        account.rs::Account::deposit - 0_492ms [3/16/16/14] | spec_ast: 14, pfn_ast: {"Account::balance": (true, 2)}
+        account.rs::Account::withdraw - 0_461ms [3/16/16/14] | spec_ast: 12, pfn_ast: {"Account::balance": (true, 2)}
+        box-specification.rs::foo - 0_165ms [1/1/1/8] | spec_ast: 3, pfn_ast: {}
+        bst_generics_paper.rs::Tree::get_root_value - 0_431ms [4/11/16/32] | spec_ast: 37, pfn_ast: {"Tree::leftmost": (true, 19), "Tree::rightmost": (true, 19), "Tree::bst_invariant": (true, 36)}
+        fields-spec.rs::test_tuple_field - 0_208ms [1/7/7/7] | spec_ast: 18, pfn_ast: {}
+        fields-spec.rs::test_struct_field - 0_234ms [1/7/7/10] | spec_ast: 18, pfn_ast: {}
+        generics-basic-5.rs::test2 - 0_410ms [2/19/19/30] | spec_ast: 21, pfn_ast: {}
+        generics-basic-5.rs::test1 - 0_326ms [2/15/15/20] | spec_ast: 17, pfn_ast: {}
+        generics-basic-6.rs::test1 - 0_253ms [2/19/19/19] | spec_ast: 12, pfn_ast: {}
+        match-expr-variants.rs::test_match_expr - 0_152ms [1/4/4/7] | spec_ast: 9, pfn_ast: {}
+        match-expr.rs::test_match_expr - 0_171ms [1/1/1/4] | spec_ast: 13, pfn_ast: {}
+        match-expr.rs::test_match_option_expr - 0_180ms [1/5/5/6] | spec_ast: 12, pfn_ast: {}
+        move.rs::test2 - 0_257ms [2/8/14/12] | spec_ast: 5, pfn_ast: {}
+        move.rs::test1 - 0_230ms [1/4/9/10] | spec_ast: 4, pfn_ast: {}
+        ownership2.rs::shift_x - 0_459ms [2/17/17/17] | spec_ast: 18, pfn_ast: {}
+        ownership2.rs::add - 0_336ms [1/7/7/10] | spec_ast: 10, pfn_ast: {}
+        shared.rs::test6 - 0_165ms [1/0/5/6] | spec_ast: 6, pfn_ast: {}
+        shared.rs::test - 0_169ms [1/1/1/4] | spec_ast: 0, pfn_ast: {}
+        sign_mix.rs::i16_u8 - 0_129ms [1/1/1/4] | spec_ast: 7, pfn_ast: {}
+        sign_mix.rs::u32_isize - 0_303ms [1/1/1/4] | spec_ast: 0, pfn_ast: {}
+        sign_mix.rs::i64_u16 - 0_242ms [1/1/1/4] | spec_ast: 7, pfn_ast: {}
+        sign_mix.rs::u64_i16 - 0_232ms [1/1/1/4] | spec_ast: 4, pfn_ast: {}
+        sign_mix.rs::i64_u8 - 0_512ms [1/1/1/4] | spec_ast: 7, pfn_ast: {}
+        sign_mix.rs::u16_i8 - 0_324ms [1/1/1/4] | spec_ast: 4, pfn_ast: {}
+        sign_mix.rs::u64_i8 - 0_242ms [1/1/1/4] | spec_ast: 4, pfn_ast: {}
+        sign_mix.rs::u64_u32 - 0_370ms [1/1/1/4] | spec_ast: 4, pfn_ast: {}
+        sign_mix.rs::u32_i64 - 0_491ms [1/1/1/4] | spec_ast: 0, pfn_ast: {}
+        signed.rs::u16_i8 - 0_384ms [1/1/1/4] | spec_ast: 8, pfn_ast: {}
+        signed.rs::i64_i16 - 0_363ms [1/1/1/4] | spec_ast: 8, pfn_ast: {}
+        signed.rs::i32_isize - 0_326ms [1/1/1/4] | spec_ast: 0, pfn_ast: {}
+        signed.rs::i64_i8 - 0_349ms [1/1/1/4] | spec_ast: 8, pfn_ast: {}
+        signed.rs::i32_i64 - 0_368ms [1/1/1/4] | spec_ast: 0, pfn_ast: {}
+        unsigned.rs::u64_u16 - 0_379ms [1/1/1/4] | spec_ast: 4, pfn_ast: {}
+        unsigned.rs::u32_usize - 0_324ms [1/1/1/4] | spec_ast: 0, pfn_ast: {}
+        unsigned.rs::u32_u64 - 0_386ms [1/1/1/4] | spec_ast: 0, pfn_ast: {}
+        unsigned.rs::u64_u8 - 0_375ms [1/1/1/4] | spec_ast: 4, pfn_ast: {}
+        unsigned.rs::u16_u8 - 0_319ms [1/1/1/4] | spec_ast: 4, pfn_ast: {}
+        wand-identity2.rs::identity3 - 0_467ms [2/8/14/18] | spec_ast: 9, pfn_ast: {}
+        wand-identity2.rs::identity - 0_435ms [1/1/7/14] | spec_ast: 7, pfn_ast: {}
+        wand-identity2.rs::identity2 - 0_488ms [3/8/14/18] | spec_ast: 11, pfn_ast: {}
+      b-creusot              Solved 6 	 Time 0.4s 	 SOL rules 20.83 	 Rust LOC 3.17 	 Code/Spec 0.82 	 Sln nodes 12.50 	 Ann nodes 15.33 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"List::sum": (true, 13)}
+        inc_some_2_list.rs::List::sum_x - 0_567ms [8/20/20/29] | spec_ast: 8, pfn_ast: {"List::sum": (true, 13)}
+        inc_some_2_list.rs::List::take_some_rest - 0_587ms [4/16/21/25] | spec_ast: 26, pfn_ast: {"List::sum": (true, 13)}
+        swap_borrows.rs::swap - 0_199ms [1/9/9/11] | spec_ast: 11, pfn_ast: {}
+        take_max.rs::take_max - 0_295ms [3/16/16/27] | spec_ast: 20, pfn_ast: {}
+        unnest.rs::unnest - 0_187ms [1/1/7/10] | spec_ast: 14, pfn_ast: {}
+        wrapping.rs::test_u8_wrapping_add - 0_430ms [2/13/13/23] | spec_ast: 13, pfn_ast: {}
+#######################################
+test all_tests ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 248.75s
+

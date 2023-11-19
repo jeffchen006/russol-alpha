@@ -63,19 +63,8 @@ impl Callbacks for CompilerCallbacks {
             crate::ruslik_ssl::VARS = Some(rustc_data_structures::fx::FxHashSet::default());
             crate::ruslik_ssl::UNIFS = Some(rustc_data_structures::fx::FxHashSet::default());
         }
-        if false {
-            let (krate, _resolver, _lint_store) = &mut *queries.expansion().unwrap().peek_mut();
-            rustc_driver::pretty::print_after_parsing(
-                compiler.session(),
-                compiler.input(),
-                krate,
-                rustc_session::config::PpMode::Source(rustc_session::config::PpSourceMode::Normal),
-                None,
-            );
-        }
 
         queries.prepare_outputs().unwrap();
-
         queries.global_ctxt().unwrap().peek_mut().enter(|tcx| {
             match crate::interner::intern(tcx, self.timeout) {
                 Some(times) => self.timings = times,
@@ -117,8 +106,7 @@ pub fn run_on_file(
     } else {
         current_dir
     };
-
-
+    
     if !is_cargo {
         args.push("--crate-type=lib".into());
     }

@@ -516,6 +516,8 @@ impl SuslikProgram {
             .collect::<Vec<_>>();
         if provided_args.iter().all(|a| !a.contains("--solutions=")) {
             provided_args.push("--solutions=1".to_string());
+
+            println!("Added --solutions=1 to suslik args")
         }
         let output_trace = std::env::var("RUSLIC_OUTPUT_TRACE")
             .map(|v| v.parse::<bool>().unwrap())
@@ -525,8 +527,24 @@ impl SuslikProgram {
             let logfile = logfile.to_str();
             provided_args.push("-j".to_string());
             provided_args.push(logfile.unwrap().to_string());
+
+            println!("Added -j {} to suslik args", logfile.unwrap().to_string());
+
         }
-        let mut child = Command::new("java")
+
+        // print the coomand 
+        print!("=========== Running command:\n java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar ");
+        // print synfile
+        print!("{} ", format!("{}", synfile.to_str().unwrap()));
+        // print suslik args
+        println!("{:?}", provided_args);
+        // print suslik_dir
+        println!("suslik dir: {:?}", suslik_dir);
+        println!("=========== End of command");
+
+
+
+        let mut child: std::process::Child = Command::new("java")
             .arg("-Dfile.encoding=UTF-8")
             .arg("-jar")
             .arg("./target/scala-2.12/suslik.jar")
@@ -536,6 +554,11 @@ impl SuslikProgram {
             .stdout(Stdio::piped())
             .spawn()
             .expect("`java` command failed to start");
+
+
+        
+
+
         let mut stdout = child.stdout.take().unwrap();
         let start = Instant::now();
         let max = Duration::from_millis(timeout);

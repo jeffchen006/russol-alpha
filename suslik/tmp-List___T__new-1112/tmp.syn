@@ -1,0 +1,72 @@
+# -c 10 -o 10 -p false
+###
+predicate PT(int snap) "T" {
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P4_List_PT_(int snap, int len_result) "List<T>" {
+| true => "List" {
+  (len_result == ((snap_fdisc_f0head == 0) ? 0 : len_gt_result_f_666_f1_0_f0head)) &&
+  (snap == (0, (snap_f0head, snap_fdisc_f0head, len_gt_result_f_666_f1_0_f0head))) &&
+  ((snap_fdisc_f0head == 0) ? true : (len_gt_result_f_666_f1_0_f0head >= 1)) ;
+   f0head: P47806_Option_P444_Box_P9_Node_PT__P8224_Global___(snap_f0head, snap_fdisc_f0head, len_gt_result_f_666_f1_0_f0head)
+ }
+}
+
+predicate P47806_Option_P444_Box_P9_Node_PT__P8224_Global___(int snap, int snap_fdisc, int len_gt_result_f_666_f1_0) "std::option::Option<std::boxed::Box<Node<T>>>" {
+| (snap_fdisc == 0) => "Option::None" {
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Option::Some" {
+  (snap == (1, (snap_fdisc), (snap_f1_0, len_gt_result_f_666_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: P444_Box_P9_Node_PT__P8224_Global__(snap_f1_0, len_gt_result_f_666_f1_0)
+ }
+}
+
+predicate P444_Box_P9_Node_PT__P8224_Global__(int snap, int len_gt_result_f_666) "std::boxed::Box<Node<T>>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666, len_gt_result_f_666))) ;
+   f_666: P9_Node_PT_(snap_f_666, len_gt_result_f_666)
+ }
+}
+
+predicate P9_Node_PT_(int snap, int len_gt_result) "Node<T>" {
+| true => "Node" {
+  (len_gt_result == ((snap_fdisc_f0next == 0) ? 1 : (1 + len_gt_result_f_666_f1_0_f0next))) &&
+  (snap == (0, (snap_f0elem), (snap_f0next, snap_fdisc_f0next, len_gt_result_f_666_f1_0_f0next))) &&
+  ((snap_fdisc_f0next == 0) ? true : (len_gt_result_f_666_f1_0_f0next >= 1)) ;
+   f0elem: PT(snap_f0elem) **
+   f0next: P47806_Option_P444_Box_P9_Node_PT__P8224_Global___(snap_f0next, snap_fdisc_f0next, len_gt_result_f_666_f1_0_f0next)
+ }
+}
+
+{
+   fx: &_ mut P47806_Option_P444_Box_P9_Node_PT__P8224_Global___(snap_fx, snap_fdisc_fx, len_gt_result_f_666_f1_0_fx)
+}
+take_std__boxed__Box_Node_T "take"
+{
+  ((snap_fx, snap_fdisc_fx, len_gt_result_f_666_f1_0_fx) == (snap_fresult, snap_fdisc_fresult, len_gt_result_f_666_f1_0_fresult)) &&
+  ((^ (int fx)[1] == 0) ? true : false) ;
+   fresult: P47806_Option_P444_Box_P9_Node_PT__P8224_Global___(snap_fresult, snap_fdisc_fresult, len_gt_result_f_666_f1_0_fresult)
+}
+
+{
+   emp
+}
+List___T__new "new"
+{
+  (len_result_fresult >= 0) &&
+  (len_result_fresult == 0) ;
+   fresult: P4_List_PT_(snap_fresult, len_result_fresult)
+}
+

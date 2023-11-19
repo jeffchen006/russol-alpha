@@ -1,0 +1,93 @@
+# -c 10 -o 10 -p false
+###
+predicate PT(int snap) "T" {
+}
+
+predicate P47806_Option_PRT__COPY(lft &_, int snap, bool is_some_result, int snap_fdisc) "std::option::Option<&T>" {
+| (snap_fdisc == 0) => "Option::None" {
+  (is_some_result == ((snap_fdisc == 1) ? true : false)) &&
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Option::Some" {
+  (is_some_result == ((snap_fdisc == 1) ? true : false)) &&
+  (snap == (1, (snap_fdisc), (snap_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: &_ PT(snap_f1_0)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P4_List_PT_(int snap, bool is_some_result_f0head) "List<T>" {
+| true => "List" {
+  (snap == (0, (snap_f0head, is_some_result_f0head, snap_fdisc_f0head))) ;
+   f0head: P47806_Option_P444_Box_P9_Node_PT__P8224_Global___(snap_f0head, is_some_result_f0head, snap_fdisc_f0head)
+ }
+}
+
+predicate P47806_Option_P444_Box_P9_Node_PT__P8224_Global___(int snap, bool is_some_result, int snap_fdisc) "std::option::Option<std::boxed::Box<Node<T>>>" {
+| (snap_fdisc == 0) => "Option::None" {
+  (is_some_result == ((snap_fdisc == 1) ? true : false)) &&
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Option::Some" {
+  (is_some_result == ((snap_fdisc == 1) ? true : false)) &&
+  (snap == (1, (snap_fdisc), (snap_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: P444_Box_P9_Node_PT__P8224_Global__(snap_f1_0)
+ }
+}
+
+predicate P444_Box_P9_Node_PT__P8224_Global__(int snap) "std::boxed::Box<Node<T>>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666))) ;
+   f_666: P9_Node_PT_(snap_f_666)
+ }
+}
+
+predicate P9_Node_PT_(int snap) "Node<T>" {
+| true => "Node" {
+  (snap == (0, (snap_f0elem), (snap_f0next, is_some_result_f0next, snap_fdisc_f0next))) ;
+   f0elem: PT(snap_f0elem) **
+   f0next: P47806_Option_P444_Box_P9_Node_PT__P8224_Global___(snap_f0next, is_some_result_f0next, snap_fdisc_f0next)
+ }
+}
+
+{
+   fx: &_ mut P47806_Option_P444_Box_P9_Node_PT__P8224_Global___(snap_fx, is_some_result_fx, snap_fdisc_fx)
+}
+take_std__boxed__Box_Node_T "take"
+{
+  ((snap_fx, is_some_result_fx, snap_fdisc_fx) == (snap_fresult, is_some_result_fresult, snap_fdisc_fresult)) &&
+  ((^ (int fx)[2] == 0) ? true : false) ;
+   fresult: P47806_Option_P444_Box_P9_Node_PT__P8224_Global___(snap_fresult, is_some_result_fresult, snap_fdisc_fresult)
+}
+
+{
+   fx: &_ mut P47806_Option_PRT_(&_, snap_fx, is_some_result_fx, snap_fdisc_fx)
+}
+take_T "take"
+{
+  ((snap_fx, is_some_result_fx, snap_fdisc_fx) == (snap_fresult, is_some_result_fresult, snap_fdisc_fresult)) &&
+  ((^ (int fx)[3] == 0) ? true : false) ;
+   fresult: P47806_Option_PRT_(&_, snap_fresult, is_some_result_fresult, snap_fdisc_fresult)
+}
+
+{
+   fself: &_ P4_List_PT_(snap_fself, is_some_result_f0head_fself)
+}
+List___T__peek "peek"
+{
+  (is_some_result_f0head_fself == is_some_result_fresult) ;
+   fresult: P47806_Option_PRT_(&_, snap_fresult, is_some_result_fresult, snap_fdisc_fresult)
+}
+

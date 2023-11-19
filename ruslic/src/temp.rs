@@ -1,6 +1,12 @@
-use std::{fmt::Display, path::PathBuf};
+#![feature(rustc_private)]
+extern crate rustc_driver;
+extern crate rustc_errors;
 
+
+use std::{fmt::Display, path::PathBuf};
+use ruslic::suslik::{SynthesisResultKind};
 use ruslic::suslik::{MeanStats, Solved, SynthesisResult};
+
 
 struct Category {
     dir: String,
@@ -14,18 +20,20 @@ impl Category {
     // recursively search for .rs files in the given directory
     // and run ruslic on them
     fn run_tests_in_dir(dir: PathBuf, timeout: u64, depth: u32) -> Self {
-        
         let mut cat: Category = Self {
             dir: dir.file_name().unwrap().to_string_lossy().to_string(),
             results: Vec::new(),
             children: Vec::new(),
             depth,
         };
+        // print dir
+        // println!("{}{}", "  ".repeat(depth as usize), dir.file_name().unwrap().to_string_lossy().to_string());        
 
         let mut paths: Vec<_> = std::fs::read_dir(dir)
             .unwrap()
             .map(|r| r.unwrap())
             .collect();
+
         paths.sort_by_key(|dir| dir.path());
 
         for path in paths {
@@ -45,7 +53,8 @@ impl Category {
                     );
                     if let Ok(res) = ruslic::run_on_file(
                         vec![
-                            "/name/of/binary".to_string(),
+                            "/home/zhiychen/Documents/russol-alpha/target/release/ruslic".to_string(),
+                            // "/name/of/binary".to_string(),
                             path.path().to_string_lossy().to_string(),
                         ],
                         timeout,
@@ -78,7 +87,7 @@ impl Category {
         cat
     }
 
-
+    
     fn solutions(&self) -> Box<dyn Iterator<Item = &(String, SynthesisResult)> + '_> {
         Box::new(
             self.results
@@ -99,7 +108,6 @@ impl Category {
             .unwrap_or(0)
     }
 }
-
 
 impl Display for Category {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
@@ -187,7 +195,6 @@ impl Display for Category {
     }
 }
 
-#[test]
 fn all_tests() {
     let timeout = std::env::var("RUSLIC_TIMEOUT")
         .ok()
@@ -202,14 +209,14 @@ fn all_tests() {
     let results = if is_eval {
         all_tests_eval(timeout)
     } else {
-        Category::run_tests_in_dir(PathBuf::from("./tests/synth/"), timeout, 0)
+        Category::run_tests_in_dir(PathBuf::from("/home/zhiychen/Documents/russol-alpha/ruslic/tests/synth/"), timeout, 0)
     };
 
     let max_ms = format_ms(results.max_ms());
 
     let results_str = format!("### Measured timings (max {max_ms}) ###{results}\n#######################################\n");
     print!("{results_str}");
-    std::fs::write("./tests/ci-results.txt", results_str).expect("Unable to results to file!");
+    std::fs::write("/home/zhiychen/Documents/russol-alpha/ruslic/tests/ci-results.txt", results_str).expect("Unable to results to file!");
     // Make sure this gets printed in the correct order in GitHub:
     std::thread::sleep(std::time::Duration::from_millis(1000));
     if results.errors().count() > 0 {
@@ -220,15 +227,19 @@ fn all_tests() {
 
 
 fn all_tests_eval(timeout: u64) -> Category {
-    Category::run_tests_in_dir(PathBuf::from("./tests/synth/paper"), timeout, 0)
+    Category::run_tests_in_dir(PathBuf::from("/home/zhiychen/Documents/russol-alpha/ruslic/tests/paper"), timeout, 0)
 }
+
 
 fn format_ms(ms: u64) -> String {
     format!("{}_{:03}ms", ms / 1000, ms % 1000)
 }
 
 
-// #[test]
-// fn main() {
-//     all_tests_eval(123212123);
-// }
+fn main() {
+    println!("Hello, world!");
+    all_tests();
+    println!("End of program");
+
+
+}
