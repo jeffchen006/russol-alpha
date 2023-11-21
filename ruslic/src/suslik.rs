@@ -504,6 +504,8 @@ impl SuslikProgram {
         use rand::Rng;
         let num = rand::thread_rng().gen_range(0..10000);
         let tmpdir = std::path::PathBuf::from(format!("tmp-{}-{num}", self.synth_fn.unique_name));
+
+
         std::fs::create_dir_all(suslik_dir.join(&tmpdir)).unwrap();
         let synfile = tmpdir.join(std::path::PathBuf::from("tmp.syn"));
         tmp.push(&synfile);
@@ -589,13 +591,15 @@ impl SuslikProgram {
                     kind: SynthesisResultKind::Timeout,
                 }
             } else if unsolvable {
-                std::fs::remove_dir_all(suslik_dir.join(&tmpdir)).unwrap();
+                // std::fs::remove_dir_all(suslik_dir.join(&tmpdir)).unwrap();
+
                 SynthesisResult {
                     is_trivial: self.synth_fn.is_trivial,
                     kind: SynthesisResultKind::Unsolvable(time.as_millis() as u64),
                 }
             } else {
-                std::fs::remove_dir_all(suslik_dir.join(&tmpdir)).unwrap();
+                // std::fs::remove_dir_all(suslik_dir.join(&tmpdir)).unwrap();
+
                 let mut sln = String::new();
                 use std::io::Read;
                 stdout.read_to_string(&mut sln).unwrap();

@@ -1,0 +1,35 @@
+# -c 10 -o 10 -p false
+###
+predicate PT(int snap) "T" {
+}
+
+predicate PT__T(int snap, int snap_f0_0_snap, int snap_f0_1_snap) "(T, T)" {
+| true => "" {
+  (snap_f0_1_snap == (snap_f0_1)) &&
+  (snap_f0_0_snap == (snap_f0_0)) &&
+  (snap == (0, (snap_f0_0), (snap_f0_1))) ;
+   f0_0: PT(snap_f0_0) **
+   f0_1: PT(snap_f0_1)
+ }
+}
+
+predicate P4_Tuple_PT_(int snap, int snap_f0a_snap, int snap_f0b_snap) "Tuple<T>" {
+| true => "Tuple" {
+  (snap_f0a_snap == (snap_f0a)) &&
+  (snap_f0b_snap == (snap_f0b)) &&
+  (snap == (0, (snap_f0a), (snap_f0b))) ;
+   f0a: PT(snap_f0a) **
+   f0b: PT(snap_f0b)
+ }
+}
+
+{
+   ff: P4_Tuple_PT_(snap_ff, snap_f0a_snap_ff, snap_f0b_snap_ff)
+}
+to_tuple "to_tuple"
+{
+  (snap_f0_0_snap_fresult == snap_f0a_snap_ff) &&
+  (snap_f0_1_snap_fresult == snap_f0b_snap_ff) ;
+   fresult: PT__T(snap_fresult, snap_f0_0_snap_fresult, snap_f0_1_snap_fresult)
+}
+
