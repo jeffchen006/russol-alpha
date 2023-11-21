@@ -1,0 +1,68 @@
+# -c 10 -o 10 -p false
+###
+predicate P4_Node_(int snap, int len_te_result) "Node" {
+| (snap_fdisc == 0) => "Node::Nil" {
+  (len_te_result == ((snap_fdisc == 0) ? 0 : (1 + len_te_result_f_666_f1next))) &&
+  (snap == (0, (snap_fdisc))) &&
+  ((snap_fdisc == 0) ? true : (0 <= len_te_result_f_666_f1next)) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Node::Cons" {
+  (len_te_result == ((snap_fdisc == 0) ? 0 : (1 + len_te_result_f_666_f1next))) &&
+  (snap == (1, (snap_fdisc), (snap_f1f), (snap_f1next, len_te_result_f_666_f1next))) &&
+  ((snap_fdisc == 0) ? true : (0 <= len_te_result_f_666_f1next)) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1f: Pi32(snap_f1f) **
+   f1next: P444_Box_P4_Node__P8224_Global__(snap_f1next, len_te_result_f_666_f1next)
+ }
+}
+
+predicate PRIM_Pi32_COPY(int snap) "i32" {
+| true => {
+  (snap >= (- 2147483645)) &&
+  (snap <= 2147483645) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P444_Box_P4_Node__P8224_Global__(int snap, int len_te_result_f_666) "std::boxed::Box<Node>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666, len_te_result_f_666))) ;
+   f_666: P4_Node_(snap_f_666, len_te_result_f_666)
+ }
+}
+
+predicate PRIM_Pu16_COPY(int snap) "u16" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65535) &&
+  #[snap] ;
+   emp
+ }
+}
+
+{
+  (0 <= len_te_result_fx) &&
+  (len_te_result_fx <= 65535) &&
+  (0 <= len_te_result_fx) &&
+  (0 <= len_te_result_fx) ;
+   fx: &_ mut P4_Node_(snap_fx, len_te_result_fx)
+}
+len "len"
+{
+  (0 <= ^ (int fx)[1]) &&
+  ((snap_fresult) == len_te_result_fx) &&
+  (^ (int fx)[1] == len_te_result_fx) ;
+   fresult: Pu16(snap_fresult)
+}
+

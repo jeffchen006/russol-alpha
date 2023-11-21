@@ -1,0 +1,31 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pi32_COPY(int snap) "i32" {
+| true => {
+  (snap >= (- 2147483645)) &&
+  (snap <= 2147483645) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate Pi32__i32_COPY(int snap, int snap_f0_0, int snap_f0_1) "(i32, i32)" {
+| true => "" {
+  (snap == (0, (snap_f0_0), (snap_f0_1))) ;
+   f0_0: Pi32(snap_f0_0) **
+   f0_1: Pi32(snap_f0_1)
+ }
+}
+
+{
+  (snap_f0_0_fx == 123) &&
+  (snap_f0_1_fx == 42) ;
+   fx: Pi32__i32(snap_fx, snap_f0_0_fx, snap_f0_1_fx)
+}
+test_tuple_field "test_tuple_field"
+{
+  (snap_f0_0_fresult == 42) &&
+  (snap_f0_1_fresult == 123) ;
+   fresult: Pi32__i32(snap_fresult, snap_f0_0_fresult, snap_f0_1_fresult)
+}
+

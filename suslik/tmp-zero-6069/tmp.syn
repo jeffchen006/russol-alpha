@@ -1,0 +1,61 @@
+# -c 10 -o 10 -p false
+###
+predicate P4_List_(int snap, int sum_result_f0head, int len_result_f0head) "List" {
+| true => "List" {
+  (snap == (0, (snap_f0head, sum_result_f0head, len_result_f0head))) ;
+   f0head: P6_Node_(snap_f0head, sum_result_f0head, len_result_f0head)
+ }
+}
+
+predicate PRIM_Pi32_COPY(int snap) "i32" {
+| true => {
+  (snap >= (- 2147483645)) &&
+  (snap <= 2147483645) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P444_Box_P6_Node__P8224_Global__(int snap, int sum_result_f_666, int len_result_f_666) "std::boxed::Box<Node>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666, sum_result_f_666, len_result_f_666))) ;
+   f_666: P6_Node_(snap_f_666, sum_result_f_666, len_result_f_666)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P6_Node_(int snap, int sum_result, int len_result) "Node" {
+| (snap_fdisc == 0) => "Node::Nil" {
+  (len_result == ((snap_fdisc == 0) ? 0 : (1 + len_result_f_666_f1next))) &&
+  (sum_result == ((snap_fdisc == 0) ? 0 : (snap_f1f + sum_result_f_666_f1next))) &&
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Node::Cons" {
+  (len_result == ((snap_fdisc == 0) ? 0 : (1 + len_result_f_666_f1next))) &&
+  (sum_result == ((snap_fdisc == 0) ? 0 : (snap_f1f + sum_result_f_666_f1next))) &&
+  (snap == (1, (snap_fdisc), (snap_f1f), (snap_f1next, sum_result_f_666_f1next, len_result_f_666_f1next))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1f: Pi32(snap_f1f) **
+   f1next: P444_Box_P6_Node__P8224_Global__(snap_f1next, sum_result_f_666_f1next, len_result_f_666_f1next)
+ }
+}
+
+{
+   fx: &_ mut P4_List_(snap_fx, sum_result_f0head_fx, len_result_f0head_fx)
+}
+zero "zero"
+{
+  (^ (int fx)[1] == 0) &&
+  (^ (int fx)[2] == len_result_f0head_fx) ;
+   emp
+}
+

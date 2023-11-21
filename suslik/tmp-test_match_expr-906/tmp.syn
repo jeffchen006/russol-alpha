@@ -1,0 +1,21 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pu32_COPY(int snap) "u32" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65536) &&
+  #[snap] ;
+   emp
+ }
+}
+
+{
+  ((snap_fx) == 42) ;
+   fx: Pu32(snap_fx)
+}
+test_match_expr "test_match_expr"
+{
+  ((84 == (snap_fresult)) ? true : (((123 == (snap_fresult)) || (456 == (snap_fresult))) ? false : false)) ;
+   fresult: Pu32(snap_fresult)
+}
+

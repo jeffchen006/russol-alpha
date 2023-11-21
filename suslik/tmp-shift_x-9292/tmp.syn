@@ -1,0 +1,38 @@
+# -c 10 -o 10 -p false
+###
+predicate P444_Box_Pu16_P8224_Global__(int snap, int snap_f_666) "std::boxed::Box<u16>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666))) ;
+   f_666: Pu16(snap_f_666)
+ }
+}
+
+predicate PRIM_Pu16_COPY(int snap) "u16" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65535) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P4_Point_(int snap, int snap_f_666_f0x, int snap_f_666_f0y) "Point" {
+| true => "Point" {
+  (snap == (0, (snap_f0x, snap_f_666_f0x), (snap_f0y, snap_f_666_f0y))) ;
+   f0x: P444_Box_Pu16_P8224_Global__(snap_f0x, snap_f_666_f0x) **
+   f0y: P444_Box_Pu16_P8224_Global__(snap_f0y, snap_f_666_f0y)
+ }
+}
+
+{
+  ((65535 - snap_f_666_f0x_fp) >= (snap_fs)) ;
+   fp: P4_Point_(snap_fp, snap_f_666_f0x_fp, snap_f_666_f0y_fp) **
+   fs: Pu16(snap_fs)
+}
+shift_x "shift_x"
+{
+  (snap_f_666_f0y_fresult == snap_f_666_f0y_fp) &&
+  (snap_f_666_f0x_fresult == (snap_f_666_f0x_fp + (snap_fs))) ;
+   fresult: P4_Point_(snap_fresult, snap_f_666_f0x_fresult, snap_f_666_f0y_fresult)
+}
+

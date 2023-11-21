@@ -1,0 +1,21 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pi32_COPY(int snap) "i32" {
+| true => {
+  (snap >= (- 2147483645)) &&
+  (snap <= 2147483645) &&
+  #[snap] ;
+   emp
+ }
+}
+
+{
+  ((^ (int fx)[0]) == 1) ;
+   fx: &_ mut Pi32(snap_fx)
+}
+foo "foo"
+{
+  ((snap_fx) == 999) ;
+   emp
+}
+

@@ -1,0 +1,29 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pi32_COPY(int snap) "i32" {
+| true => {
+  (snap >= (- 2147483645)) &&
+  (snap <= 2147483645) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P4_T_(int snap, int snap_f0val) "T" {
+| true => "T" {
+  (snap == (0, (snap_f0val))) ;
+   f0val: Pi32(snap_f0val)
+ }
+}
+
+{
+   fx: &_ mut P4_T_(snap_fx, snap_f0val_fx) **
+   fv: Pi32(snap_fv)
+}
+identity2 "identity2"
+{
+  (^ (int fx)[1] == ^ (int fresult)[1]) &&
+  (snap_f0val_fresult == (snap_fv)) ;
+   fresult: &_ mut P4_T_(snap_fresult, snap_f0val_fresult)
+}
+

@@ -1,0 +1,27 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pu32_COPY(int snap) "u32" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65536) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P4_T_(int snap, int snap_f0f) "T" {
+| true => "T" {
+  (snap == (0, (snap_f0f))) ;
+   f0f: Pu32(snap_f0f)
+ }
+}
+
+{
+   fx: &_ mut P4_T_(snap_fx, snap_f0f_fx)
+}
+test2 "test2"
+{
+  (^ (int fx)[1] == 4) ;
+   emp
+}
+

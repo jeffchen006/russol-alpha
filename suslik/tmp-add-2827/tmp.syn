@@ -1,0 +1,29 @@
+# -c 10 -o 10 -p false
+###
+predicate P444_Box_Pu16_P8224_Global__(int snap, int snap_f_666) "std::boxed::Box<u16>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666))) ;
+   f_666: Pu16(snap_f_666)
+ }
+}
+
+predicate PRIM_Pu16_COPY(int snap) "u16" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65535) &&
+  #[snap] ;
+   emp
+ }
+}
+
+{
+  ((65535 - snap_f_666_fa) >= (snap_fb)) ;
+   fa: P444_Box_Pu16_P8224_Global__(snap_fa, snap_f_666_fa) **
+   fb: Pu16(snap_fb)
+}
+add "add"
+{
+  (snap_f_666_fresult == (snap_f_666_fa + (snap_fb))) ;
+   fresult: P444_Box_Pu16_P8224_Global__(snap_fresult, snap_f_666_fresult)
+}
+

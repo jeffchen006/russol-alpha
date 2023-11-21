@@ -1,0 +1,67 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pi32_COPY(int snap) "i32" {
+| true => {
+  (snap >= (- 2147483645)) &&
+  (snap <= 2147483645) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P3382_PhantomData_PC__COPY(int snap) "std::marker::PhantomData<C>" {
+| true => "PhantomData" {
+  (snap == (0)) ;
+   emp
+ }
+}
+
+predicate P11_BarBaz_PC_(int snap, int snap_f0i) "BarBaz<C>" {
+| true => "BarBaz" {
+  (snap == (0, (snap_f0i), (snap_f0x))) ;
+   f0i: Pi32(snap_f0i) **
+   f0x: P3382_PhantomData_PC_(snap_f0x)
+ }
+}
+
+predicate P7_Foo_PD_(int snap, int snap_f0i_f0x, int snap_f0i) "Foo<D>" {
+| true => "Foo" {
+  (snap == (0, (snap_f0i), (snap_f0x, snap_f0i_f0x))) ;
+   f0i: Pi32(snap_f0i) **
+   f0x: P11_BarBaz_PD_(snap_f0x, snap_f0i_f0x)
+ }
+}
+
+predicate P7_Foo_PC_(int snap, int snap_f0i, int snap_f0i_f0x) "Foo<C>" {
+| true => "Foo" {
+  (snap == (0, (snap_f0i), (snap_f0x, snap_f0i_f0x))) ;
+   f0i: Pi32(snap_f0i) **
+   f0x: P11_BarBaz_PC_(snap_f0x, snap_f0i_f0x)
+ }
+}
+
+predicate P11_BarBaz_PD_(int snap, int snap_f0i) "BarBaz<D>" {
+| true => "BarBaz" {
+  (snap == (0, (snap_f0i), (snap_f0x))) ;
+   f0i: Pi32(snap_f0i) **
+   f0x: P3382_PhantomData_PD_(snap_f0x)
+ }
+}
+
+predicate P3382_PhantomData_PD__COPY(int snap) "std::marker::PhantomData<D>" {
+| true => "PhantomData" {
+  (snap == (0)) ;
+   emp
+ }
+}
+
+{
+   farg: P7_Foo_PC_(snap_farg, snap_f0i_farg, snap_f0i_f0x_farg)
+}
+test1 "test1"
+{
+  (snap_f0i_f0x_fresult == snap_f0i_farg) &&
+  (snap_f0i_fresult == snap_f0i_f0x_farg) ;
+   fresult: P7_Foo_PD_(snap_fresult, snap_f0i_f0x_fresult, snap_f0i_fresult)
+}
+

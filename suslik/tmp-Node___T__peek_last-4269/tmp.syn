@@ -1,0 +1,89 @@
+# -c 10 -o 10 -p false
+###
+predicate P4_Node_PT_(int snap, int len_result) "Node<T>" {
+| (snap_fdisc == 0) => "Node::Nil" {
+  (len_result == ((snap_fdisc == 0) ? 0 : (1 + len_result_f_666_f1next))) &&
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Node::Cons" {
+  (len_result == ((snap_fdisc == 0) ? 0 : (1 + len_result_f_666_f1next))) &&
+  (snap == (1, (snap_fdisc), (snap_f1elem), (snap_f1next, len_result_f_666_f1next))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1elem: PT(snap_f1elem) **
+   f1next: P444_Box_P4_Node_PT__P8224_Global__(snap_f1next, len_result_f_666_f1next)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P444_Box_P4_Node_PT__P8224_Global__(int snap, int len_result_f_666) "std::boxed::Box<Node<T>>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666, len_result_f_666))) ;
+   f_666: P4_Node_PT_(snap_f_666, len_result_f_666)
+ }
+}
+
+predicate PT(int snap) "T" {
+}
+
+{
+   fdest: &_ mut P4_Node_PT_(snap_fdest, len_result_fdest) **
+   fsrc: P4_Node_PT_(snap_fsrc, len_result_fsrc)
+}
+replace_Node_T "replace"
+{
+  ((^ (int fdest)[0], ^ (int fdest)[1]) == (snap_fsrc, len_result_fsrc)) &&
+  ((snap_fdest, len_result_fdest) == (snap_fresult, len_result_fresult)) ;
+   fresult: P4_Node_PT_(snap_fresult, len_result_fresult)
+}
+
+{
+   fdest: &_ mut Pisize(snap_fdest) **
+   fsrc: Pisize(snap_fsrc)
+}
+replace_isize "replace"
+{
+  ((^ (int fdest)[0]) == (snap_fsrc)) &&
+  ((snap_fdest) == (snap_fresult)) ;
+   fresult: Pisize(snap_fresult)
+}
+
+{
+   fdest: &_ mut PT(snap_fdest) **
+   fsrc: PT(snap_fsrc)
+}
+replace_T "replace"
+{
+  ((^ (int fdest)[0]) == (snap_fsrc)) &&
+  ((snap_fdest) == (snap_fresult)) ;
+   fresult: PT(snap_fresult)
+}
+
+{
+   fdest: &_ mut P444_Box_P4_Node_PT__P8224_Global__(snap_fdest, len_result_f_666_fdest) **
+   fsrc: P444_Box_P4_Node_PT__P8224_Global__(snap_fsrc, len_result_f_666_fsrc)
+}
+replace_std__boxed__Box_Node_T "replace"
+{
+  ((^ (int fdest)[0], ^ (int fdest)[1]) == (snap_fsrc, len_result_f_666_fsrc)) &&
+  ((snap_fdest, len_result_f_666_fdest) == (snap_fresult, len_result_f_666_fresult)) ;
+   fresult: P444_Box_P4_Node_PT__P8224_Global__(snap_fresult, len_result_f_666_fresult)
+}
+
+{
+   fself: &_ mut P4_Node_PT_(snap_fself, len_result_fself)
+}
+Node___T__peek_last "peek_last"
+{
+  (^ (int fself)[1] == (len_result_fself + ^ (int fresult)[1])) ;
+   fresult: &_ mut P4_Node_PT_(snap_fresult, len_result_fresult)
+}
+

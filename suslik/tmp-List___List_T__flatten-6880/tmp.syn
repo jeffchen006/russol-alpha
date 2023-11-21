@@ -1,0 +1,82 @@
+# -c 10 -o 10 -p false
+###
+predicate P444_Box_PList_T__List_List_T_P8224_Global__(int snap, set elems_result_f0_0_f_666, set elems_list_result_f0_1_f_666) "std::boxed::Box<(List<T>, List<List<T>>)>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666, elems_result_f0_0_f_666, elems_list_result_f0_1_f_666))) ;
+   f_666: PList_T__List_List_T(snap_f_666, elems_result_f0_0_f_666, elems_list_result_f0_1_f_666)
+ }
+}
+
+predicate PList_T__List_List_T(int snap, set elems_result_f0_0, set elems_list_result_f0_1) "(List<T>, List<List<T>>)" {
+| true => "" {
+  (snap == (0, (snap_f0_0, elems_result_f0_0), (snap_f0_1, elems_list_result_f0_1))) ;
+   f0_0: P4_List_PT_(snap_f0_0, elems_result_f0_0) **
+   f0_1: P4_List_P4_List_PT__(snap_f0_1, elems_list_result_f0_1)
+ }
+}
+
+predicate P444_Box_PT__List_T_P8224_Global__(int snap, set elems_result_f0_1_f_666, int snap_f0_0_snap_f_666) "std::boxed::Box<(T, List<T>)>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666, elems_result_f0_1_f_666, snap_f0_0_snap_f_666))) ;
+   f_666: PT__List_T(snap_f_666, elems_result_f0_1_f_666, snap_f0_0_snap_f_666)
+ }
+}
+
+predicate PT(int snap) "T" {
+}
+
+predicate P4_List_PT_(int snap, set elems_result) "List<T>" {
+| (snap_fdisc == 0) => "List::Nil" {
+  (elems_result == ((snap_fdisc == 0) ? {} : (elems_result_f0_1_f_666_f1_0 + {snap_f0_0_snap_f_666_f1_0}))) &&
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "List::Cons" {
+  (elems_result == ((snap_fdisc == 0) ? {} : (elems_result_f0_1_f_666_f1_0 + {snap_f0_0_snap_f_666_f1_0}))) &&
+  (snap == (1, (snap_fdisc), (snap_f1_0, elems_result_f0_1_f_666_f1_0, snap_f0_0_snap_f_666_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: P444_Box_PT__List_T_P8224_Global__(snap_f1_0, elems_result_f0_1_f_666_f1_0, snap_f0_0_snap_f_666_f1_0)
+ }
+}
+
+predicate P4_List_P4_List_PT__(int snap, set elems_list_result) "List<List<T>>" {
+| (snap_fdisc == 0) => "List::Nil" {
+  (elems_list_result == ((snap_fdisc == 0) ? {} : (elems_result_f0_0_f_666_f1_0 + elems_list_result_f0_1_f_666_f1_0))) &&
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "List::Cons" {
+  (elems_list_result == ((snap_fdisc == 0) ? {} : (elems_result_f0_0_f_666_f1_0 + elems_list_result_f0_1_f_666_f1_0))) &&
+  (snap == (1, (snap_fdisc), (snap_f1_0, elems_result_f0_0_f_666_f1_0, elems_list_result_f0_1_f_666_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: P444_Box_PList_T__List_List_T_P8224_Global__(snap_f1_0, elems_result_f0_0_f_666_f1_0, elems_list_result_f0_1_f_666_f1_0)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate PT__List_T(int snap, set elems_result_f0_1, int snap_f0_0_snap) "(T, List<T>)" {
+| true => "" {
+  (snap_f0_0_snap == (snap_f0_0)) &&
+  (snap == (0, (snap_f0_0), (snap_f0_1, elems_result_f0_1))) ;
+   f0_0: PT(snap_f0_0) **
+   f0_1: P4_List_PT_(snap_f0_1, elems_result_f0_1)
+ }
+}
+
+{
+   fself: P4_List_P4_List_PT__(snap_fself, elems_list_result_fself)
+}
+List___List_T__flatten "flatten"
+{
+  (elems_result_fresult == elems_list_result_fself) ;
+   fresult: P4_List_PT_(snap_fresult, elems_result_fresult)
+}
+

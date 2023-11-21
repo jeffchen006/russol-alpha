@@ -1,0 +1,30 @@
+# -c 10 -o 10 -p false
+###
+predicate PT(int snap) "T" {
+}
+
+{
+   fself: &_ PT(snap_fself)
+}
+std__clone__Clone__clone "clone"
+{
+   fresult: PT(snap_fresult)
+}
+
+{
+   fself: &_ mut PT(snap_fself) **
+   fsource: &_ PT(snap_fsource)
+}
+std__clone__Clone__clone_from "clone_from"
+{
+   emp
+}
+
+{
+   fx: &_ PT(snap_fx)
+}
+clone "clone"
+{
+   fresult: PT(snap_fresult)
+}
+

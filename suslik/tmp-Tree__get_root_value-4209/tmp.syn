@@ -1,0 +1,58 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P4_Tree_(int snap, int snap_fdisc, int snap_fdisc_f_666_f0_1, int rightmost_result, int rightmost_result_f_666_f0_1, int snap_fdisc_f_666_f0_2, int leftmost_result, int leftmost_result_f_666_f0_2, bool bst_invariant_result) "Tree" {
+| (snap_fdisc == 0) => "Tree::Node" {
+  (bst_invariant_result == ((snap_fdisc == 0) ? (((((snap_fdisc_f_666_f0_1 == 0) ? (snap_f0_0 >= rightmost_result_f_666_f0_1) : true) && ((snap_fdisc_f_666_f0_2 == 0) ? (snap_f0_0 <= leftmost_result_f_666_f0_2) : true)) && bst_invariant_result_f_666_f0_1) && bst_invariant_result_f_666_f0_2) : true)) &&
+  (leftmost_result == ((snap_fdisc == 1) ? (- 32768) : (((snap_fdisc == 0) && (snap_fdisc_f_666_f0_1 == 1)) ? snap_f0_0 : leftmost_result_f_666_f0_1))) &&
+  (rightmost_result == ((snap_fdisc == 1) ? 32767 : (((snap_fdisc == 0) && (snap_fdisc_f_666_f0_2 == 1)) ? snap_f0_0 : rightmost_result_f_666_f0_2))) &&
+  (snap == (0, (snap_fdisc), (snap_f0_0), (snap_f0_1, snap_fdisc_f_666_f0_1, rightmost_result_f_666_f0_1, leftmost_result_f_666_f0_1, bst_invariant_result_f_666_f0_1), (snap_f0_2, snap_fdisc_f_666_f0_2, rightmost_result_f_666_f0_2, leftmost_result_f_666_f0_2, bst_invariant_result_f_666_f0_2))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f0_0: Pi16(snap_f0_0) **
+   f0_1: P444_Box_P4_Tree__P8224_Global__(snap_f0_1, snap_fdisc_f_666_f0_1, rightmost_result_f_666_f0_1, leftmost_result_f_666_f0_1, bst_invariant_result_f_666_f0_1) **
+   f0_2: P444_Box_P4_Tree__P8224_Global__(snap_f0_2, snap_fdisc_f_666_f0_2, rightmost_result_f_666_f0_2, leftmost_result_f_666_f0_2, bst_invariant_result_f_666_f0_2)
+ }
+| (snap_fdisc == 1) => "Tree::Empty" {
+  (bst_invariant_result == ((snap_fdisc == 0) ? (((((snap_fdisc_f_666_f0_1 == 0) ? (snap_f0_0 >= rightmost_result_f_666_f0_1) : true) && ((snap_fdisc_f_666_f0_2 == 0) ? (snap_f0_0 <= leftmost_result_f_666_f0_2) : true)) && bst_invariant_result_f_666_f0_1) && bst_invariant_result_f_666_f0_2) : true)) &&
+  (leftmost_result == ((snap_fdisc == 1) ? (- 32768) : (((snap_fdisc == 0) && (snap_fdisc_f_666_f0_1 == 1)) ? snap_f0_0 : leftmost_result_f_666_f0_1))) &&
+  (rightmost_result == ((snap_fdisc == 1) ? 32767 : (((snap_fdisc == 0) && (snap_fdisc_f_666_f0_2 == 1)) ? snap_f0_0 : rightmost_result_f_666_f0_2))) &&
+  (snap == (1, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+}
+
+predicate PRIM_Pi16_COPY(int snap) "i16" {
+| true => {
+  (snap >= (- 32767)) &&
+  (snap <= 32767) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P444_Box_P4_Tree__P8224_Global__(int snap, int snap_fdisc_f_666, int rightmost_result_f_666, int leftmost_result_f_666, bool bst_invariant_result_f_666) "std::boxed::Box<Tree>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666, snap_fdisc_f_666, snap_fdisc_f_666_f0_1_f_666, rightmost_result_f_666, rightmost_result_f_666_f0_1_f_666, snap_fdisc_f_666_f0_2_f_666, leftmost_result_f_666, leftmost_result_f_666_f0_2_f_666, bst_invariant_result_f_666))) ;
+   f_666: P4_Tree_(snap_f_666, snap_fdisc_f_666, snap_fdisc_f_666_f0_1_f_666, rightmost_result_f_666, rightmost_result_f_666_f0_1_f_666, snap_fdisc_f_666_f0_2_f_666, leftmost_result_f_666, leftmost_result_f_666_f0_2_f_666, bst_invariant_result_f_666)
+ }
+}
+
+{
+  ((snap_fdisc_fself == 0) ? (((snap_fdisc_f_666_f0_1_fself == 0) ? ((^ (int fresult)[0]) >= rightmost_result_f_666_f0_1_fself) : true) && ((snap_fdisc_f_666_f0_2_fself == 0) ? ((^ (int fresult)[0]) <= leftmost_result_f_666_f0_2_fself) : true)) : false) &&
+  bst_invariant_result_fself ;
+   fself: &_ mut P4_Tree_(snap_fself, snap_fdisc_fself, snap_fdisc_f_666_f0_1_fself, rightmost_result_fself, rightmost_result_f_666_f0_1_fself, snap_fdisc_f_666_f0_2_fself, leftmost_result_fself, leftmost_result_f_666_f0_2_fself, bst_invariant_result_fself)
+}
+Tree__get_root_value "get_root_value"
+{
+  ^ (bool fself)[8] ;
+   fresult: &_ mut Pi16(snap_fresult)
+}
+

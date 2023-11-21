@@ -1,0 +1,98 @@
+# -c 10 -o 10 -p false
+###
+predicate PT__List_T(int snap, set elems_result_f0_1, int snap_f0_0_snap) "(T, List<T>)" {
+| true => "" {
+  (snap_f0_0_snap == (snap_f0_0)) &&
+  (snap == (0, (snap_f0_0), (snap_f0_1, elems_result_f0_1))) ;
+   f0_0: PT(snap_f0_0) **
+   f0_1: P11_List_PT_(snap_f0_1, elems_result_f0_1)
+ }
+}
+
+predicate PRoseTree_T__List_RoseTree_T(int snap, set elems_result_f0_0, set elems_tree_result_f0_1) "(RoseTree<T>, List<RoseTree<T>>)" {
+| true => "" {
+  (snap == (0, (snap_f0_0, elems_result_f0_0), (snap_f0_1, elems_tree_result_f0_1))) ;
+   f0_0: P4_RoseTree_PT_(snap_f0_0, elems_result_f0_0) **
+   f0_1: P11_List_P4_RoseTree_PT__(snap_f0_1, elems_tree_result_f0_1)
+ }
+}
+
+predicate P11_List_P4_RoseTree_PT__(int snap, set elems_tree_result) "List<RoseTree<T>>" {
+| (snap_fdisc == 0) => "List::Nil" {
+  (elems_tree_result == ((snap_fdisc == 0) ? {} : (elems_result_f0_0_f_666_f1_0 + elems_tree_result_f0_1_f_666_f1_0))) &&
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "List::Cons" {
+  (elems_tree_result == ((snap_fdisc == 0) ? {} : (elems_result_f0_0_f_666_f1_0 + elems_tree_result_f0_1_f_666_f1_0))) &&
+  (snap == (1, (snap_fdisc), (snap_f1_0, elems_result_f0_0_f_666_f1_0, elems_tree_result_f0_1_f_666_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: P444_Box_PRoseTree_T__List_RoseTree_T_P8224_Global__(snap_f1_0, elems_result_f0_0_f_666_f1_0, elems_tree_result_f0_1_f_666_f1_0)
+ }
+}
+
+predicate P11_List_PT_(int snap, set elems_result) "List<T>" {
+| (snap_fdisc == 0) => "List::Nil" {
+  (elems_result == ((snap_fdisc == 0) ? {} : (elems_result_f0_1_f_666_f1_0 + {snap_f0_0_snap_f_666_f1_0}))) &&
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "List::Cons" {
+  (elems_result == ((snap_fdisc == 0) ? {} : (elems_result_f0_1_f_666_f1_0 + {snap_f0_0_snap_f_666_f1_0}))) &&
+  (snap == (1, (snap_fdisc), (snap_f1_0, elems_result_f0_1_f_666_f1_0, snap_f0_0_snap_f_666_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: P444_Box_PT__List_T_P8224_Global__(snap_f1_0, elems_result_f0_1_f_666_f1_0, snap_f0_0_snap_f_666_f1_0)
+ }
+}
+
+predicate P444_Box_PT__List_T_P8224_Global__(int snap, set elems_result_f0_1_f_666, int snap_f0_0_snap_f_666) "std::boxed::Box<(T, List<T>)>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666, elems_result_f0_1_f_666, snap_f0_0_snap_f_666))) ;
+   f_666: PT__List_T(snap_f_666, elems_result_f0_1_f_666, snap_f0_0_snap_f_666)
+ }
+}
+
+predicate P444_Box_PRoseTree_T__List_RoseTree_T_P8224_Global__(int snap, set elems_result_f0_0_f_666, set elems_tree_result_f0_1_f_666) "std::boxed::Box<(RoseTree<T>, List<RoseTree<T>>)>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666, elems_result_f0_0_f_666, elems_tree_result_f0_1_f_666))) ;
+   f_666: PRoseTree_T__List_RoseTree_T(snap_f_666, elems_result_f0_0_f_666, elems_tree_result_f0_1_f_666)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P4_RoseTree_PT_(int snap, set elems_result) "RoseTree<T>" {
+| (snap_fdisc == 0) => "RoseTree::Nil" {
+  (elems_result == ((snap_fdisc == 0) ? {} : (elems_tree_result_f1next + {snap_f1elem_snap}))) &&
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "RoseTree::Cons" {
+  (elems_result == ((snap_fdisc == 0) ? {} : (elems_tree_result_f1next + {snap_f1elem_snap}))) &&
+  (snap_f1elem_snap == (snap_f1elem)) &&
+  (snap == (1, (snap_fdisc), (snap_f1elem), (snap_f1next, elems_tree_result_f1next))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1elem: PT(snap_f1elem) **
+   f1next: P11_List_P4_RoseTree_PT__(snap_f1next, elems_tree_result_f1next)
+ }
+}
+
+predicate PT(int snap) "T" {
+}
+
+{
+   fself: P4_RoseTree_PT_(snap_fself, elems_result_fself)
+}
+RoseTree___T__flatten "flatten"
+{
+  (elems_result_fresult == elems_result_fself) ;
+   fresult: P11_List_PT_(snap_fresult, elems_result_fresult)
+}
+

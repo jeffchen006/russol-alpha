@@ -1,0 +1,89 @@
+# -c 10 -o 10 -p false
+###
+predicate P4_Node_PT_(int snap, int snap_fdisc, int snap_f_666_snap_f1next) "Node<T>" {
+| (snap_fdisc == 0) => "Node::Nil" {
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Node::Cons" {
+  (snap == (1, (snap_fdisc), (snap_f1elem), (snap_f1next, snap_f_666_snap_f1next))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1elem: PT(snap_f1elem) **
+   f1next: P444_Box_P4_Node_PT__P8224_Global__(snap_f1next, snap_f_666_snap_f1next)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P444_Box_P4_Node_PT__P8224_Global__(int snap, int snap_f_666_snap) "std::boxed::Box<Node<T>>" {
+| true => "Box::new" {
+  (snap_f_666_snap == (snap_f_666, snap_fdisc_f_666, snap_f_666_snap_f1next_f_666)) &&
+  (snap == (0, (snap_f_666, snap_fdisc_f_666, snap_f_666_snap_f1next_f_666))) ;
+   f_666: P4_Node_PT_(snap_f_666, snap_fdisc_f_666, snap_f_666_snap_f1next_f_666)
+ }
+}
+
+predicate PT(int snap) "T" {
+}
+
+{
+   fdest: &_ mut P4_Node_PT_(snap_fdest, snap_fdisc_fdest, snap_f_666_snap_f1next_fdest) **
+   fsrc: P4_Node_PT_(snap_fsrc, snap_fdisc_fsrc, snap_f_666_snap_f1next_fsrc)
+}
+replace_Node_T "replace"
+{
+  ((^ (int fdest)[0], ^ (int fdest)[1], ^ (int fdest)[2]) == (snap_fsrc, snap_fdisc_fsrc, snap_f_666_snap_f1next_fsrc)) &&
+  ((snap_fdest, snap_fdisc_fdest, snap_f_666_snap_f1next_fdest) == (snap_fresult, snap_fdisc_fresult, snap_f_666_snap_f1next_fresult)) ;
+   fresult: P4_Node_PT_(snap_fresult, snap_fdisc_fresult, snap_f_666_snap_f1next_fresult)
+}
+
+{
+   fdest: &_ mut Pisize(snap_fdest) **
+   fsrc: Pisize(snap_fsrc)
+}
+replace_isize "replace"
+{
+  ((^ (int fdest)[0]) == (snap_fsrc)) &&
+  ((snap_fdest) == (snap_fresult)) ;
+   fresult: Pisize(snap_fresult)
+}
+
+{
+   fdest: &_ mut PT(snap_fdest) **
+   fsrc: PT(snap_fsrc)
+}
+replace_T "replace"
+{
+  ((^ (int fdest)[0]) == (snap_fsrc)) &&
+  ((snap_fdest) == (snap_fresult)) ;
+   fresult: PT(snap_fresult)
+}
+
+{
+   fdest: &_ mut P444_Box_P4_Node_PT__P8224_Global__(snap_fdest, snap_f_666_snap_fdest) **
+   fsrc: P444_Box_P4_Node_PT__P8224_Global__(snap_fsrc, snap_f_666_snap_fsrc)
+}
+replace_std__boxed__Box_Node_T "replace"
+{
+  ((^ (int fdest)[0], ^ (int fdest)[1]) == (snap_fsrc, snap_f_666_snap_fsrc)) &&
+  ((snap_fdest, snap_f_666_snap_fdest) == (snap_fresult, snap_f_666_snap_fresult)) ;
+   fresult: P444_Box_P4_Node_PT__P8224_Global__(snap_fresult, snap_f_666_snap_fresult)
+}
+
+{
+   fself: &_ mut P4_Node_PT_(snap_fself, snap_fdisc_fself, snap_f_666_snap_f1next_fself) **
+   felem: PT(snap_felem)
+}
+Node___T__push "push"
+{
+  ((^ (int fself)[1] == 1) ? (^ (int fself)[2] == (snap_fself, snap_fdisc_fself, snap_f_666_snap_f1next_fself)) : false) ;
+   emp
+}
+

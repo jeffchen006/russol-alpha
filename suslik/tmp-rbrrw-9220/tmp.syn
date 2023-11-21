@@ -1,0 +1,29 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pi32_COPY(int snap) "i32" {
+| true => {
+  (snap >= (- 2147483645)) &&
+  (snap <= 2147483645) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate PRIM_Pbool_COPY(bool snap) "bool" {
+| true => {
+  #[snap] ;
+   emp
+ }
+}
+
+{
+   fleft: &a mut Pi32(snap_fleft) **
+   fright: &a mut Pi32(snap_fright) **
+   fcond: Pbool(snap_fcond)
+}
+rbrrw "rbrrw"
+{
+  ((snap_fcond) ? ((((snap_fleft), (^ (int fleft)[0])) == ((snap_fresult), (^ (int fresult)[0]))) && ((snap_fright) == (^ (int fright)[0]))) : ((((snap_fright), (^ (int fright)[0])) == ((snap_fresult), (^ (int fresult)[0]))) && ((snap_fleft) == (^ (int fleft)[0])))) ;
+   fresult: &a mut Pi32(snap_fresult)
+}
+

@@ -1,0 +1,52 @@
+# -c 10 -o 10 -p false
+###
+predicate PB(int snap) "B" {
+}
+
+predicate PRIM_Pi32_COPY(int snap) "i32" {
+| true => {
+  (snap >= (- 2147483645)) &&
+  (snap <= 2147483645) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P4_Number_PB_Pi32_PC_(int snap, int snap_f0b) "Number<B, i32, C>" {
+| true => "Number" {
+  (snap == (0, (snap_f0a), (snap_f0b), (snap_f0c))) ;
+   f0a: PB(snap_f0a) **
+   f0b: Pi32(snap_f0b) **
+   f0c: PC(snap_f0c)
+ }
+}
+
+predicate P4_Number_PA_P4_Number_PB_Pi32_PC__PD_(int snap, int snap_f0b_f0b) "Number<A, Number<B, i32, C>, D>" {
+| true => "Number" {
+  (snap == (0, (snap_f0a), (snap_f0b, snap_f0b_f0b), (snap_f0c))) ;
+   f0a: PA(snap_f0a) **
+   f0b: P4_Number_PB_Pi32_PC_(snap_f0b, snap_f0b_f0b) **
+   f0c: PD(snap_f0c)
+ }
+}
+
+predicate PC(int snap) "C" {
+}
+
+predicate PD(int snap) "D" {
+}
+
+predicate PA(int snap) "A" {
+}
+
+{
+  ((- 10000) < snap_f0b_f0b_farg) &&
+  (snap_f0b_f0b_farg < 10000) ;
+   farg: &_ mut P4_Number_PA_P4_Number_PB_Pi32_PC__PD_(snap_farg, snap_f0b_f0b_farg)
+}
+test2 "test2"
+{
+  (^ (int farg)[1] == (snap_f0b_f0b_farg - 1000)) ;
+   emp
+}
+

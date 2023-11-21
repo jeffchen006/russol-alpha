@@ -1,0 +1,60 @@
+# -c 10 -o 10 -p false
+###
+predicate P444_Box_P13_Tree_PT__P8224_Global__(int snap, int size_result_f_666) "std::boxed::Box<Tree<T>>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666, size_result_f_666))) ;
+   f_666: P13_Tree_PT_(snap_f_666, size_result_f_666)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate PRIM_Pu16_COPY(int snap) "u16" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65535) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P13_Tree_PT_(int snap, int size_result) "Tree<T>" {
+| (snap_fdisc == 0) => "Tree::Leaf" {
+  (size_result == ((snap_fdisc == 0) ? 0 : ((size_result_f_666_f1left + size_result_f_666_f1right) + 1))) &&
+  (snap == (0, (snap_fdisc))) &&
+  ((snap_fdisc == 0) ? true : (size_result_f_666_f1left <= 65535)) &&
+  ((snap_fdisc == 0) ? true : (size_result_f_666_f1right <= 65535)) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Tree::Node" {
+  (size_result == ((snap_fdisc == 0) ? 0 : ((size_result_f_666_f1left + size_result_f_666_f1right) + 1))) &&
+  (snap == (1, (snap_fdisc), (snap_f1elem), (snap_f1left, size_result_f_666_f1left), (snap_f1right, size_result_f_666_f1right))) &&
+  ((snap_fdisc == 0) ? true : (size_result_f_666_f1left <= 65535)) &&
+  ((snap_fdisc == 0) ? true : (size_result_f_666_f1right <= 65535)) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1elem: PT(snap_f1elem) **
+   f1left: P444_Box_P13_Tree_PT__P8224_Global__(snap_f1left, size_result_f_666_f1left) **
+   f1right: P444_Box_P13_Tree_PT__P8224_Global__(snap_f1right, size_result_f_666_f1right)
+ }
+}
+
+predicate PT(int snap) "T" {
+}
+
+{
+  (size_result_fself <= 65535) ;
+   fself: &_ P13_Tree_PT_(snap_fself, size_result_fself)
+}
+Tree___T__tree_size "tree_size"
+{
+  ((snap_fresult) == size_result_fself) ;
+   fresult: Pu16(snap_fresult)
+}
+

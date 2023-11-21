@@ -1,0 +1,31 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pi32_COPY(int snap) "i32" {
+| true => {
+  (snap >= (- 2147483645)) &&
+  (snap <= 2147483645) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P4_S_(int snap, int snap_f0a, int snap_f0b) "S" {
+| true => "S" {
+  (snap == (0, (snap_f0a), (snap_f0b))) ;
+   f0a: Pi32(snap_f0a) **
+   f0b: Pi32(snap_f0b)
+ }
+}
+
+{
+  (snap_f0a_fx == 123) &&
+  (snap_f0b_fx == 42) ;
+   fx: P4_S_(snap_fx, snap_f0a_fx, snap_f0b_fx)
+}
+test_struct_field "test_struct_field"
+{
+  (snap_f0a_fresult == 42) &&
+  (snap_f0b_fresult == 123) ;
+   fresult: P4_S_(snap_fresult, snap_f0a_fresult, snap_f0b_fresult)
+}
+

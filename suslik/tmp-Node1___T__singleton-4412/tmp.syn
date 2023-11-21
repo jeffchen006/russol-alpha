@@ -1,0 +1,104 @@
+# -c 10 -o 10 -p false
+###
+predicate PT(int snap) "T" {
+}
+
+predicate P444_Box_PT__Node1_T_P8224_Global__(int snap) "std::boxed::Box<(T, Node1<T>)>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666))) ;
+   f_666: PT__Node1_T(snap_f_666)
+ }
+}
+
+predicate PT__Node1_T(int snap) "(T, Node1<T>)" {
+| true => "" {
+  (snap == (0, (snap_f0_0), (snap_f0_1))) ;
+   f0_0: PT(snap_f0_0) **
+   f0_1: P4_Node1_PT_(snap_f0_1)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P4_Node1_PT_(int snap) "Node1<T>" {
+| (snap_fdisc == 0) => "Node1::Nil" {
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Node1::Cons" {
+  (snap == (1, (snap_fdisc), (snap_f1node))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1node: P444_Box_PT__Node1_T_P8224_Global__(snap_f1node)
+ }
+}
+
+{
+   fdest: &_ mut PT(snap_fdest) **
+   fsrc: PT(snap_fsrc)
+}
+replace_T "replace"
+{
+  ((^ (int fdest)[0]) == (snap_fsrc)) &&
+  ((snap_fdest) == (snap_fresult)) ;
+   fresult: PT(snap_fresult)
+}
+
+{
+   fdest: &_ mut P4_Node1_PT_(snap_fdest) **
+   fsrc: P4_Node1_PT_(snap_fsrc)
+}
+replace_Node1_T "replace"
+{
+  ((^ (int fdest)[0]) == (snap_fsrc)) &&
+  ((snap_fdest) == (snap_fresult)) ;
+   fresult: P4_Node1_PT_(snap_fresult)
+}
+
+{
+   fdest: &_ mut Pisize(snap_fdest) **
+   fsrc: Pisize(snap_fsrc)
+}
+replace_isize "replace"
+{
+  ((^ (int fdest)[0]) == (snap_fsrc)) &&
+  ((snap_fdest) == (snap_fresult)) ;
+   fresult: Pisize(snap_fresult)
+}
+
+{
+   fdest: &_ mut P444_Box_PT__Node1_T_P8224_Global__(snap_fdest) **
+   fsrc: P444_Box_PT__Node1_T_P8224_Global__(snap_fsrc)
+}
+replace_std__boxed__Box_T__Node1_T "replace"
+{
+  ((^ (int fdest)[0]) == (snap_fsrc)) &&
+  ((snap_fdest) == (snap_fresult)) ;
+   fresult: P444_Box_PT__Node1_T_P8224_Global__(snap_fresult)
+}
+
+{
+   fdest: &_ mut PT__Node1_T(snap_fdest) **
+   fsrc: PT__Node1_T(snap_fsrc)
+}
+replace_T__Node1_T "replace"
+{
+  ((^ (int fdest)[0]) == (snap_fsrc)) &&
+  ((snap_fdest) == (snap_fresult)) ;
+   fresult: PT__Node1_T(snap_fresult)
+}
+
+{
+   felem: PT(snap_felem)
+}
+Node1___T__singleton "singleton"
+{
+   fresult: P4_Node1_PT_(snap_fresult)
+}
+

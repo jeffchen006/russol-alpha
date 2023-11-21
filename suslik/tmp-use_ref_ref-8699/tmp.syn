@@ -1,0 +1,31 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_P_COPY() "()" {
+| true => {
+   emp
+ }
+}
+
+predicate P9_Token_(int snap) "private::Token" {
+| true => "Token" {
+  (snap == (0, ())) ;
+   priv f0_0: P()
+ }
+}
+
+{
+   freference: &c &c mut P()
+}
+private__use_same_ref_ref_ "use_same_ref_ref"
+{
+   fresult: P9_Token_(snap_fresult)
+}
+
+{
+   freference: &a &b mut P()
+}
+use_ref_ref "use_ref_ref"
+{
+   fresult: P9_Token_(snap_fresult)
+}
+

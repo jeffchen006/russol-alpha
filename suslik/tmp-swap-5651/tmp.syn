@@ -1,0 +1,43 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pi16_COPY(int snap) "i16" {
+| true => {
+  (snap >= (- 32767)) &&
+  (snap <= 32767) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P4_Option_(int snap, int snap_fdisc, int snap_f0left, int snap_f1right) "Option" {
+| (snap_fdisc == 0) => "Option::Left" {
+  (snap == (0, (snap_fdisc), (snap_f0left))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f0left: Pi16(snap_f0left)
+ }
+| (snap_fdisc == 1) => "Option::Right" {
+  (snap == (1, (snap_fdisc), (snap_f1right))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1right: Pi16(snap_f1right)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+{
+  ((snap_fdisc_fi == 0) ? (snap_f0left_fi < 32767) : (snap_f1right_fi < 32767)) ;
+   fi: &_ P4_Option_(snap_fi, snap_fdisc_fi, snap_f0left_fi, snap_f1right_fi)
+}
+swap "swap"
+{
+  (((snap_fdisc_fi == 0) && (snap_fdisc_fresult == 1)) ? ((snap_f0left_fi + 1) == snap_f1right_fresult) : (((snap_fdisc_fi == 1) && (snap_fdisc_fresult == 0)) ? (snap_f0left_fresult == (snap_f1right_fi + 1)) : false)) ;
+   fresult: P4_Option_(snap_fresult, snap_fdisc_fresult, snap_f0left_fresult, snap_f1right_fresult)
+}
+

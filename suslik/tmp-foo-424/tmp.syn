@@ -1,0 +1,39 @@
+# -c 10 -o 10 -p false
+###
+predicate P6_Percentage_(int snap, bool is_ten_result, int snap_f0_0) "private::Percentage" {
+| true => "Percentage" {
+  (is_ten_result == (snap_f0_0 == 10)) &&
+  (snap == (0, (snap_f0_0))) ;
+   priv f0_0: Pu16(snap_f0_0)
+ }
+}
+
+predicate PRIM_Pu16_COPY(int snap) "u16" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65535) &&
+  #[snap] ;
+   emp
+ }
+}
+
+{
+   fp: &_ mut P6_Percentage_(snap_fp, is_ten_result_fp, snap_f0_0_fp)
+}
+private__bar_ "bar"
+{
+  (((^ (int fresult)[0]) == 10) ? ^ (bool fp)[1] : true) &&
+  ((^ (int fresult)[0]) == ^ (int fp)[2]) &&
+  ((snap_fresult) == snap_f0_0_fp) ;
+   fresult: &_ mut Pu16(snap_fresult)
+}
+
+{
+   fp: &_ mut P6_Percentage_(snap_fp, is_ten_result_fp, snap_f0_0_fp)
+}
+foo "foo"
+{
+  ^ (bool fp)[1] ;
+   emp
+}
+

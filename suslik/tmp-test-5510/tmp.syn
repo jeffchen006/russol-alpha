@@ -1,0 +1,13 @@
+# -c 10 -o 10 -p false
+###
+predicate PT(int snap) "T" {
+}
+
+{
+   fx: &static PT(snap_fx)
+}
+test "test"
+{
+   fresult: &static PT(snap_fresult)
+}
+

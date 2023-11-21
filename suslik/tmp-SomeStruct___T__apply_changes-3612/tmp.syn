@@ -1,0 +1,89 @@
+# -c 10 -o 10 -p false
+###
+predicate P4_SomeStruct_PT_(int snap, int snap_fdisc_f0next_attrib, int snap_f0attrib_snap, int snap_f1_0_snap_f0next_attrib) "SomeStruct<T>" {
+| true => "SomeStruct" {
+  (snap_f0attrib_snap == (snap_f0attrib)) &&
+  (snap == (0, (snap_f0attrib), (snap_f0next_attrib, snap_fdisc_f0next_attrib, snap_f1_0_snap_f0next_attrib))) ;
+   f0attrib: PT(snap_f0attrib) **
+   f0next_attrib: P47806_Option_PT_(snap_f0next_attrib, snap_fdisc_f0next_attrib, snap_f1_0_snap_f0next_attrib)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P47806_Option_PT_(int snap, int snap_fdisc, int snap_f1_0_snap) "std::option::Option<T>" {
+| (snap_fdisc == 0) => "Option::None" {
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Option::Some" {
+  (snap_f1_0_snap == (snap_f1_0)) &&
+  (snap == (1, (snap_fdisc), (snap_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: PT(snap_f1_0)
+ }
+}
+
+predicate PT(int snap) "T" {
+}
+
+{
+   fdest: &_ mut P4_SomeStruct_PT_(snap_fdest, snap_fdisc_f0next_attrib_fdest, snap_f0attrib_snap_fdest, snap_f1_0_snap_f0next_attrib_fdest) **
+   fsrc: P4_SomeStruct_PT_(snap_fsrc, snap_fdisc_f0next_attrib_fsrc, snap_f0attrib_snap_fsrc, snap_f1_0_snap_f0next_attrib_fsrc)
+}
+replace_SomeStruct_T "replace"
+{
+  ((^ (int fdest)[0], ^ (int fdest)[1], ^ (int fdest)[2], ^ (int fdest)[3]) == (snap_fsrc, snap_fdisc_f0next_attrib_fsrc, snap_f0attrib_snap_fsrc, snap_f1_0_snap_f0next_attrib_fsrc)) &&
+  ((snap_fdest, snap_fdisc_f0next_attrib_fdest, snap_f0attrib_snap_fdest, snap_f1_0_snap_f0next_attrib_fdest) == (snap_fresult, snap_fdisc_f0next_attrib_fresult, snap_f0attrib_snap_fresult, snap_f1_0_snap_f0next_attrib_fresult)) ;
+   fresult: P4_SomeStruct_PT_(snap_fresult, snap_fdisc_f0next_attrib_fresult, snap_f0attrib_snap_fresult, snap_f1_0_snap_f0next_attrib_fresult)
+}
+
+{
+   fdest: &_ mut PT(snap_fdest) **
+   fsrc: PT(snap_fsrc)
+}
+replace_T "replace"
+{
+  ((^ (int fdest)[0]) == (snap_fsrc)) &&
+  ((snap_fdest) == (snap_fresult)) ;
+   fresult: PT(snap_fresult)
+}
+
+{
+   fdest: &_ mut P47806_Option_PT_(snap_fdest, snap_fdisc_fdest, snap_f1_0_snap_fdest) **
+   fsrc: P47806_Option_PT_(snap_fsrc, snap_fdisc_fsrc, snap_f1_0_snap_fsrc)
+}
+replace_std__option__Option_T "replace"
+{
+  ((^ (int fdest)[0], ^ (int fdest)[1], ^ (int fdest)[2]) == (snap_fsrc, snap_fdisc_fsrc, snap_f1_0_snap_fsrc)) &&
+  ((snap_fdest, snap_fdisc_fdest, snap_f1_0_snap_fdest) == (snap_fresult, snap_fdisc_fresult, snap_f1_0_snap_fresult)) ;
+   fresult: P47806_Option_PT_(snap_fresult, snap_fdisc_fresult, snap_f1_0_snap_fresult)
+}
+
+{
+   fdest: &_ mut Pisize(snap_fdest) **
+   fsrc: Pisize(snap_fsrc)
+}
+replace_isize "replace"
+{
+  ((^ (int fdest)[0]) == (snap_fsrc)) &&
+  ((snap_fdest) == (snap_fresult)) ;
+   fresult: Pisize(snap_fresult)
+}
+
+{
+   fself: &_ mut P4_SomeStruct_PT_(snap_fself, snap_fdisc_f0next_attrib_fself, snap_f0attrib_snap_fself, snap_f1_0_snap_f0next_attrib_fself)
+}
+SomeStruct___T__apply_changes "apply_changes"
+{
+  ((snap_fdisc_f0next_attrib_fself == 1) ? (^ (int fself)[2] == snap_f1_0_snap_f0next_attrib_fself) : true) ;
+   emp
+}
+

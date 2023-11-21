@@ -1,0 +1,54 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pi32_COPY(int snap) "i32" {
+| true => {
+  (snap >= (- 2147483645)) &&
+  (snap <= 2147483645) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P4_Tree_Pi32_(int snap, set elems_result, int snap_fdisc, int snap_f1f, set elems_result_f_666_f1left, set elems_result_f_666_f1right) "Tree<i32>" {
+| (snap_fdisc == 0) => "Tree::Leaf" {
+  (elems_result == ((snap_fdisc == 0) ? {} : ((elems_result_f_666_f1left + elems_result_f_666_f1right) + {snap_f1f}))) &&
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Tree::Node" {
+  (elems_result == ((snap_fdisc == 0) ? {} : ((elems_result_f_666_f1left + elems_result_f_666_f1right) + {snap_f1f}))) &&
+  (snap == (1, (snap_fdisc), (snap_f1f), (snap_f1left, elems_result_f_666_f1left), (snap_f1right, elems_result_f_666_f1right))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1f: Pi32(snap_f1f) **
+   f1left: P444_Box_P4_Tree_Pi32__P8224_Global__(snap_f1left, elems_result_f_666_f1left) **
+   f1right: P444_Box_P4_Tree_Pi32__P8224_Global__(snap_f1right, elems_result_f_666_f1right)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P444_Box_P4_Tree_Pi32__P8224_Global__(int snap, set elems_result_f_666) "std::boxed::Box<Tree<i32>>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666, elems_result_f_666, snap_fdisc_f_666, snap_f1f_f_666, elems_result_f_666_f1left_f_666, elems_result_f_666_f1right_f_666))) ;
+   f_666: P4_Tree_Pi32_(snap_f_666, elems_result_f_666, snap_fdisc_f_666, snap_f1f_f_666, elems_result_f_666_f1left_f_666, elems_result_f_666_f1right_f_666)
+ }
+}
+
+{
+   fself: &_ mut P4_Tree_Pi32_(snap_fself, elems_result_fself, snap_fdisc_fself, snap_f1f_fself, elems_result_f_666_f1left_fself, elems_result_f_666_f1right_fself) **
+   fv: Pi32(snap_fv)
+}
+Tree___i32__insert "insert"
+{
+  (^ (set fself)[1] == ({(snap_fv)} + elems_result_fself)) &&
+  ((snap_fdisc_fself == 0) ? (^ (set fself)[1] == {(snap_fv)}) : (((snap_fdisc_fself == 1) && (^ (int fself)[2] == 1)) ? (((snap_fv) < snap_f1f_fself) ? (^ (set fself)[4] == ({(snap_fv)} + elems_result_f_666_f1left_fself)) : ((snap_f1f_fself < (snap_fv)) ? (^ (set fself)[5] == ({(snap_fv)} + elems_result_f_666_f1right_fself)) : true)) : false)) ;
+   emp
+}
+

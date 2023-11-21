@@ -1,0 +1,110 @@
+# -c 10 -o 10 -p false
+###
+predicate P47806_Option_P444_Box_P6_LinkedListNode__P8224_Global___(int snap, int snap_fdisc, int snap_f0next_snap_f_666_f1_0) "std::option::Option<std::boxed::Box<LinkedListNode>>" {
+| (snap_fdisc == 0) => "Option::None" {
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Option::Some" {
+  (snap == (1, (snap_fdisc), (snap_f1_0, snap_f0next_snap_f_666_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: P444_Box_P6_LinkedListNode__P8224_Global__(snap_f1_0, snap_f0next_snap_f_666_f1_0)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P4_LinkedList_(int snap, int snap_fdisc_f0head, int snap_f0next_snap_f_666_f1_0_f0head, int snap_f0head_snap) "LinkedList" {
+| true => "LinkedList" {
+  (snap_f0head_snap == (snap_f0head, snap_fdisc_f0head, snap_f0next_snap_f_666_f1_0_f0head)) &&
+  (snap == (0, (snap_f0head, snap_fdisc_f0head, snap_f0next_snap_f_666_f1_0_f0head))) ;
+   f0head: P47806_Option_P444_Box_P6_LinkedListNode__P8224_Global___(snap_f0head, snap_fdisc_f0head, snap_f0next_snap_f_666_f1_0_f0head)
+ }
+}
+
+predicate P444_Box_P6_LinkedListNode__P8224_Global__(int snap, int snap_f0next_snap_f_666) "std::boxed::Box<LinkedListNode>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666, snap_f0next_snap_f_666))) ;
+   f_666: P6_LinkedListNode_(snap_f_666, snap_f0next_snap_f_666)
+ }
+}
+
+predicate P6_LinkedListNode_(int snap, int snap_f0next_snap) "LinkedListNode" {
+| true => "LinkedListNode" {
+  (snap_f0next_snap == (snap_f0next, snap_fdisc_f0next, snap_f0next_snap_f_666_f1_0_f0next)) &&
+  (snap == (0, (snap_f0next, snap_fdisc_f0next, snap_f0next_snap_f_666_f1_0_f0next))) ;
+   f0next: P47806_Option_P444_Box_P6_LinkedListNode__P8224_Global___(snap_f0next, snap_fdisc_f0next, snap_f0next_snap_f_666_f1_0_f0next)
+ }
+}
+
+{
+   fdest: &_ mut P4_LinkedList_(snap_fdest, snap_fdisc_f0head_fdest, snap_f0next_snap_f_666_f1_0_f0head_fdest, snap_f0head_snap_fdest) **
+   fsrc: P4_LinkedList_(snap_fsrc, snap_fdisc_f0head_fsrc, snap_f0next_snap_f_666_f1_0_f0head_fsrc, snap_f0head_snap_fsrc)
+}
+replace_LinkedList "replace"
+{
+  ((^ (int fdest)[0], ^ (int fdest)[1], ^ (int fdest)[2], ^ (int fdest)[3]) == (snap_fsrc, snap_fdisc_f0head_fsrc, snap_f0next_snap_f_666_f1_0_f0head_fsrc, snap_f0head_snap_fsrc)) &&
+  ((snap_fdest, snap_fdisc_f0head_fdest, snap_f0next_snap_f_666_f1_0_f0head_fdest, snap_f0head_snap_fdest) == (snap_fresult, snap_fdisc_f0head_fresult, snap_f0next_snap_f_666_f1_0_f0head_fresult, snap_f0head_snap_fresult)) ;
+   fresult: P4_LinkedList_(snap_fresult, snap_fdisc_f0head_fresult, snap_f0next_snap_f_666_f1_0_f0head_fresult, snap_f0head_snap_fresult)
+}
+
+{
+   fdest: &_ mut P47806_Option_P444_Box_P6_LinkedListNode__P8224_Global___(snap_fdest, snap_fdisc_fdest, snap_f0next_snap_f_666_f1_0_fdest) **
+   fsrc: P47806_Option_P444_Box_P6_LinkedListNode__P8224_Global___(snap_fsrc, snap_fdisc_fsrc, snap_f0next_snap_f_666_f1_0_fsrc)
+}
+replace_std__option__Option_std__boxed__Box_LinkedListNode "replace"
+{
+  ((^ (int fdest)[0], ^ (int fdest)[1], ^ (int fdest)[2]) == (snap_fsrc, snap_fdisc_fsrc, snap_f0next_snap_f_666_f1_0_fsrc)) &&
+  ((snap_fdest, snap_fdisc_fdest, snap_f0next_snap_f_666_f1_0_fdest) == (snap_fresult, snap_fdisc_fresult, snap_f0next_snap_f_666_f1_0_fresult)) ;
+   fresult: P47806_Option_P444_Box_P6_LinkedListNode__P8224_Global___(snap_fresult, snap_fdisc_fresult, snap_f0next_snap_f_666_f1_0_fresult)
+}
+
+{
+   fdest: &_ mut Pisize(snap_fdest) **
+   fsrc: Pisize(snap_fsrc)
+}
+replace_isize "replace"
+{
+  ((^ (int fdest)[0]) == (snap_fsrc)) &&
+  ((snap_fdest) == (snap_fresult)) ;
+   fresult: Pisize(snap_fresult)
+}
+
+{
+   fdest: &_ mut P444_Box_P6_LinkedListNode__P8224_Global__(snap_fdest, snap_f0next_snap_f_666_fdest) **
+   fsrc: P444_Box_P6_LinkedListNode__P8224_Global__(snap_fsrc, snap_f0next_snap_f_666_fsrc)
+}
+replace_std__boxed__Box_LinkedListNode "replace"
+{
+  ((^ (int fdest)[0], ^ (int fdest)[1]) == (snap_fsrc, snap_f0next_snap_f_666_fsrc)) &&
+  ((snap_fdest, snap_f0next_snap_f_666_fdest) == (snap_fresult, snap_f0next_snap_f_666_fresult)) ;
+   fresult: P444_Box_P6_LinkedListNode__P8224_Global__(snap_fresult, snap_f0next_snap_f_666_fresult)
+}
+
+{
+   fdest: &_ mut P6_LinkedListNode_(snap_fdest, snap_f0next_snap_fdest) **
+   fsrc: P6_LinkedListNode_(snap_fsrc, snap_f0next_snap_fsrc)
+}
+replace_LinkedListNode "replace"
+{
+  ((^ (int fdest)[0], ^ (int fdest)[1]) == (snap_fsrc, snap_f0next_snap_fsrc)) &&
+  ((snap_fdest, snap_f0next_snap_fdest) == (snap_fresult, snap_f0next_snap_fresult)) ;
+   fresult: P6_LinkedListNode_(snap_fresult, snap_f0next_snap_fresult)
+}
+
+{
+   fself: &_ mut P4_LinkedList_(snap_fself, snap_fdisc_f0head_fself, snap_f0next_snap_f_666_f1_0_f0head_fself, snap_f0head_snap_fself)
+}
+LinkedList__prepend_value "prepend_value"
+{
+  ((^ (int fself)[1] == 0) ? false : (^ (int fself)[2] == snap_f0head_snap_fself)) ;
+   emp
+}
+

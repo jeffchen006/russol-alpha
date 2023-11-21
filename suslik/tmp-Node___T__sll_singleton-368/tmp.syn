@@ -1,0 +1,42 @@
+# -c 10 -o 10 -p false
+###
+predicate PT(int snap) "T" {
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P444_Box_P4_Node_PT__P8224_Global__(int snap) "std::boxed::Box<Node<T>>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666))) ;
+   f_666: P4_Node_PT_(snap_f_666)
+ }
+}
+
+predicate P4_Node_PT_(int snap) "Node<T>" {
+| (snap_fdisc == 0) => "Node::Nil" {
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Node::Cons" {
+  (snap == (1, (snap_fdisc), (snap_f1elem), (snap_f1next))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1elem: PT(snap_f1elem) **
+   f1next: P444_Box_P4_Node_PT__P8224_Global__(snap_f1next)
+ }
+}
+
+{
+   felem: PT(snap_felem)
+}
+Node___T__sll_singleton "sll_singleton"
+{
+   fresult: P4_Node_PT_(snap_fresult)
+}
+

@@ -1,0 +1,77 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pi32_COPY(int snap) "i32" {
+| true => {
+  (snap >= (- 2147483645)) &&
+  (snap <= 2147483645) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P12_Enum_(int snap, int snap_fdisc, int snap_f1f6, int snap_f0f3_f0f5) "Enum" {
+| (snap_fdisc == 0) => "Enum::V1" {
+  (snap == (0, (snap_fdisc), (snap_f0f5, snap_f0f4_f0f5, snap_f0f3_f0f5))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f0f5: P7_Common_(snap_f0f5, snap_f0f4_f0f5, snap_f0f3_f0f5)
+ }
+| (snap_fdisc == 1) => "Enum::V2" {
+  (snap == (1, (snap_fdisc), (snap_f1f6), (snap_f1f7, snap_f0f4_f1f7, snap_f0f3_f1f7))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1f6: Pi32(snap_f1f6) **
+   f1f7: P7_Common_(snap_f1f7, snap_f0f4_f1f7, snap_f0f3_f1f7)
+ }
+}
+
+predicate P4_End_(int snap, int snap_f0x) "End" {
+| true => "End" {
+  (snap == (0, (snap_f0x), (snap_f0y, snap_f0f4_f0y, snap_f0f3_f0y))) ;
+   f0x: Pi32(snap_f0x) **
+   f0y: P7_Common_(snap_f0y, snap_f0f4_f0y, snap_f0f3_f0y)
+ }
+}
+
+predicate P10_Start_(int snap, int snap_fdisc_f0z, int snap_f1f6_f0z, int snap_f0f3_f0f5_f0z) "Start" {
+| true => "Start" {
+  (snap == (0, (snap_f0z, snap_fdisc_f0z, snap_f1f6_f0z, snap_f0f3_f0f5_f0z))) ;
+   f0z: P12_Enum_(snap_f0z, snap_fdisc_f0z, snap_f1f6_f0z, snap_f0f3_f0f5_f0z)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate PRIM_Pu8_COPY(int snap) "u8" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 255) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P7_Common_(int snap, int snap_f0f4, int snap_f0f3) "Common" {
+| true => "Common" {
+  (snap == (0, (snap_f0f3), (snap_f0f4))) ;
+   f0f3: Pu8(snap_f0f3) **
+   f0f4: Pi32(snap_f0f4)
+ }
+}
+
+{
+  (((snap_fdisc_f0z_fx == 1) && ((snap_f1f6_f0z_fx >= snap_f0f4_fi) && (snap_f0f4_fi >= 0))) ? true : false) ;
+   fi: &_ mut P7_Common_(snap_fi, snap_f0f4_fi, snap_f0f3_fi) **
+   fx: P10_Start_(snap_fx, snap_fdisc_f0z_fx, snap_f1f6_f0z_fx, snap_f0f3_f0f5_f0z_fx)
+}
+swap "swap"
+{
+  ((snap_fdisc_f0z_fx == 0) ? (snap_f0f3_f0f5_f0z_fx == snap_f0f3_f0f5_f0z_fx) : (snap_f0x_fresult == (snap_f1f6_f0z_fx - snap_f0f4_fi))) ;
+   fresult: P4_End_(snap_fresult, snap_f0x_fresult)
+}
+

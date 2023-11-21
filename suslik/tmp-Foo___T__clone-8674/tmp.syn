@@ -1,0 +1,37 @@
+# -c 10 -o 10 -p false
+###
+predicate P5_Foo_PT_(int snap) "Foo<T>" {
+| true => "Foo" {
+  (snap == (0, (snap_f0_0))) ;
+   f0_0: PT(snap_f0_0)
+ }
+}
+
+predicate PT(int snap) "T" {
+}
+
+{
+   fself: &_ PT(snap_fself)
+}
+std__clone__Clone__clone "clone"
+{
+   fresult: PT(snap_fresult)
+}
+
+{
+   fself: &_ mut PT(snap_fself) **
+   fsource: &_ PT(snap_fsource)
+}
+std__clone__Clone__clone_from "clone_from"
+{
+   emp
+}
+
+{
+   fself: &_ P5_Foo_PT_(snap_fself)
+}
+Foo___T__clone "clone"
+{
+   fresult: P5_Foo_PT_(snap_fresult)
+}
+

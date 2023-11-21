@@ -1,0 +1,31 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pi32_COPY(int snap) "i32" {
+| true => {
+  (snap >= (- 2147483645)) &&
+  (snap <= 2147483645) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P4_BorrowAndValue_PT_(lft &a, int snap) "BorrowAndValue<'a, T>" {
+| true => "BorrowAndValue" {
+  (snap == (0, ((snap_f0borrow), (^ (int f0borrow)[0])), (snap_f0value))) ;
+   f0borrow: &a mut PT(snap_f0borrow) **
+   f0value: PT(snap_f0value)
+ }
+}
+
+predicate PT_COPY(int snap) "T" {
+}
+
+{
+   fborrow: &a mut PT(snap_fborrow) **
+   fb2: &_ mut Pi32(snap_fb2)
+}
+BorrowAndValue___a__T__new "new"
+{
+   fresult: P4_BorrowAndValue_PT_(&a, snap_fresult)
+}
+

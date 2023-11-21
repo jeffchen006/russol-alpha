@@ -1,0 +1,31 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pu8_COPY(int snap) "u8" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 255) &&
+  #[snap] ;
+   emp
+ }
+}
+
+{
+   fa: Pu8(snap_fa) **
+   fb: Pu8(snap_fb)
+}
+wrapping_add_ "wrapping_add"
+{
+  ((snap_fresult) == ((((snap_fa) + (snap_fb)) >= 256) ? (((snap_fa) + (snap_fb)) - 256) : ((snap_fa) + (snap_fb)))) ;
+   fresult: Pu8(snap_fresult)
+}
+
+{
+   fa: Pu8(snap_fa) **
+   fb: Pu8(snap_fb)
+}
+test_u8_wrapping_add "test_u8_wrapping_add"
+{
+  (((snap_fresult) == ((snap_fa) + (snap_fb))) || ((snap_fresult) == (((snap_fa) + (snap_fb)) - 256))) ;
+   fresult: Pu8(snap_fresult)
+}
+

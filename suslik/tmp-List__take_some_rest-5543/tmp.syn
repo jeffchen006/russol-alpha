@@ -1,0 +1,62 @@
+# -c 10 -o 10 -p false
+###
+predicate P4_List_(int snap, int sum_result) "List" {
+| (snap_fdisc == 0) => "List::Nil" {
+  (sum_result == ((snap_fdisc == 1) ? (snap_f1_0 + sum_result_f_666_f1_1) : 0)) &&
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "List::Cons" {
+  (sum_result == ((snap_fdisc == 1) ? (snap_f1_0 + sum_result_f_666_f1_1) : 0)) &&
+  (snap == (1, (snap_fdisc), (snap_f1_0), (snap_f1_1, sum_result_f_666_f1_1))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: Pu16(snap_f1_0) **
+   f1_1: P444_Box_P4_List__P8224_Global__(snap_f1_1, sum_result_f_666_f1_1)
+ }
+}
+
+predicate P444_Box_P4_List__P8224_Global__(int snap, int sum_result_f_666) "std::boxed::Box<List>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666, sum_result_f_666))) ;
+   f_666: P4_List_(snap_f_666, sum_result_f_666)
+ }
+}
+
+predicate Pmut_u16__mut_List(lft &_, lft &_, int snap, int snap_f0_0_f, int sum_result_f0_1_f, int snap_f0_0, int sum_result_f0_1) "(&mut u16, &mut List)" {
+| true => "" {
+  (snap_f0_0_f == ^ (int f0_0)[0]) &&
+  (sum_result_f0_1_f == ^ (int f0_1)[1]) &&
+  (snap == (0, ((snap_f0_0), (^ (int f0_0)[0])), ((snap_f0_1, sum_result_f0_1), (^ (int f0_1)[0], ^ (int f0_1)[1])))) ;
+   f0_0: &_ mut Pu16(snap_f0_0) **
+   f0_1: &_ mut P4_List_(snap_f0_1, sum_result_f0_1)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate PRIM_Pu16_COPY(int snap) "u16" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65535) &&
+  #[snap] ;
+   emp
+ }
+}
+
+{
+  (sum_result_fself > 0) ;
+   fself: &_ mut P4_List_(snap_fself, sum_result_fself)
+}
+List__take_some_rest "take_some_rest"
+{
+  ((^ (int fself)[1] - sum_result_fself) == (((snap_f0_0_f_fresult + sum_result_f0_1_f_fresult) - snap_f0_0_fresult) - sum_result_f0_1_fresult)) ;
+   fresult: Pmut_u16__mut_List(&_, &_, snap_fresult, snap_f0_0_f_fresult, sum_result_f0_1_f_fresult, snap_f0_0_fresult, sum_result_f0_1_fresult)
+}
+

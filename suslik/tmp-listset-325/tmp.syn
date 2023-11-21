@@ -1,0 +1,67 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pi32_COPY(int snap) "i32" {
+| true => {
+  (snap >= (- 2147483645)) &&
+  (snap <= 2147483645) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P444_Box_P4_Node1__P8224_Global__(int snap, int sum_result_f_666, int len_result_f_666) "std::boxed::Box<Node1>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666, sum_result_f_666, len_result_f_666))) ;
+   f_666: P4_Node1_(snap_f_666, sum_result_f_666, len_result_f_666)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P47806_Option_P444_Box_P4_Node1__P8224_Global___(int snap, int snap_fdisc, int sum_result_f_666_f1_0, int len_result_f_666_f1_0) "std::option::Option<std::boxed::Box<Node1>>" {
+| (snap_fdisc == 0) => "Option::None" {
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Option::Some" {
+  (snap == (1, (snap_fdisc), (snap_f1_0, sum_result_f_666_f1_0, len_result_f_666_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: P444_Box_P4_Node1__P8224_Global__(snap_f1_0, sum_result_f_666_f1_0, len_result_f_666_f1_0)
+ }
+}
+
+predicate P7_List_(int snap, int snap_fdisc_f0head, int sum_result_f_666_f1_0_f0head, int len_result_f_666_f1_0_f0head) "List" {
+| true => "List" {
+  (snap == (0, (snap_f0head, snap_fdisc_f0head, sum_result_f_666_f1_0_f0head, len_result_f_666_f1_0_f0head))) ;
+   f0head: P47806_Option_P444_Box_P4_Node1__P8224_Global___(snap_f0head, snap_fdisc_f0head, sum_result_f_666_f1_0_f0head, len_result_f_666_f1_0_f0head)
+ }
+}
+
+predicate P4_Node1_(int snap, int sum_result, int len_result) "Node1" {
+| true => "Node1" {
+  (len_result == (1 + ((snap_fdisc_f0next == 0) ? 0 : len_result_f_666_f1_0_f0next))) &&
+  (sum_result == (snap_f0elem + ((snap_fdisc_f0next == 0) ? 0 : sum_result_f_666_f1_0_f0next))) &&
+  (snap == (0, (snap_f0elem), (snap_f0next, snap_fdisc_f0next, sum_result_f_666_f1_0_f0next, len_result_f_666_f1_0_f0next))) ;
+   f0elem: Pi32(snap_f0elem) **
+   f0next: P47806_Option_P444_Box_P4_Node1__P8224_Global___(snap_f0next, snap_fdisc_f0next, sum_result_f_666_f1_0_f0next, len_result_f_666_f1_0_f0next)
+ }
+}
+
+{
+   flist: &_ mut P7_List_(snap_flist, snap_fdisc_f0head_flist, sum_result_f_666_f1_0_f0head_flist, len_result_f_666_f1_0_f0head_flist) **
+   fval: Pi32(snap_fval)
+}
+listset "listset"
+{
+  ((^ (int flist)[1] == 0) ? true : (^ (int flist)[2] == (^ (int flist)[3] * (snap_fval)))) &&
+  (((snap_fdisc_f0head_flist == 0) && (^ (int flist)[1] == 0)) ? true : (((snap_fdisc_f0head_flist == 1) && (^ (int flist)[1] == 1)) ? (len_result_f_666_f1_0_f0head_flist == ^ (int flist)[3]) : false)) ;
+   emp
+}
+

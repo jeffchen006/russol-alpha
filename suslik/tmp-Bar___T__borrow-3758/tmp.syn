@@ -1,0 +1,72 @@
+# -c 10 -o 10 -p false
+###
+predicate P4_Bar_PT_(int snap, bool is_some_result_f0data) "Bar<T>" {
+| true => "Bar" {
+  (snap == (0, (snap_f0data, is_some_result_f0data))) ;
+   f0data: P47806_Option_P444_Box_PT_P8224_Global___(snap_f0data, is_some_result_f0data)
+ }
+}
+
+predicate P444_Box_PT_P8224_Global__(int snap) "std::boxed::Box<T>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666))) ;
+   f_666: PT(snap_f_666)
+ }
+}
+
+predicate P47931_Result_PR444_Box_PT_P8224_Global___P__COPY(lft &_, int snap, bool is_ok_result) "std::result::Result<&std::boxed::Box<T>, ()>" {
+| (snap_fdisc == 0) => "Result::Ok" {
+  (is_ok_result == ((snap_fdisc == 0) ? true : false)) &&
+  (snap == (0, (snap_fdisc), (snap_f0_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f0_0: &_ P444_Box_PT_P8224_Global__(snap_f0_0)
+ }
+| (snap_fdisc == 1) => "Result::Err" {
+  (is_ok_result == ((snap_fdisc == 0) ? true : false)) &&
+  (snap == (1, (snap_fdisc), ())) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: P()
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P47806_Option_P444_Box_PT_P8224_Global___(int snap, bool is_some_result) "std::option::Option<std::boxed::Box<T>>" {
+| (snap_fdisc == 0) => "Option::None" {
+  (is_some_result == ((snap_fdisc == 1) ? true : false)) &&
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Option::Some" {
+  (is_some_result == ((snap_fdisc == 1) ? true : false)) &&
+  (snap == (1, (snap_fdisc), (snap_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: P444_Box_PT_P8224_Global__(snap_f1_0)
+ }
+}
+
+predicate PRIM_P_COPY() "()" {
+| true => {
+   emp
+ }
+}
+
+predicate PT(int snap) "T" {
+}
+
+{
+   fself: &_ mut P4_Bar_PT_(snap_fself, is_some_result_f0data_fself)
+}
+Bar___T__borrow "borrow"
+{
+  (is_some_result_f0data_fself == is_ok_result_fresult) ;
+   fresult: P47931_Result_PR444_Box_PT_P8224_Global___P_(&_, snap_fresult, is_ok_result_fresult)
+}
+

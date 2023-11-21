@@ -1,0 +1,69 @@
+# -c 10 -o 10 -p false
+###
+predicate P444_Box_P4_Node_Pu16__P8224_Global__(int snap, int len_result_f_666, int snap_fdisc_f_666, int snap_f1elem_f_666, bool is_sorted_result_f_666, set elems_result_f_666) "std::boxed::Box<Node<u16>>" {
+| true => "Box::new" {
+  (snap == (0, (snap_f_666, snap_fdisc_f_666, snap_f1elem_f_666, len_result_f_666, is_sorted_result_f_666, elems_result_f_666))) ;
+   f_666: P4_Node_Pu16_(snap_f_666, snap_fdisc_f_666, snap_f1elem_f_666, len_result_f_666, is_sorted_result_f_666, elems_result_f_666)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P4_Node_Pu16_(int snap, int snap_fdisc, int snap_f1elem, int len_result, bool is_sorted_result, set elems_result) "Node<u16>" {
+| (snap_fdisc == 0) => "Node::Nil" {
+  (len_result == ((snap_fdisc == 0) ? 0 : (1 + len_result_f_666_f1next))) &&
+  (is_sorted_result == (((snap_fdisc == 0) || ((snap_fdisc == 1) && (snap_fdisc_f_666_f1next == 0))) ? true : ((snap_f1elem <= snap_f1elem_f_666_f1next) && is_sorted_result_f_666_f1next))) &&
+  (elems_result == ((snap_fdisc == 0) ? {} : (elems_result_f_666_f1next + {snap_f1elem}))) &&
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "Node::Cons" {
+  (len_result == ((snap_fdisc == 0) ? 0 : (1 + len_result_f_666_f1next))) &&
+  (is_sorted_result == (((snap_fdisc == 0) || ((snap_fdisc == 1) && (snap_fdisc_f_666_f1next == 0))) ? true : ((snap_f1elem <= snap_f1elem_f_666_f1next) && is_sorted_result_f_666_f1next))) &&
+  (elems_result == ((snap_fdisc == 0) ? {} : (elems_result_f_666_f1next + {snap_f1elem}))) &&
+  (snap == (1, (snap_fdisc), (snap_f1elem), (snap_f1next, len_result_f_666_f1next, snap_fdisc_f_666_f1next, snap_f1elem_f_666_f1next, is_sorted_result_f_666_f1next, elems_result_f_666_f1next))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1elem: Pu16(snap_f1elem) **
+   f1next: P444_Box_P4_Node_Pu16__P8224_Global__(snap_f1next, len_result_f_666_f1next, snap_fdisc_f_666_f1next, snap_f1elem_f_666_f1next, is_sorted_result_f_666_f1next, elems_result_f_666_f1next)
+ }
+}
+
+predicate PRIM_Pu16_COPY(int snap) "u16" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65535) &&
+  #[snap] ;
+   emp
+ }
+}
+
+{
+  is_sorted_result_fself ;
+   fself: P4_Node_Pu16_(snap_fself, snap_fdisc_fself, snap_f1elem_fself, len_result_fself, is_sorted_result_fself, elems_result_fself) **
+   fv: Pu16(snap_fv)
+}
+Node___u16__srtl_insert_ "srtl_insert"
+{
+  (elems_result_fresult == (elems_result_fself + {(snap_fv)})) &&
+  is_sorted_result_fresult ;
+   fresult: P4_Node_Pu16_(snap_fresult, snap_fdisc_fresult, snap_f1elem_fresult, len_result_fresult, is_sorted_result_fresult, elems_result_fresult)
+}
+
+{
+  ((snap_fdisc_fself == 1) ? ((snap_fv) <= snap_f1elem_fself) : true) ;
+   fself: P4_Node_Pu16_(snap_fself, snap_fdisc_fself, snap_f1elem_fself, len_result_fself, is_sorted_result_fself, elems_result_fself) **
+   fv: Pu16(snap_fv)
+}
+Node___u16__srtl_prepend "srtl_prepend"
+{
+  (len_result_fresult == (len_result_fself + 1)) ;
+   fresult: P4_Node_Pu16_(snap_fresult, snap_fdisc_fresult, snap_f1elem_fresult, len_result_fresult, is_sorted_result_fresult, elems_result_fresult)
+}
+

@@ -1,0 +1,21 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pu16_COPY(int snap) "u16" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65535) &&
+  #[snap] ;
+   emp
+ }
+}
+
+{
+   fma: &a mut Pu16(snap_fma) **
+   fmb: &a mut Pu16(snap_fmb)
+}
+take_max "take_max"
+{
+  (((snap_fma) >= (snap_fmb)) ? (((snap_fmb) == (^ (int fmb)[0])) && (((snap_fresult), (^ (int fresult)[0])) == ((snap_fma), (^ (int fma)[0])))) : (((snap_fma) == (^ (int fma)[0])) && (((snap_fresult), (^ (int fresult)[0])) == ((snap_fmb), (^ (int fmb)[0]))))) ;
+   fresult: &a mut Pu16(snap_fresult)
+}
+

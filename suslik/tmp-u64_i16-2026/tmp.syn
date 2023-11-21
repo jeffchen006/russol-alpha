@@ -1,0 +1,29 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pi16_COPY(int snap) "i16" {
+| true => {
+  (snap >= (- 32767)) &&
+  (snap <= 32767) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate PRIM_Pu64_COPY(int snap) "u64" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65537) &&
+  #[snap] ;
+   emp
+ }
+}
+
+{
+  ((snap_fx) < 32767) ;
+   fx: Pu64(snap_fx)
+}
+u64_i16 "u64_i16"
+{
+   fresult: Pi16(snap_fresult)
+}
+

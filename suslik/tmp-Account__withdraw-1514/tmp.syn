@@ -1,0 +1,30 @@
+# -c 10 -o 10 -p false
+###
+predicate PRIM_Pu16_COPY(int snap) "u16" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 65535) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P4_Account_(int snap, int balance_result) "Account" {
+| true => "Account" {
+  (balance_result == snap_f0bal) &&
+  (snap == (0, (snap_f0bal))) ;
+   f0bal: Pu16(snap_f0bal)
+ }
+}
+
+{
+  ((snap_famount) <= balance_result_fself) ;
+   fself: &_ mut P4_Account_(snap_fself, balance_result_fself) **
+   famount: Pu16(snap_famount)
+}
+Account__withdraw "withdraw"
+{
+  (^ (int fself)[1] == (balance_result_fself - (snap_famount))) ;
+   emp
+}
+
