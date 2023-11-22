@@ -18,7 +18,6 @@ pub fn intern(tcx: TyCtxt, timeout: u64) -> Option<FxHashMap<String, SynthesisRe
     if tcx.sess.has_errors().is_some() {
         return None;
     }
-
     let mut translator = HirTranslator::new(tcx);
     for def_id in tcx.hir().body_owners() {
         let def_id = def_id.to_def_id();
@@ -29,7 +28,6 @@ pub fn intern(tcx: TyCtxt, timeout: u64) -> Option<FxHashMap<String, SynthesisRe
         // println!("Translating {:?}", def_id);
         translator.translate(def_id);
     }
-
     let multithreaded = std::env::var("RUSLIC_THREAD_COUNT")
         .map(|v| v.parse::<usize>().unwrap())
         .unwrap_or(8);
@@ -54,6 +52,8 @@ pub fn solve<'tcx>(
         }
         let def_id = sig.def_id;
         let name = tcx.def_path_str(def_id);
+
+        // Jeff: Apply modified suslik to solve synthesis benchmarks
         let result = SuslikProgram::solve(
             tcx,
             sig,
@@ -65,11 +65,17 @@ pub fn solve<'tcx>(
                 .collect(),
             timeout,
         )?;
+
+        // Jeff: Print the results
         handle_result(result, &mut times, tcx, def_id, name, multifn);
     }
 
     Some(times)
 }
+
+
+
+
 
 pub fn solve_multithreaded<'tcx>(
     tcx: TyCtxt<'tcx>,
@@ -147,5 +153,7 @@ pub fn handle_result(
         let sln = sln.slns[0].code.lines().skip(1).take(sln_lines).fold("\n".to_string(), |acc, line| acc + line + "\n");
         replace_with_sln(tcx, def_id, sln, multifn);
     }
+
+
     times.insert(name, result);
 }
