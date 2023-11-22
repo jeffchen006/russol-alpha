@@ -177,7 +177,6 @@ impl<'a, T> IterMut<'a, T> {
 
 impl<'a, T> Iterator for IterMut<'a, T> {
     type Item = &'a mut T;
-
     #[ensures(match (&self.next, result) {
         (None, None) => true,
         (Some(node), Some(result)) => (^*node).elem === ^result,

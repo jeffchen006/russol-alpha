@@ -67,6 +67,11 @@ class SynthesisServer {
   def go(session: SynthesisRunnerUtil): String = {
     val dir = "./src/test/resources/synthesis/all-benchmarks/sll" /** @todo */
     val fn = "free.syn"
+    // print out go
+    println("Go!")
+    // print dir, fn
+    println(dir, fn)
+    
     session.synthesizeFromFile(dir, fn, config).toString()
   }
 

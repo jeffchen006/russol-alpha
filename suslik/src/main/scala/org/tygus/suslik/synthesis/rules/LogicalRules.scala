@@ -327,6 +327,7 @@ object LogicalRules extends PureLogicUtils with SepLogicUtils with RuleUtils {
 
   }
 
+  // Jeff: this is new stuff
   object CaseSplit extends SynthesisRule with InvertibleRule {
     override def toString: String = "CaseSplit"
 

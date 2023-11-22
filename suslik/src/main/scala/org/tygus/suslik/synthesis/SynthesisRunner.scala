@@ -153,7 +153,7 @@ object SynthesisRunner extends SynthesisRunnerUtil {
     opt[Int]('o', "maxOpenDepth").action(cfg { d =>
       _.copy(maxOpenDepth = d)
     }).text("maximum unfolding depth in the pre-condition; default: 1")
-
+    
     opt[Int]('f', "maxCallDepth").action(cfg { d =>
       _.copy(maxCalls = d)
     }).text("maximum call depth; default: 2")

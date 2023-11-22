@@ -251,9 +251,11 @@ Added --solutions=1 to suslik args
  java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-_IterMut_a__T_as_std__iter__Iterator__next-1380/tmp.syn ["--solutions=1"]
 suslik dir: "/home/zhiychen/Documents/russol-alpha/suslik"
 =========== End of command
+
 fn new() -> List<T> {
   List { head: Option::None }
 } // Synth time: 479 ms, AST nodes: 3 vs unsimp 3 @|479|3|3|5|@
+
 fn push(&mut self, elem: T) {
   let result = take(&mut self.head);
   let bx = Node { elem, next: result };
@@ -261,6 +263,7 @@ fn push(&mut self, elem: T) {
   let new = Option::Some(_0);
   self.head = new
 } // Synth time: 1631 ms, AST nodes: 26 vs unsimp 26 @|1631|26|26|30|@
+
 fn pop(&mut self) -> std::option::Option<T> {
   let result = take(&mut self.head);
   match result {
@@ -272,18 +275,21 @@ fn pop(&mut self) -> std::option::Option<T> {
     }
   }
 } // Synth time: 3224 ms, AST nodes: 27 vs unsimp 27 @|3224|27|27|41|@
+
 fn peek(&self) -> std::option::Option<&T> {
   match &self.head {
     Option::None => Option::None,
     Option::Some(_0) => Option::Some(&_0.elem),
   }
 } // Synth time: 842 ms, AST nodes: 12 vs unsimp 12 @|842|12|12|31|@
+
 fn peek_mut(&mut self) -> std::option::Option<&mut T> {
   match &mut self.head {
     Option::None => Option::None,
     Option::Some(_0) => Option::Some(&mut _0.elem),
   }
 } // Synth time: 1717 ms, AST nodes: 12 vs unsimp 12 @|1717|12|12|35|@
+
 fn next<'a>(&mut self) -> std::option::Option<&'a T> {
   let (new, result) = match &mut self.next {
     Option::None => (Option::None, Option::None),
@@ -302,6 +308,7 @@ fn next<'a>(&mut self) -> std::option::Option<&'a T> {
   self.next = new;
   result
 } // Synth time: 4978 ms, AST nodes: 46 vs unsimp 46 @|4978|46|46|73|@
+
 fn next<'a>(&mut self) -> std::option::Option<&'a mut T> {
   let result = take(&mut self.next);
   match result {
@@ -309,6 +316,8 @@ fn next<'a>(&mut self) -> std::option::Option<&'a mut T> {
     Option::Some(_0) => Option::Some(&mut _0.elem),
   }
 } // Synth time: 1687 ms, AST nodes: 18 vs unsimp 18 @|1687|18|18|42|@
+
+
 
     ./tests/synth/paper/rust/b-stackoverflow
       ./tests/synth/paper/rust/b-stackoverflow/nested_refs.rs
@@ -2487,6 +2496,8 @@ fn test_u8_wrapping_add(a: u8, b: u8) -> u8 {
   if 256 <= b + a { result } else { result }
 } // Synth time: 648 ms, AST nodes: 13 vs unsimp 13 @|648|13|13|23|@
 
+
+
 ### Measured timings (max 27_289ms) ###
 synth                  Solved 125 	 Time 1.8s 	 SOL rules 27.08 	 Rust LOC 5.23 	 Code/Spec 1.35 	 Sln nodes 16.57 	 Ann nodes 11.23 	 Non-exec pure fn nodes 1.08 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Tree::<T>::size": (true, 19), "NodeP::<T>::elems": (false, 19), "Avl::<i32>::size": (true, 16), "Node1::sum": (true, 14), "Iter::<'a, T>::len": (true, 14), "List::<RoseTree<T>>::elems_tree": (false, 17), "Tree::rightmost": (true, 19), "Tree::bst_invariant": (true, 36), "Avl::<i32>::is_avl": (true, 34), "Avl::<i32>::height": (true, 25), "Node::sum": (true, 13), "Node::<u16>::is_sorted": (true, 23), "List::<List<T>>::elems_list": (false, 17), "List::<T>::elems": (false, 18), "NodeP::<T>::len": (true, 13), "Node::<T>::len": (true, 12), "ListP::<T>::elems": (false, 12), "private::is_ten": (true, 4), "Node::<i32>::elems_eq": (true, 17), "Account::balance": (true, 2), "Node::len": (true, 12), "Tree::leftmost": (true, 19), "Node1::<T>::len": (true, 13), "List::<T>::len": (true, 14), "is_ok": (true, 8), "Node::<T>::len_gt": (true, 16), "Tree::size": (true, 16), "Node::<T>::len_te": (true, 15), "List::sum": (true, 13), "Node1::len": (true, 13), "is_some": (true, 8), "Node::<T>::elems": (false, 16), "Tree::<T>::elems": (false, 20), "ListP::<T>::len": (true, 11), "Node::len_te": (true, 15), "RoseTree::<T>::elems": (false, 16)}
   other                  Solved 10 	 Time 1.3s 	 SOL rules 33.90 	 Rust LOC 3.80 	 Code/Spec 1.11 	 Sln nodes 15.60 	 Ann nodes 10.90 	 Non-exec pure fn nodes 3.10 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"NodeP::<T>::elems": (false, 19), "NodeP::<T>::len": (true, 13), "Avl::<i32>::is_avl": (true, 34), "ListP::<T>::len": (true, 11), "Avl::<i32>::size": (true, 16), "ListP::<T>::elems": (false, 12), "Avl::<i32>::height": (true, 25)}
@@ -2503,9 +2514,13 @@ synth                  Solved 125 	 Time 1.8s 	 SOL rules 27.08 	 Rust LOC 5.23 
       stack.rs::ListP::<T>::peek_mut - 1_788ms [4/12/12/35] | spec_ast: 36, pfn_ast: {}
     suslik_other           Solved 1 	 Time 1.8s 	 SOL rules 53.00 	 Rust LOC 11.00 	 Code/Spec 3.07 	 Sln nodes 43.00 	 Ann nodes 14.00 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Avl::<i32>::size": (true, 16), "Avl::<i32>::is_avl": (true, 34), "Avl::<i32>::height": (true, 25)}
       avl.rs::avl_copy - 1_792ms [11/43/43/53] | spec_ast: 14, pfn_ast: {"Avl::<i32>::height": (true, 25), "Avl::<i32>::size": (true, 16), "Avl::<i32>::is_avl": (true, 34)}
+  
+  
   paper                  Solved 115 	 Time 1.9s 	 SOL rules 26.49 	 Rust LOC 5.36 	 Code/Spec 1.37 	 Sln nodes 16.65 	 Ann nodes 11.26 	 Non-exec pure fn nodes 0.90 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Tree::<T>::size": (true, 19), "Node1::sum": (true, 14), "Iter::<'a, T>::len": (true, 14), "List::<RoseTree<T>>::elems_tree": (false, 17), "Tree::rightmost": (true, 19), "Tree::bst_invariant": (true, 36), "Tree::leftmost": (true, 19), "Node::sum": (true, 13), "Node::<u16>::is_sorted": (true, 23), "List::<T>::elems": (false, 18), "Node::<T>::len": (true, 12), "Account::balance": (true, 2), "Node::<i32>::elems_eq": (true, 17), "List::<List<T>>::elems_list": (false, 17), "private::is_ten": (true, 4), "Node::len": (true, 12), "Node1::<T>::len": (true, 13), "List::<T>::len": (true, 14), "Tree::size": (true, 16), "is_ok": (true, 8), "Node::<T>::len_gt": (true, 16), "Node::<T>::len_te": (true, 15), "List::sum": (true, 13), "Node1::len": (true, 13), "is_some": (true, 8), "Node::<T>::elems": (false, 16), "Tree::<T>::elems": (false, 20), "Node::len_te": (true, 15), "RoseTree::<T>::elems": (false, 16)}
     rust                   Solved 50 	 Time 2.5s 	 SOL rules 32.98 	 Rust LOC 6.16 	 Code/Spec 1.27 	 Sln nodes 19.20 	 Ann nodes 14.42 	 Non-exec pure fn nodes 0.72 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"private::is_ten": (true, 4), "Node::len": (true, 12), "Node1::<T>::len": (true, 13), "List::<T>::len": (true, 14), "Tree::size": (true, 16), "is_ok": (true, 8), "Node1::sum": (true, 14), "Node::<T>::len_gt": (true, 16), "Node::<T>::len_te": (true, 15), "Iter::<'a, T>::len": (true, 14), "Node1::len": (true, 13), "is_some": (true, 8), "Node::<T>::elems": (false, 16), "Node::sum": (true, 13), "Tree::<T>::elems": (false, 20), "Node::len_te": (true, 15), "Node::<T>::len": (true, 12), "Node::<i32>::elems_eq": (true, 17)}
-      a-sll_tutorial         Solved 7 	 Time 2.1s 	 SOL rules 36.71 	 Rust LOC 6.29 	 Code/Spec 1.09 	 Sln nodes 20.57 	 Ann nodes 18.86 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"List::<T>::len": (true, 14), "Node::<T>::len_gt": (true, 16), "is_some": (true, 8), "Iter::<'a, T>::len": (true, 14)}
+      
+      a-sll_tutorial         Solved 7/7 	 Time 2.1s 	 SOL rules 36.71 	 Rust LOC 6.29 	 Code/Spec 1.09 	 Sln nodes 20.57 	 Ann nodes 18.86 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"List::<T>::len": (true, 14), "Node::<T>::len_gt": (true, 16), "is_some": (true, 8), "Iter::<'a, T>::len": (true, 14)}
+        
         stack.rs::List::<T>::new - 0_479ms [1/3/3/5] | spec_ast: 4, pfn_ast: {"List::<T>::len": (true, 14), "Node::<T>::len_gt": (true, 16)}
         stack.rs::List::<T>::peek_mut - 1_717ms [4/12/12/35] | spec_ast: 36, pfn_ast: {}
         stack.rs::<Iter<'a, T> as std::iter::Iterator>::next - 4_978ms [16/46/46/73] | spec_ast: 32, pfn_ast: {"Node::<T>::len_gt": (true, 16), "Iter::<'a, T>::len": (true, 14)}
@@ -2513,20 +2528,25 @@ synth                  Solved 125 	 Time 1.8s 	 SOL rules 27.08 	 Rust LOC 5.23 
         stack.rs::List::<T>::peek - 0_842ms [4/12/12/31] | spec_ast: 6, pfn_ast: {"is_some": (true, 8)}
         stack.rs::List::<T>::push - 1_631ms [5/26/26/30] | spec_ast: 15, pfn_ast: {}
         stack.rs::List::<T>::pop - 3_224ms [9/27/27/41] | spec_ast: 15, pfn_ast: {}
-      b-stackoverflow        Solved 4 	 Time 0.6s 	 SOL rules 28.50 	 Rust LOC 4.75 	 Code/Spec 2.00 	 Sln nodes 17.00 	 Ann nodes 8.50 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"is_ok": (true, 8), "is_some": (true, 8)}
+      
+      b-stackoverflow        Solved 4/5 	 Time 0.6s 	 SOL rules 28.50 	 Rust LOC 4.75 	 Code/Spec 2.00 	 Sln nodes 17.00 	 Ann nodes 8.50 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"is_ok": (true, 8), "is_some": (true, 8)}
+        
         nested_refs.rs::use_ref_ref - 0_190ms [1/2/10/14] | spec_ast: 0, pfn_ast: {}
         reborrow.rs::Bar::<T>::borrow - 0_313ms [4/11/11/29] | spec_ast: 6, pfn_ast: {"is_ok": (true, 8), "is_some": (true, 8)}
         replace_1.rs::SomeStruct::<T>::apply_changes - 0_587ms [9/30/30/43] | spec_ast: 13, pfn_ast: {}
         replace_2.rs::LinkedList::prepend_value - 1_266ms [5/25/25/28] | spec_ast: 15, pfn_ast: {}
-      c-custom               Solved 39 	 Time 2.8s 	 SOL rules 32.77 	 Rust LOC 6.28 	 Code/Spec 1.27 	 Sln nodes 19.18 	 Ann nodes 14.23 	 Non-exec pure fn nodes 0.92 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"private::is_ten": (true, 4), "Node1::len": (true, 13), "Node::sum": (true, 13), "Node::len": (true, 12), "is_some": (true, 8), "Node1::<T>::len": (true, 13), "Node::<T>::elems": (false, 16), "Tree::size": (true, 16), "Tree::<T>::elems": (false, 20), "Node::len_te": (true, 15), "Node::<T>::len": (true, 12), "Node::<T>::len_te": (true, 15), "Node::<i32>::elems_eq": (true, 17), "Node1::sum": (true, 14)}
-        futures                Solved 6 	 Time 2.1s 	 SOL rules 23.00 	 Rust LOC 2.00 	 Code/Spec 0.58 	 Sln nodes 7.00 	 Ann nodes 12.00 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"private::is_ten": (true, 4)}
+      
+      c-custom               Solved 39/39 	 Time 2.8s 	 SOL rules 32.77 	 Rust LOC 6.28 	 Code/Spec 1.27 	 Sln nodes 19.18 	 Ann nodes 14.23 	 Non-exec pure fn nodes 0.92 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"private::is_ten": (true, 4), "Node1::len": (true, 13), "Node::sum": (true, 13), "Node::len": (true, 12), "is_some": (true, 8), "Node1::<T>::len": (true, 13), "Node::<T>::elems": (false, 16), "Tree::size": (true, 16), "Tree::<T>::elems": (false, 20), "Node::len_te": (true, 15), "Node::<T>::len": (true, 12), "Node::<T>::len_te": (true, 15), "Node::<i32>::elems_eq": (true, 17), "Node1::sum": (true, 14)}
+        
+        futures                Solved 6/6 	 Time 2.1s 	 SOL rules 23.00 	 Rust LOC 2.00 	 Code/Spec 0.58 	 Sln nodes 7.00 	 Ann nodes 12.00 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"private::is_ten": (true, 4)}
           futures.rs::foo2 - 0_455ms [1/1/7/12] | spec_ast: 5, pfn_ast: {}
           futures.rs::foo4 - 0_445ms [1/1/7/13] | spec_ast: 14, pfn_ast: {}
           futures.rs::foo1 - 0_892ms [1/3/21/31] | spec_ast: 6, pfn_ast: {}
           futures.rs::foo3 - 1_188ms [4/20/20/22] | spec_ast: 17, pfn_ast: {}
           futures.rs::foo - 9_018ms [3/10/28/36] | spec_ast: 27, pfn_ast: {}
           reborrow.rs::foo - 0_373ms [2/7/12/24] | spec_ast: 3, pfn_ast: {"private::is_ten": (true, 4)}
-        general                Solved 21 	 Time 2.7s 	 SOL rules 38.38 	 Rust LOC 8.10 	 Code/Spec 1.22 	 Sln nodes 24.43 	 Ann nodes 18.29 	 Non-exec pure fn nodes 1.71 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Node1::len": (true, 13), "Node::sum": (true, 13), "Node::len": (true, 12), "Node::<T>::elems": (false, 16), "Tree::size": (true, 16), "Tree::<T>::elems": (false, 20), "Node1::sum": (true, 14), "Node::len_te": (true, 15), "Node::<T>::len": (true, 12), "Node::<T>::len_te": (true, 15), "Node::<i32>::elems_eq": (true, 17)}
+        
+        general                Solved 21/21 	 Time 2.7s 	 SOL rules 38.38 	 Rust LOC 8.10 	 Code/Spec 1.22 	 Sln nodes 24.43 	 Ann nodes 18.29 	 Non-exec pure fn nodes 1.71 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Node1::len": (true, 13), "Node::sum": (true, 13), "Node::len": (true, 12), "Node::<T>::elems": (false, 16), "Tree::size": (true, 16), "Tree::<T>::elems": (false, 20), "Node1::sum": (true, 14), "Node::len_te": (true, 15), "Node::<T>::len": (true, 12), "Node::<T>::len_te": (true, 15), "Node::<i32>::elems_eq": (true, 17)}
           clone.rs::clone - 0_197ms [1/2/2/9] | spec_ast: 0, pfn_ast: {}
           clone.rs::Foo::<T>::clone - 0_239ms [2/9/9/15] | spec_ast: 0, pfn_ast: {}
           copy_out.rs::BorrowAndValue::<'a, T>::new - 0_254ms [2/10/15/20] | spec_ast: 0, pfn_ast: {}
@@ -2548,7 +2568,8 @@ synth                  Solved 125 	 Time 1.8s 	 SOL rules 27.08 	 Rust LOC 5.23 
           tree_bst.rs::Tree::<i32>::insert - 1_400ms [12/56/56/111] | spec_ast: 67, pfn_ast: {"Tree::<T>::elems": (false, 20)}
           tree_to_list.rs::Tree::<T>::to_list - 2_911ms [21/53/53/61] | spec_ast: 5, pfn_ast: {"Tree::<T>::elems": (false, 20), "Node::<T>::elems": (false, 16)}
           zeroing.rs::zero - 0_703ms [10/21/26/38] | spec_ast: 14, pfn_ast: {"Node::sum": (true, 13), "Node::len": (true, 12)}
-        list_ex                Solved 12 	 Time 3.3s 	 SOL rules 27.83 	 Rust LOC 5.25 	 Code/Spec 1.95 	 Sln nodes 16.08 	 Ann nodes 8.25 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Node::<T>::len": (true, 12), "Node1::<T>::len": (true, 13), "is_some": (true, 8)}
+        
+        list_ex                Solved 12/12 	 Time 3.3s 	 SOL rules 27.83 	 Rust LOC 5.25 	 Code/Spec 1.95 	 Sln nodes 16.08 	 Ann nodes 8.25 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Node::<T>::len": (true, 12), "Node1::<T>::len": (true, 13), "is_some": (true, 8)}
           list_paper.rs::Node::<T>::peek - 0_756ms [4/9/9/14] | spec_ast: 4, pfn_ast: {"Node::<T>::len": (true, 12)}
           list_paper.rs::Node::<T>::push_len - 1_215ms [8/26/26/41] | spec_ast: 8, pfn_ast: {"Node::<T>::len": (true, 12)}
           list_paper.rs::Node::<T>::pop - 9_109ms [8/19/19/33] | spec_ast: 17, pfn_ast: {"Node::<T>::len": (true, 12), "is_some": (true, 8)}
@@ -2561,10 +2582,14 @@ synth                  Solved 125 	 Time 1.8s 	 SOL rules 27.08 	 Rust LOC 5.23 
           list_paper_alt.rs::Node1::<T>::pop - 10_871ms [8/20/20/35] | spec_ast: 17, pfn_ast: {"Node1::<T>::len": (true, 13), "is_some": (true, 8)}
           list_paper_alt.rs::Node1::<T>::peek_last - 4_884ms [4/11/11/39] | spec_ast: 10, pfn_ast: {"Node1::<T>::len": (true, 13)}
           list_paper_alt.rs::Node1::<T>::singleton - 0_542ms [3/13/13/11] | spec_ast: 0, pfn_ast: {}
-    suslik                 Solved 18 	 Time 4.1s 	 SOL rules 49.28 	 Rust LOC 12.78 	 Code/Spec 2.84 	 Sln nodes 36.44 	 Ann nodes 7.06 	 Non-exec pure fn nodes 5.78 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"List::<RoseTree<T>>::elems_tree": (false, 17), "Tree::<T>::size": (true, 19), "Node::<T>::elems": (false, 16), "List::<List<T>>::elems_list": (false, 17), "Node::<u16>::is_sorted": (true, 23), "List::<T>::elems": (false, 18), "Node::<T>::len": (true, 12), "Tree::<T>::elems": (false, 20), "RoseTree::<T>::elems": (false, 16)}
-      a-integers             Solved 1 	 Time 0.3s 	 SOL rules 19.00 	 Rust LOC 4.00 	 Code/Spec 2.25 	 Sln nodes 18.00 	 Ann nodes 8.00 	 Non-exec pure fn nodes 0.00
+    
+
+    suslik                 Solved 18/19 	 Time 4.1s 	 SOL rules 49.28 	 Rust LOC 12.78 	 Code/Spec 2.84 	 Sln nodes 36.44 	 Ann nodes 7.06 	 Non-exec pure fn nodes 5.78 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"List::<RoseTree<T>>::elems_tree": (false, 17), "Tree::<T>::size": (true, 19), "Node::<T>::elems": (false, 16), "List::<List<T>>::elems_list": (false, 17), "Node::<u16>::is_sorted": (true, 23), "List::<T>::elems": (false, 18), "Node::<T>::len": (true, 12), "Tree::<T>::elems": (false, 20), "RoseTree::<T>::elems": (false, 16)}
+      
+      a-integers             Solved 1/1 	 Time 0.3s 	 SOL rules 19.00 	 Rust LOC 4.00 	 Code/Spec 2.25 	 Sln nodes 18.00 	 Ann nodes 8.00 	 Non-exec pure fn nodes 0.00
         integers.rs::swap - 0_274ms [4/18/18/19] | spec_ast: 8, pfn_ast: {}
-      b-singly_linked_list   Solved 7 	 Time 1.8s 	 SOL rules 41.43 	 Rust LOC 10.14 	 Code/Spec 2.90 	 Sln nodes 28.57 	 Ann nodes 7.57 	 Non-exec pure fn nodes 2.29 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Node::<T>::len": (true, 12), "Node::<T>::elems": (false, 16)}
+      
+      b-singly_linked_list   Solved 7/7 	 Time 1.8s 	 SOL rules 41.43 	 Rust LOC 10.14 	 Code/Spec 2.90 	 Sln nodes 28.57 	 Ann nodes 7.57 	 Non-exec pure fn nodes 2.29 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Node::<T>::len": (true, 12), "Node::<T>::elems": (false, 16)}
         sll.rs::Node::<T>::sll_len - 1_030ms [7/15/15/25] | spec_ast: 8, pfn_ast: {"Node::<T>::len": (true, 12)}
         sll.rs::Node::<T>::sll_append - 1_646ms [4/16/16/34] | spec_ast: 9, pfn_ast: {"Node::<T>::len": (true, 12)}
         sll.rs::Node::<T>::sll_singleton - 0_575ms [2/9/9/9] | spec_ast: 0, pfn_ast: {}
@@ -2572,22 +2597,29 @@ synth                  Solved 125 	 Time 1.8s 	 SOL rules 27.08 	 Rust LOC 5.23 
         sll.rs::Node::<T>::sll_append3 - 2_943ms [17/43/43/63] | spec_ast: 12, pfn_ast: {"Node::<T>::len": (true, 12)}
         sll.rs::Node::<T>::sll_append_copy - 2_122ms [20/58/58/75] | spec_ast: 8, pfn_ast: {"Node::<T>::len": (true, 12)}
         sll.rs::Node::<T>::sll_copy - 1_185ms [9/28/28/36] | spec_ast: 3, pfn_ast: {}
-      c-sorted_list          Solved 2 	 Time 0.6s 	 SOL rules 26.50 	 Rust LOC 5.00 	 Code/Spec 0.82 	 Sln nodes 16.00 	 Ann nodes 11.50 	 Non-exec pure fn nodes 8.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Node::<T>::len": (true, 12), "Node::<u16>::is_sorted": (true, 23), "Node::<T>::elems": (false, 16)}
+      
+      c-sorted_list          Solved 2/2 	 Time 0.6s 	 SOL rules 26.50 	 Rust LOC 5.00 	 Code/Spec 0.82 	 Sln nodes 16.00 	 Ann nodes 11.50 	 Non-exec pure fn nodes 8.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Node::<T>::len": (true, 12), "Node::<u16>::is_sorted": (true, 23), "Node::<T>::elems": (false, 16)}
         srtl.rs::Node::<u16>::srtl_prepend - 0_325ms [2/10/10/13] | spec_ast: 16, pfn_ast: {"Node::<T>::len": (true, 12)}
         srtl.rs::Node::<u16>::insertion_sort - 0_899ms [8/22/22/40] | spec_ast: 7, pfn_ast: {"Node::<u16>::is_sorted": (true, 23), "Node::<T>::elems": (false, 16)}
-      d-list_of_lists        Solved 1 	 Time 2.2s 	 SOL rules 50.00 	 Rust LOC 15.00 	 Code/Spec 1.02 	 Sln nodes 41.00 	 Ann nodes 5.00 	 Non-exec pure fn nodes 35.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"List::<List<T>>::elems_list": (false, 17), "List::<T>::elems": (false, 18)}
+      
+      d-list_of_lists        Solved 1/2 	 Time 2.2s 	 SOL rules 50.00 	 Rust LOC 15.00 	 Code/Spec 1.02 	 Sln nodes 41.00 	 Ann nodes 5.00 	 Non-exec pure fn nodes 35.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"List::<List<T>>::elems_list": (false, 17), "List::<T>::elems": (false, 18)}
         multi-list.rs::List::<List<T>>::flatten - 2_161ms [15/41/41/50] | spec_ast: 5, pfn_ast: {"List::<List<T>>::elems_list": (false, 17), "List::<T>::elems": (false, 18)}
-      e-binary_tree          Solved 5 	 Time 4.1s 	 SOL rules 58.60 	 Rust LOC 16.00 	 Code/Spec 3.50 	 Sln nodes 44.80 	 Ann nodes 5.60 	 Non-exec pure fn nodes 7.20 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Tree::<T>::size": (true, 19), "Tree::<T>::elems": (false, 20), "Node::<T>::elems": (false, 16)}
+      
+      e-binary_tree          Solved 5/5 	 Time 4.1s 	 SOL rules 58.60 	 Rust LOC 16.00 	 Code/Spec 3.50 	 Sln nodes 44.80 	 Ann nodes 5.60 	 Non-exec pure fn nodes 7.20 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Tree::<T>::size": (true, 19), "Tree::<T>::elems": (false, 20), "Node::<T>::elems": (false, 16)}
         tree.rs::Tree::<T>::tree_flatten_acc - 8_543ms [30/72/72/93] | spec_ast: 9, pfn_ast: {"Tree::<T>::elems": (false, 20), "Node::<T>::elems": (false, 16)}
         tree.rs::Tree::<T>::tree_copy - 3_229ms [11/42/42/51] | spec_ast: 5, pfn_ast: {"Tree::<T>::elems": (false, 20)}
         tree.rs::Tree::<T>::tree_flatten - 4_374ms [21/53/53/61] | spec_ast: 5, pfn_ast: {"Tree::<T>::elems": (false, 20), "Node::<T>::elems": (false, 16)}
         tree.rs::Tree::<T>::tree_flatten_helper - 2_738ms [10/34/34/52] | spec_ast: 5, pfn_ast: {"Tree::<T>::elems": (false, 20), "Node::<T>::elems": (false, 16)}
         tree.rs::Tree::<T>::tree_size - 1_450ms [8/23/23/36] | spec_ast: 4, pfn_ast: {"Tree::<T>::size": (true, 19)}
-      f-rose_tree            Solved 2 	 Time 18.4s 	 SOL rules 91.00 	 Rust LOC 25.00 	 Code/Spec 2.31 	 Sln nodes 70.50 	 Ann nodes 5.00 	 Non-exec pure fn nodes 25.50 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"RoseTree::<T>::elems": (false, 16), "List::<RoseTree<T>>::elems_tree": (false, 17), "List::<T>::elems": (false, 18)}
+      
+      f-rose_tree            Solved 2/2 	 Time 18.4s 	 SOL rules 91.00 	 Rust LOC 25.00 	 Code/Spec 2.31 	 Sln nodes 70.50 	 Ann nodes 5.00 	 Non-exec pure fn nodes 25.50 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"RoseTree::<T>::elems": (false, 16), "List::<RoseTree<T>>::elems_tree": (false, 17), "List::<T>::elems": (false, 18)}
         rose-tree.rs::RoseTree::<T>::copy - 27_289ms [25/74/74/103] | spec_ast: 5, pfn_ast: {"RoseTree::<T>::elems": (false, 16), "List::<RoseTree<T>>::elems_tree": (false, 17)}
         rose-tree.rs::RoseTree::<T>::flatten - 9_485ms [25/67/67/79] | spec_ast: 5, pfn_ast: {"RoseTree::<T>::elems": (false, 16), "List::<RoseTree<T>>::elems_tree": (false, 17), "List::<T>::elems": (false, 18)}
-    verifier               Solved 47 	 Time 0.3s 	 SOL rules 10.85 	 Rust LOC 1.66 	 Code/Spec 0.67 	 Sln nodes 6.36 	 Ann nodes 9.51 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Tree::leftmost": (true, 19), "Tree::rightmost": (true, 19), "Tree::bst_invariant": (true, 36), "Account::balance": (true, 2), "List::sum": (true, 13)}
-      a-prusti               Solved 41 	 Time 0.3s 	 SOL rules 9.39 	 Rust LOC 1.44 	 Code/Spec 0.63 	 Sln nodes 5.46 	 Ann nodes 8.66 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Tree::leftmost": (true, 19), "Tree::rightmost": (true, 19), "Tree::bst_invariant": (true, 36), "Account::balance": (true, 2)}
+    
+    
+    verifier               Solved 47/47 	 Time 0.3s 	 SOL rules 10.85 	 Rust LOC 1.66 	 Code/Spec 0.67 	 Sln nodes 6.36 	 Ann nodes 9.51 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Tree::leftmost": (true, 19), "Tree::rightmost": (true, 19), "Tree::bst_invariant": (true, 36), "Account::balance": (true, 2), "List::sum": (true, 13)}
+      
+      a-prusti               Solved 41/41 	 Time 0.3s 	 SOL rules 9.39 	 Rust LOC 1.44 	 Code/Spec 0.63 	 Sln nodes 5.46 	 Ann nodes 8.66 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Tree::leftmost": (true, 19), "Tree::rightmost": (true, 19), "Tree::bst_invariant": (true, 36), "Account::balance": (true, 2)}
         account.rs::Account::transfer - 0_707ms [4/30/30/29] | spec_ast: 26, pfn_ast: {"Account::balance": (true, 2)}
         account.rs::Account::deposit - 0_470ms [3/16/16/14] | spec_ast: 14, pfn_ast: {"Account::balance": (true, 2)}
         account.rs::Account::withdraw - 0_433ms [3/16/16/14] | spec_ast: 12, pfn_ast: {"Account::balance": (true, 2)}
@@ -2629,13 +2661,18 @@ synth                  Solved 125 	 Time 1.8s 	 SOL rules 27.08 	 Rust LOC 5.23 
         wand-identity2.rs::identity3 - 0_393ms [2/8/14/18] | spec_ast: 9, pfn_ast: {}
         wand-identity2.rs::identity - 0_328ms [1/1/7/14] | spec_ast: 7, pfn_ast: {}
         wand-identity2.rs::identity2 - 0_474ms [3/8/14/18] | spec_ast: 11, pfn_ast: {}
-      b-creusot              Solved 6 	 Time 0.4s 	 SOL rules 20.83 	 Rust LOC 3.17 	 Code/Spec 0.82 	 Sln nodes 12.50 	 Ann nodes 15.33 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"List::sum": (true, 13)}
+      
+      
+      b-creusot              Solved 6/6 	 Time 0.4s 	 SOL rules 20.83 	 Rust LOC 3.17 	 Code/Spec 0.82 	 Sln nodes 12.50 	 Ann nodes 15.33 	 Non-exec pure fn nodes 0.00 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"List::sum": (true, 13)}
         inc_some_2_list.rs::List::sum_x - 0_580ms [8/20/20/29] | spec_ast: 8, pfn_ast: {"List::sum": (true, 13)}
         inc_some_2_list.rs::List::take_some_rest - 0_592ms [4/16/21/25] | spec_ast: 26, pfn_ast: {"List::sum": (true, 13)}
         swap_borrows.rs::swap - 0_200ms [1/9/9/11] | spec_ast: 11, pfn_ast: {}
         take_max.rs::take_max - 0_291ms [3/16/16/27] | spec_ast: 20, pfn_ast: {}
         unnest.rs::unnest - 0_188ms [1/1/7/10] | spec_ast: 14, pfn_ast: {}
         wrapping.rs::test_u8_wrapping_add - 0_648ms [2/13/13/23] | spec_ast: 13, pfn_ast: {}
+
+
+
 #######################################
 test all_tests ... ok
 

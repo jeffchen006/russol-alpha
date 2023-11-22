@@ -95,6 +95,15 @@ The test harness `.../tests/top_crates.rs` runs the tool on the top 100 crates c
 docker run --rm -it -v ${PWD}/russol-alpha/ruslic/tests:/home/sbtuser/russol-alpha/ruslic/tests jonasalaif/russol test --release --test top_crates -- top_crates_cached --nocapture
 ```
 
+
+```bash
+cargo test --release --test top_crates -- top_crates_cached --nocapture
+```
+
+
+
+
+
 At the end it will print a summary of the results (and write them to `.../tests/crates-results.txt`), which should look similar to that included in `.../tests/crates-expected.txt`.
 
 The tool can also be run on the current latest version of the top 100 crates from crates.io by replacing `top_crates_cached` with `top_crates_all` in the above command.

@@ -1,0 +1,119 @@
+# -c 10 -o 10 -p false
+###
+predicate P47806_Option_P286_Colour___COPY(int snap) "std::option::Option<style::Colour>" {
+| (snap_fdisc == 0) => "::std::option::Option::None" {
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "::std::option::Option::Some" {
+  (snap == (1, (snap_fdisc), (snap_f1_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f1_0: P286_Colour_(snap_f1_0)
+ }
+}
+
+predicate P286_Colour__COPY(int snap) "style::Colour" {
+| (snap_fdisc == 0) => "crate::style::Colour::Black" {
+  (snap == (0, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 1) => "crate::style::Colour::Red" {
+  (snap == (1, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 2) => "crate::style::Colour::Green" {
+  (snap == (2, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 3) => "crate::style::Colour::Yellow" {
+  (snap == (3, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 4) => "crate::style::Colour::Blue" {
+  (snap == (4, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 5) => "crate::style::Colour::Purple" {
+  (snap == (5, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 6) => "crate::style::Colour::Cyan" {
+  (snap == (6, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 7) => "crate::style::Colour::White" {
+  (snap == (7, (snap_fdisc))) ;
+   priv fdisc: Pisize(snap_fdisc)
+ }
+| (snap_fdisc == 8) => "crate::style::Colour::Fixed" {
+  (snap == (8, (snap_fdisc), (snap_f8_0))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f8_0: Pu8(snap_f8_0)
+ }
+| (snap_fdisc == 9) => "crate::style::Colour::RGB" {
+  (snap == (9, (snap_fdisc), (snap_f9_0), (snap_f9_1), (snap_f9_2))) ;
+   priv fdisc: Pisize(snap_fdisc) **
+   f9_0: Pu8(snap_f9_0) **
+   f9_1: Pu8(snap_f9_1) **
+   f9_2: Pu8(snap_f9_2)
+ }
+}
+
+predicate PRIM_Pisize_COPY(int snap) "isize" {
+| true => {
+  (snap >= (- 2147483646)) &&
+  (snap <= 2147483646) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P269_Style__COPY(int snap) "style::Style" {
+| true => "crate::style::Style" {
+  (snap == (0, (snap_f0foreground), (snap_f0background), (snap_f0is_bold), (snap_f0is_dimmed), (snap_f0is_italic), (snap_f0is_underline), (snap_f0is_blink), (snap_f0is_reverse), (snap_f0is_hidden), (snap_f0is_strikethrough))) ;
+   f0foreground: P47806_Option_P286_Colour__(snap_f0foreground) **
+   f0background: P47806_Option_P286_Colour__(snap_f0background) **
+   f0is_bold: Pbool(snap_f0is_bold) **
+   f0is_dimmed: Pbool(snap_f0is_dimmed) **
+   f0is_italic: Pbool(snap_f0is_italic) **
+   f0is_underline: Pbool(snap_f0is_underline) **
+   f0is_blink: Pbool(snap_f0is_blink) **
+   f0is_reverse: Pbool(snap_f0is_reverse) **
+   f0is_hidden: Pbool(snap_f0is_hidden) **
+   f0is_strikethrough: Pbool(snap_f0is_strikethrough)
+ }
+}
+
+predicate PRIM_Pbool_COPY(bool snap) "bool" {
+| true => {
+  #[snap] ;
+   emp
+ }
+}
+
+predicate PRIM_Pu8_COPY(int snap) "u8" {
+| true => {
+  (snap >= 0) &&
+  (snap <= 255) &&
+  #[snap] ;
+   emp
+ }
+}
+
+predicate P252_Infix__COPY(int snap) "ansi::Infix" {
+| true => "crate::ansi::Infix" {
+  (snap == (0, (snap_f0_0), (snap_f0_1))) ;
+   f0_0: P269_Style_(snap_f0_0) **
+   f0_1: P269_Style_(snap_f0_1)
+ }
+}
+
+{
+   fself: P286_Colour_(snap_fself) **
+   fnext: P286_Colour_(snap_fnext)
+}
+ansi___impl_style__Colour__infix "infix"
+{
+   fresult: P252_Infix_(snap_fresult)
+}
+

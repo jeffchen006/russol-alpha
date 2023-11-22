@@ -7,6 +7,9 @@ import org.tygus.suslik.synthesis.rules.Rules.SynthesisRule
 import org.tygus.suslik.synthesis.rules._
 import org.tygus.suslik.util.SynStats
 
+
+// Jeff: this is completely new stuff. 
+
 abstract class RustSynthesis (config: SynConfig) extends Tactic {
 
   def nextRules(node: OrNode): List[SynthesisRule] = {

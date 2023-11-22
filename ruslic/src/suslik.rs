@@ -591,14 +591,14 @@ impl SuslikProgram {
                     kind: SynthesisResultKind::Timeout,
                 }
             } else if unsolvable {
-                // std::fs::remove_dir_all(suslik_dir.join(&tmpdir)).unwrap();
+                std::fs::remove_dir_all(suslik_dir.join(&tmpdir)).unwrap();
 
                 SynthesisResult {
                     is_trivial: self.synth_fn.is_trivial,
                     kind: SynthesisResultKind::Unsolvable(time.as_millis() as u64),
                 }
             } else {
-                // std::fs::remove_dir_all(suslik_dir.join(&tmpdir)).unwrap();
+                std::fs::remove_dir_all(suslik_dir.join(&tmpdir)).unwrap();
 
                 let mut sln = String::new();
                 use std::io::Read;

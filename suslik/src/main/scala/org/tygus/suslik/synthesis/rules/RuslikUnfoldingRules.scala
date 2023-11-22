@@ -20,6 +20,10 @@ import org.tygus.suslik.language.IntType
   * @author Jonas Fiala
   */
 
+// Jeff: this is the most important file for understanding the rules
+
+
+
 object RuslikUnfoldingRules extends SepLogicUtils with RuleUtils {
   val exceptionQualifier: String = "rule-unfolding"
 
@@ -67,7 +71,7 @@ object RuslikUnfoldingRules extends SepLogicUtils with RuleUtils {
           c.asn.subst(subst).setTagAndRef(rapp, cycPreds)
         )
       )
-      // !isBorrow: any futures will be dealt with by addToPost
+      // !isBorrow: any futures will be dealt with by addToPostmaxCloseDepth
       val futures_subst: Subst = if (!rapp.isBorrow) Map.empty
         else if (ip.isPrim || ip.clauses.length == 0) {
           assert(ip.params.length == 1)
@@ -274,9 +278,12 @@ object RuslikUnfoldingRules extends SepLogicUtils with RuleUtils {
     override def toString: Ident = "TryCall"
 
     def apply(goal: Goal): Seq[RuleResult] = {
+      // Jeff: Additional stuff
       // Prevent calling more than 8 functions in a single branch:
       if (goal.rulesApplied.count(_ == UnfoldingRules.CallRule) > 8) return Nil
       if (goal.constraints.haveClosed) return Nil
+      // Jeff: End additional stuff
+
       val cands = goal.companionCandidates
       val funLabels = cands.map(a => (a._1.toFunSpec, Some(a._1.label), a._2)) ++ // companions
         goal.env.functions.values.map(f => (f, None, 666)) // components
@@ -287,7 +294,12 @@ object RuslikUnfoldingRules extends SepLogicUtils with RuleUtils {
         // Optimization: do not consider f if its pre has predicates that cannot possibly match ours
         if multiSubset(f.pre.sigma.profile.apps, goal.pre.sigma.profile.apps)
         if (goal.env.config.maxCalls :: goal.pre.sigma.callTags).min < goal.env.config.maxCalls
+      
+        // Jeff: missing stuff
+      
       } yield {
+
+        // Jeff: new stuff
         val newGamma = goal.gamma ++ (f.params ++ f.var_decl).toMap // Add f's (fresh) variables to gamma
         val call = Call(Var(f.clean), f.returns, f.params.map(_._1), l, _f.params.headOption.map(_._1.name == "self").getOrElse(false), Skip)
         val calleePostSigma = f.post.sigma.setSAppTags(PTag().incrCalls)

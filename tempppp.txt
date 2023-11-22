@@ -1865,7 +1865,51 @@ fn test_u8_wrapping_add(a: u8, b: u8) -> u8 {
 } // Synth time: 483 ms, AST nodes: 13 vs unsimp 13 @|483|13|13|23|@
 
 ### Measured timings (max 35_877ms) ###
-synth                  Solved 125 	 Time 2.5s 	 SOL rules 27.08 	 Rust LOC 5.23 	 Code/Spec 1.35 	 Sln nodes 16.57 	 Ann nodes 11.23 	 Non-exec pure fn nodes 1.08 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"Tree::<T>::size": (true, 19), "NodeP::<T>::elems": (false, 19), "Avl::<i32>::size": (true, 16), "Node1::sum": (true, 14), "Iter::<'a, T>::len": (true, 14), "List::<RoseTree<T>>::elems_tree": (false, 17), "Tree::rightmost": (true, 19), "Tree::bst_invariant": (true, 36), "Avl::<i32>::is_avl": (true, 34), "Avl::<i32>::height": (true, 25), "Node::sum": (true, 13), "Node::<u16>::is_sorted": (true, 23), "List::<List<T>>::elems_list": (false, 17), "List::<T>::elems": (false, 18), "NodeP::<T>::len": (true, 13), "Node::<T>::len": (true, 12), "ListP::<T>::elems": (false, 12), "private::is_ten": (true, 4), "Node::<i32>::elems_eq": (true, 17), "Account::balance": (true, 2), "Node::len": (true, 12), "Tree::leftmost": (true, 19), "Node1::<T>::len": (true, 13), "List::<T>::len": (true, 14), "is_ok": (true, 8), "Node::<T>::len_gt": (true, 16), "Tree::size": (true, 16), "Node::<T>::len_te": (true, 15), "List::sum": (true, 13), "Node1::len": (true, 13), "is_some": (true, 8), "Node::<T>::elems": (false, 16), "Tree::<T>::elems": (false, 20), "ListP::<T>::len": (true, 11), "Node::len_te": (true, 15), "RoseTree::<T>::elems": (false, 16)}
+synth                  Solved 125 	 Time 2.5s 	 SOL rules 27.08 	 Rust LOC 5.23 	 Code/Spec 1.35 	 Sln nodes 16.57 	 Ann nodes 11.23 	 Non-exec pure fn nodes 1.08 	
+
+| 	 Pure functions ("name": (executable, ast_nodes)): 
+      {
+        "Tree::<T>::size": (true, 19), 
+        "NodeP::<T>::elems": (false, 19), 
+        "Avl::<i32>::size": (true, 16), 
+        "Node1::sum": (true, 14), 
+        "Iter::<'a, T>::len": (true, 14), 
+        "List::<RoseTree<T>>::elems_tree": (false, 17), 
+        "Tree::rightmost": (true, 19), 
+        "Tree::bst_invariant": (true, 36), 
+        "Avl::<i32>::is_avl": (true, 34), 
+        "Avl::<i32>::height": (true, 25), 
+        "Node::sum": (true, 13), 
+        "Node::<u16>::is_sorted": (true, 23), 
+        "List::<List<T>>::elems_list": (false, 17), 
+        "List::<T>::elems": (false, 18), 
+        "NodeP::<T>::len": (true, 13), 
+        "Node::<T>::len": (true, 12), 
+        "ListP::<T>::elems": (false, 12),
+        "private::is_ten": (true, 4), 
+        "Node::<i32>::elems_eq": (true, 17), 
+        "Account::balance": (true, 2), 
+        "Node::len": (true, 12), 
+        "Tree::leftmost": (true, 19), 
+        "Node1::<T>::len": (true, 13), 
+        "List::<T>::len": (true, 14), 
+        "is_ok": (true, 8), 
+        "Node::<T>::len_gt": (true, 16), 
+        "Tree::size": (true, 16), 
+        "Node::<T>::len_te": (true, 15), 
+        "List::sum": (true, 13), 
+        "Node1::len": (true, 13), 
+        "is_some": (true, 8),
+        "Node::<T>::elems": (false, 16), 
+        "Tree::<T>::elems": (false, 20), 
+        "ListP::<T>::len": (true, 11),
+        "Node::len_te": (true, 15), 
+        "RoseTree::<T>::elems": (false, 16)}
+
+
+
+
+
   other                  Solved 10 	 Time 2.1s 	 SOL rules 33.90 	 Rust LOC 3.80 	 Code/Spec 1.11 	 Sln nodes 15.60 	 Ann nodes 10.90 	 Non-exec pure fn nodes 3.10 	 | 	 Pure functions ("name": (executable, ast_nodes)): {"NodeP::<T>::elems": (false, 19), "NodeP::<T>::len": (true, 13), "Avl::<i32>::is_avl": (true, 34), "ListP::<T>::len": (true, 11), "Avl::<i32>::size": (true, 16), "ListP::<T>::elems": (false, 12), "Avl::<i32>::height": (true, 25)}
     ci                     Solved 4 	 Time 0.9s 	 SOL rules 34.00 	 Rust LOC 1.00 	 Code/Spec 1.64 	 Sln nodes 5.75 	 Ann nodes 3.50 	 Non-exec pure fn nodes 0.00
       copy.rs::foo - 0_299ms [1/4/4/12] | spec_ast: 3, pfn_ast: {}

@@ -15,6 +15,8 @@ pub fn intern(tcx: TyCtxt, timeout: u64) -> Option<FxHashMap<String, SynthesisRe
     tcx.hir().par_for_each_module(|module| {
         tcx.ensure().check_mod_privacy(module);
     });
+
+    
     if tcx.sess.has_errors().is_some() {
         return None;
     }

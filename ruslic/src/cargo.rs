@@ -1,6 +1,10 @@
 use serde::Deserialize;
 
+// Jeff: I think this is the main function that runs the synthesis for cargo-100
+
+
 fn main() {
+    
     if let Err(code) = process(std::env::args().skip(1)) {
         std::process::exit(code);
     }
@@ -46,12 +50,18 @@ where
         .args(path)
         .status()
         .expect("could not run cargo");
+
+    // print the command to run
+    println!("cargo fmt --manifest-path={}", path.unwrap());
+    
     if !exit_status.success() {
         Ok(())
     } else {
         Err(exit_status.code().unwrap_or(-1))
     }
 }
+
+
 
 pub fn get_rust_toolchain_channel() -> String {
     #[derive(Deserialize)]

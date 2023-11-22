@@ -236,6 +236,9 @@ trait SynthesisRunnerUtil {
             print(result)
             println(s" // Synth time: $time ms, AST nodes: $nodes vs unsimp $nodesUnsimp @|$time|$nodes|$nodesUnsimp|$ruleApps|@")
           }
+
+
+          
           if (out != noOutputCheck) {
             val tt = out.trim.lines.map(_.trim)
             val res = result.trim.lines.map(_.trim)

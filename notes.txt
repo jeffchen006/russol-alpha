@@ -39,3 +39,10 @@ Basically russol uses 3 type prunings:
 
 3. References and Prophecies
 
+
+
+
+
+flamegraph -o my_flamegraph.svg -- ./target/release/ruslic ./demo.rs
+
+flamegraph -- ./target/release/ruslic ./demo.rs
