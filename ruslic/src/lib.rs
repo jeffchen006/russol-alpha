@@ -143,6 +143,7 @@ pub fn run_on_file(
         current_dir.join("deps").as_os_str().to_str().unwrap()
     ));
 
+    println!("Running with args:");
     // print args element by element
     for arg in &args {
         println!("{}", arg);
