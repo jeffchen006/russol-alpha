@@ -100,12 +100,20 @@ predicate PRIM_Pu8_COPY(int snap) "u8" {
  }
 }
 
+predicate P252_Infix__COPY(int snap) "ansi::Infix" {
+| true => "crate::ansi::Infix" {
+  (snap == (0, (snap_f0_0), (snap_f0_1))) ;
+   f0_0: P269_Style_(snap_f0_0) **
+   f0_1: P269_Style_(snap_f0_1)
+ }
+}
+
 {
    fself: P286_Colour_(snap_fself) **
-   fbackground: P286_Colour_(snap_fbackground)
+   fnext: P286_Colour_(snap_fnext)
 }
-style__Colour__on "on"
+ansi___impl_style__Colour__infix "infix"
 {
-   fresult: P269_Style_(snap_fresult)
+   fresult: P252_Infix_(snap_fresult)
 }
 
