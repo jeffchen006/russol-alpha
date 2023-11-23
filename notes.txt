@@ -42,7 +42,10 @@ Basically russol uses 3 type prunings:
 
 
 
-
 flamegraph -o my_flamegraph.svg -- ./target/release/ruslic ./demo.rs
 
 flamegraph -- ./target/release/ruslic ./demo.rs
+
+
+
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar dream/tmp-foo-5634/tmp.syn  --solutions=1
