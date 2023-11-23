@@ -72,7 +72,7 @@ impl<T> core::ops::Index<&T> for Set<T> {
     type Output = bool;
     fn index(&self, _: &T) -> &bool {
         panic!()
-/home/zhiychen/Documents/russol-alpha/russol-macros/src    }
+    }
 }
 impl<T> core::ops::Add for Set<T> {
     type Output = Self;

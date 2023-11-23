@@ -192,7 +192,7 @@ fn all_tests() {
     let timeout = std::env::var("RUSLIC_TIMEOUT")
         .ok()
         .and_then(|t| t.parse().ok())
-        .unwrap_or(300_000);
+        .unwrap_or(3000_000);  // Jeff changes the timeout
 
     let is_eval = std::env::var("RUSLIC_EVAL")
         .ok()

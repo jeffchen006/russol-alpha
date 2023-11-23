@@ -1,0 +1,57 @@
+
+running 1 test
+./tests/synth/other
+  ./tests/synth/other/ci
+    ./tests/synth/other/ci/copy.rs
+Attempting synthesis for: ./tests/synth/other/ci/copy.rs
+Running with args:
+/name/of/binary
+./tests/synth/other/ci/copy.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/Users/jeffchen/.rustup/toolchains/nightly-2022-09-14-aarch64-apple-darwin
+--edition=2021
+--extern
+russol_contracts=/Users/jeffchen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/Users/jeffchen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-foo-5763/tmp.syn ["--solutions=1"] --bfs=1
+suslik dir: "/Users/jeffchen/Documents/russol-alpha/suslik"
+=========== End of command
+fn foo(c: &m::Priv) -> m::Priv {
+  *c
+} // Synth time: 342 ms, AST nodes: 4 vs unsimp 4 @|342|4|4|12|@
+
+    ./tests/synth/other/ci/many_choices.rs
+Attempting synthesis for: ./tests/synth/other/ci/many_choices.rs
+Running with args:
+/name/of/binary
+./tests/synth/other/ci/many_choices.rs
+--crate-type=lib
+-A
+dead_code
+-A
+unused_variables
+--sysroot
+/Users/jeffchen/.rustup/toolchains/nightly-2022-09-14-aarch64-apple-darwin
+--edition=2021
+--extern
+russol_contracts=/Users/jeffchen/Documents/russol-alpha/target/release/librussol_contracts.rlib
+-L
+dependency=/Users/jeffchen/Documents/russol-alpha/target/release/deps
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-owned-9886/tmp.syn ["--solutions=1"] --bfs=1
+suslik dir: "/Users/jeffchen/Documents/russol-alpha/suslik"
+=========== End of command
+Added --solutions=1 to suslik args
+=========== Running command:
+ java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar tmp-borrowed-3702/tmp.syn ["--solutions=1"] --bfs=1
+suslik dir: "/Users/jeffchen/Documents/russol-alpha/suslik"
+=========== End of command

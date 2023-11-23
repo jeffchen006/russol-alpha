@@ -539,12 +539,12 @@ impl SuslikProgram {
         // print synfile
         print!("{} ", format!("{}", synfile.to_str().unwrap()));
         // print suslik args
-        println!("{:?}", provided_args);
+        println!("{:?} --bfs=1", provided_args);
         // print suslik_dir
         println!("suslik dir: {:?}", suslik_dir);
         println!("=========== End of command");
 
-
+        
 
         let mut child: std::process::Child = Command::new("java")
             .arg("-Dfile.encoding=UTF-8")
@@ -552,6 +552,7 @@ impl SuslikProgram {
             .arg("./target/scala-2.12/suslik.jar")
             .arg(&synfile)
             .args(provided_args)
+            .arg("--bfs=1")  // Jeff add 
             .current_dir(&suslik_dir)
             .stdout(Stdio::piped())
             .spawn()

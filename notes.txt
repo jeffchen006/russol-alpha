@@ -48,4 +48,18 @@ flamegraph -- ./target/release/ruslic ./demo.rs
 
 
 
- java -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar dream/tmp-foo-5634/tmp.syn  --solutions=1
+ java  -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar dream/tmp-foo-5634/tmp.syn  --solutions=1
+
+
+
+ -agentpath:/Applications/YourKit-Java-Profiler-2023.9.app/Contents/Resources/bin/mac/libyjpagent.dylib=disablestacktelemetry,exceptions=disable,delay=10000
+
+ -agentpath:/Applications/YourKit-Java-Profiler-2023.9.app/Contents/Resources/bin/mac/libyjpagent.dylib=delay=10000
+
+-agentpath:/Applications/YourKit-Java-Profiler-2023.9.app/Contents/Resources/bin/mac/libyjpagent.dylib=probe_disable=*
+
+
+
+ java -agentpath:/Applications/YourKit-Java-Profiler-2023.9.app/Contents/Resources/bin/mac/libyjpagent.dylib=tracing  -Dfile.encoding=UTF-8 -jar ./target/scala-2.12/suslik.jar dream/tmp-foo-5634/tmp.syn  --solutions=1
+
+
