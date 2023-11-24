@@ -98,6 +98,8 @@ object SearchTree {
             an.parent.fail
           }
         }
+        // Jeff: disable pruning for now
+        // case Some(an) => 
       }
     }
 

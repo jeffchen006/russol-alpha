@@ -544,8 +544,7 @@ impl SuslikProgram {
         println!("suslik dir: {:?}", suslik_dir);
         println!("=========== End of command");
 
-        
-
+    
         let mut child: std::process::Child = Command::new("java")
             .arg("-Dfile.encoding=UTF-8")
             .arg("-jar")

@@ -241,6 +241,7 @@ impl<'tcx> HirTranslator<'tcx> {
         }
         Some(contract)
     }
+
     fn parse_spec_stmt(&self, stmt: &Stmt, thir: &Thir) -> Option<(SpecKind, LocalDefId)> {
         if let StmtKind::Expr { expr, .. } = stmt.kind {
             if let ExprKind::Call {

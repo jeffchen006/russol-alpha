@@ -27,9 +27,10 @@ pub fn intern(tcx: TyCtxt, timeout: u64) -> Option<FxHashMap<String, SynthesisRe
         if tcx.sess.has_errors().is_some() {
             return None;
         }
-        // println!("Translating {:?}", def_id);
+        println!("Translating {:?}", def_id);
         translator.translate(def_id);
     }
+    
     let multithreaded = std::env::var("RUSLIC_THREAD_COUNT")
         .map(|v| v.parse::<usize>().unwrap())
         .unwrap_or(8);

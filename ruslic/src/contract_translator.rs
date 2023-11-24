@@ -52,7 +52,7 @@ impl<'a, 'tcx> ThirTerm<'a, 'tcx> {
         // let ty = self.thir[expr].ty;
         // eprintln!("{:?}", &thir[expr].kind);
         let ty = self.thir[expr].ty;
-        // println!("Looking at expr: {:?} of ty: {}", self.thir[expr].kind, ty);
+        println!("Looking at expr: {:?} of ty: {}", self.thir[expr].kind, ty);
         let expr = &self.thir[expr];
         match expr.kind {
             ExprKind::Scope { value, .. } => self.expr_term(value),
